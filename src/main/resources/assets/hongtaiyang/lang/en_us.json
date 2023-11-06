@@ -1,6 +1,25 @@
 {
-  "item.hongtaiyang.umbral_gem": "Umbral Gem",
+  "item.hongtaiyang.tome_of_universe": "Tome of the Universe",
   "item.hongtaiyang.soul_core": "Soul Core",
+  "item.hongtaiyang.darkdweller_stick": "Darkdweller Stick",
+  "item.hongtaiyang.darkdweller_root": "Darkdweller Root",
+  "item.hongtaiyang.wardling_antler": "Wardling Antler",
+  "item.hongtaiyang.umbral_gem": "Umbral Gem",
+  "item.hongtaiyang.umbral_essence": "Umbral Essence",
+  "item.hongtaiyang.sonar_compass": "Sonar Compass",
+  "item.hongtaiyang.umbral_locator": "Umbral Locator",
+  "item.hongtaiyang.magic_chalk": "Magic Chalk",
+  "item.hongtaiyang.tuning_fork": "Tuning Fork",
+  "item.hongtaiyang.darkdweller_boat": "Darkdweller Boat",
+  "item.hongtaiyang.umbral_sword": "Umbral Sword",
+  "item.hongtaiyang.umbral_pickaxe": "Umbral Pickaxe",
+  "item.hongtaiyang.umbral_axe": "Umbral Axe",
+  "item.hongtaiyang.umbral_shovel": "Umbral Shovel",
+  "item.hongtaiyang.umbral_hoe": "Umbral Hoe",
+  "item.hongtaiyang.wardling_helmet": "Wardling Helmet",
+  "item.hongtaiyang.wardling_chestplate": "Wardling Chestplate",
+  "item.hongtaiyang.wardling_leggings": "Wardling Leggings",
+  "item.hongtaiyang.wardling_boots": "Wardling Boots",
 
   "itemGroup.hongtaiyangtab": "Project Hong Taiyang"
 }
