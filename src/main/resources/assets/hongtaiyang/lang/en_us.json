@@ -1,6 +1,9 @@
 {
+  "item.hongtaiyang.logbook": "Old Logbook",
+  "item.hongtaiyang.writings": "Mystifying Scribbles",
   "item.hongtaiyang.tome_of_universe": "Tome of the Universe",
   "item.hongtaiyang.soul_core": "Soul Core",
+  "item.hongtaiyang.cracked_soul_core": "Cracked Soul Core",
   "item.hongtaiyang.darkdweller_stick": "Darkdweller Stick",
   "item.hongtaiyang.darkdweller_root": "Darkdweller Root",
   "item.hongtaiyang.wardling_antler": "Wardling Antler",
@@ -20,9 +23,6 @@
   "item.hongtaiyang.wardling_chestplate": "Wardling Chestplate",
   "item.hongtaiyang.wardling_leggings": "Wardling Leggings",
   "item.hongtaiyang.wardling_boots": "Wardling Boots",
-  "item.hongtaiyang.cracked_soul_core": "Cracked Soul Core",
-  "item.hongtaiyang.logbook": "Old Logbook",
-  "item.hongtaiyang.writings": "Mystifying Scribbles",
 
   "itemGroup.hongtaiyangtab": "Project Hong Taiyang"
 }
