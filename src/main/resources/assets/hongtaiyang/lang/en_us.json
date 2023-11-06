@@ -1,6 +1,9 @@
 {
   "item.hongtaiyang.umbral_gem": "Umbral Gem",
   "item.hongtaiyang.soul_core": "Soul Core",
+  "item.hongtaiyang.cracked_soul_core": "Cracked Soul Core",
+  "item.hongtaiyang.logbook": "Old Logbook",
+  "item.hongtaiyang.writings": "Mystifying Scribbles",
 
   "itemGroup.hongtaiyangtab": "Project Hong Taiyang"
 }

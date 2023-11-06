@@ -19,6 +19,17 @@ public class ModItems {
     public static final RegistryObject<Item> SOUL_CORE = ITEMS.register("soul_core",
             ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB)));
 
+    public static final RegistryObject<Item> CRACKED_SOUL_CORE = ITEMS.register("cracked_soul_core",
+            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB)));
+
+    public static final RegistryObject<Item> LOGBOOK = ITEMS.register("logbook",
+            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> WRITINGS = ITEMS.register("writings",
+            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB).stacksTo(1)));
+
+
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
 
