@@ -11,6 +11,17 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HongTaiyang.MOD_ID);
 
+    public static final RegistryObject<Item> CRACKED_SOUL_CORE = ITEMS.register("cracked_soul_core",
+            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB)));
+
+    public static final RegistryObject<Item> LOGBOOK = ITEMS.register("logbook",
+            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> WRITINGS = ITEMS.register("writings",
+            ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.HONGTAIYANG_TAB).stacksTo(1)));
+
+
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
