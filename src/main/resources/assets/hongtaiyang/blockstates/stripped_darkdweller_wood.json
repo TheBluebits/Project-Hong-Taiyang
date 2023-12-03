@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "hongtaiyang:block/stripped_darkdweller_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "hongtaiyang:block/stripped_darkdweller_wood"
+    },
+    "axis=z": {
+      "model": "hongtaiyang:block/stripped_darkdweller_wood_horizontal",
+      "x": 90
+    }
+  }
+}

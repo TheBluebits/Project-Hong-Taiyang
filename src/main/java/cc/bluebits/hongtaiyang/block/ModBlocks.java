@@ -1,15 +1,20 @@
 package cc.bluebits.hongtaiyang.block;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
+import cc.bluebits.hongtaiyang.block.custom.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
 import cc.bluebits.hongtaiyang.item.ModItems;
+import cc.bluebits.hongtaiyang.world.feature.tree.DarkdwellerTreeGrower;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -83,4 +88,106 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()),
             ModCreativeModeTab.CHAPTER1_TAB
     );
+    
+    
+    
+    public static final RegistryObject<Block> DARKDWELLER_ROOT = registerBlock(
+            "darkdweller_root",
+            () -> new SaplingBlock(new DarkdwellerTreeGrower(),
+                    BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    
+    public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlock(
+            "darkdweller_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_LOG = registerBlock(
+            "stripped_darkdweller_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_WOOD = registerBlock(
+            "darkdweller_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_WOOD = registerBlock(
+            "stripped_darkdweller_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    
+    
+    
+    public static final RegistryObject<Block> DARKDWELLER_PLANKS = registerBlock(
+            "darkdweller_planks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 20;
+                }
+            },
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_SLAB = registerBlock(
+            "darkdweller_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_STAIRS = registerBlock(
+            "darkdweller_stairs",
+            () -> new StairBlock(() -> ModBlocks.DARKDWELLER_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_FENCE = registerBlock(
+            "darkdweller_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_FENCE_GATE = registerBlock(
+            "darkdweller_fence_gate",
+            () -> new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_DOOR = registerBlock(
+            "darkdweller_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR)
+                    .noOcclusion()),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_TRAPDOOR = registerBlock(
+            "darkdweller_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR)
+                    .noOcclusion()),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_BUTTON = registerBlock(
+            "darkdweller_button",
+            () -> new WoodButtonBlock(BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON)
+                    .noCollission()),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_PRESSURE_PLATE = registerBlock(
+            "darkdweller_pressure_plate",
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+//    public static final RegistryObject<Block> DARKDWELLER_SIGN = registerBlock(
+//            "darkdweller_sign",
+//            () -> new StandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)),
+//            ModCreativeModeTab.CHAPTER1_TAB
+//    );
 }
