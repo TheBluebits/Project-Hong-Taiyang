@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "hongtaiyang:item/placeholder"
+    "layer0": "hongtaiyang:item/umbral_shovel_base",
+    "layer1": "hongtaiyang:item/umbral_shovel_pulse"
   }
 }
