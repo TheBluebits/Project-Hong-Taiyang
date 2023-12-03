@@ -24,5 +24,11 @@
   "item.hongtaiyang.wardling_leggings": "Wardling Leggings",
   "item.hongtaiyang.wardling_boots": "Wardling Boots",
 
+  "block.hongtaiyang.umbral_ore": "Umbral Ore",
+  "block.hongtaiyang.deepslate_umbral_ore": "Deepslate Umbral Ore",
+  "block.hongtaiyang.umbral_block": "Block of Umbral",
+  "block.hongtaiyang.sculk_soil": "Sculk Soil",
+  "block.hongtaiyang.rooted_sculk_soil": "Rooted Sculk Soil",
+  
   "itemGroup.hongtaiyangtab": "Project Hong Taiyang"
 }
