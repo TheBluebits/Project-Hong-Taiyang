@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "hongtaiyang:block/stick_pillar",
   "textures": {
     "end": "hongtaiyang:block/placeholder",
     "side": "hongtaiyang:block/placeholder"

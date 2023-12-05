@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "hongtaiyang:block/darkdweller_log_horizontal",
+      "model": "hongtaiyang:block/darkdweller_log",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "hongtaiyang:block/darkdweller_log"
     },
     "axis=z": {
-      "model": "hongtaiyang:block/darkdweller_log_horizontal",
+      "model": "hongtaiyang:block/darkdweller_log",
       "x": 90
     }
   }

@@ -34,12 +34,8 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
     @Override
     public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
         if(context.getItemInHand().getItem() instanceof AxeItem) {
-            if(state.is(ModBlocks.DARKDWELLER_LOG.get())) {
-                return ModBlocks.STRIPPED_DARKDWELLER_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
-            }
-
-            if(state.is(ModBlocks.DARKDWELLER_WOOD.get())) {
-                return ModBlocks.STRIPPED_DARKDWELLER_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+            if(state.is(ModBlocks.DARKDWELLER_BUNDLE.get())) {
+                return ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
         }
         

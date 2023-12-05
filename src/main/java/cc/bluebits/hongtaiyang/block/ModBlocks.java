@@ -2,6 +2,8 @@ package cc.bluebits.hongtaiyang.block;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.custom.ModFlammableRotatedPillarBlock;
+import cc.bluebits.hongtaiyang.block.custom.ModStickFlammableRotatedPillarBlock;
+import cc.bluebits.hongtaiyang.block.custom.ModThinFlammableRotatedPllarBlock;
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.DarkdwellerTreeGrower;
@@ -100,22 +102,22 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlock(
             "darkdweller_log",
+            () -> new ModThinFlammableRotatedPllarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_STICK = registerBlock(
+            "darkdweller_stick",
+            () -> new ModStickFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            ModCreativeModeTab.CHAPTER1_TAB
+    );
+    public static final RegistryObject<Block> DARKDWELLER_BUNDLE = registerBlock(
+            "darkdweller_bundle",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
             ModCreativeModeTab.CHAPTER1_TAB
     );
-    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_LOG = registerBlock(
-            "stripped_darkdweller_log",
+    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_BUNDLE = registerBlock(
+            "stripped_darkdweller_bundle",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)),
-            ModCreativeModeTab.CHAPTER1_TAB
-    );
-    public static final RegistryObject<Block> DARKDWELLER_WOOD = registerBlock(
-            "darkdweller_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),
-            ModCreativeModeTab.CHAPTER1_TAB
-    );
-    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_WOOD = registerBlock(
-            "stripped_darkdweller_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)),
             ModCreativeModeTab.CHAPTER1_TAB
     );
     

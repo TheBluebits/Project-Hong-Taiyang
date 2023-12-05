@@ -31,8 +31,6 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.CHAPTER1_TAB).stacksTo(64)));
     public static final RegistryObject<Item> CRACKED_SOUL_CORE = ITEMS.register("cracked_soul_core",
             ()-> new Item(new Item.Properties().tab(ModCreativeModeTab.CHAPTER1_TAB).stacksTo(64)));
-    public static final RegistryObject<Item> DARKDWELLER_STICK = ITEMS.register("darkdweller_stick",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.CHAPTER1_TAB).stacksTo(64)));
     public static final RegistryObject<Item> WARDLING_ANTLER = ITEMS.register("wardling_antler",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.CHAPTER1_TAB).stacksTo(16)));
     public static final RegistryObject<Item> UMBRAL_GEM = ITEMS.register("umbral_gem",
