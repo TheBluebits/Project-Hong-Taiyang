@@ -2,8 +2,8 @@ package cc.bluebits.hongtaiyang.block;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.custom.ModFlammableRotatedPillarBlock;
-import cc.bluebits.hongtaiyang.block.custom.ModStickFlammableRotatedPillarBlock;
-import cc.bluebits.hongtaiyang.block.custom.ModThinFlammableRotatedPllarBlock;
+import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
+import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.DarkdwellerTreeGrower;
@@ -102,12 +102,12 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlock(
             "darkdweller_log",
-            () -> new ModThinFlammableRotatedPllarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            () -> new DarkdwellerLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
             ModCreativeModeTab.CHAPTER1_TAB
     );
     public static final RegistryObject<Block> DARKDWELLER_STICK = registerBlock(
             "darkdweller_stick",
-            () -> new ModStickFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            () -> new DarkdwellerStickBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
             ModCreativeModeTab.CHAPTER1_TAB
     );
     public static final RegistryObject<Block> DARKDWELLER_BUNDLE = registerBlock(
@@ -143,6 +143,7 @@ public class ModBlocks {
             },
             ModCreativeModeTab.CHAPTER1_TAB
     );
+    
     public static final RegistryObject<Block> DARKDWELLER_SLAB = registerBlock(
             "darkdweller_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)),
