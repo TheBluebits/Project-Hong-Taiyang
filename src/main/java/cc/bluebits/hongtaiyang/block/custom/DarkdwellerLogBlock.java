@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,22 +26,30 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
     public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
         return SHAPE;
     }
+    
+    // TODO: Change VoxelShape with model
 
     public DarkdwellerLogBlock(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.defaultBlockState()
+                .setValue(CONNECTIONS, 0)
+                .setValue(ORIENTATION, 0)
+                .setValue(STRAIGHT, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(CONNECTIONS);
         builder.add(ORIENTATION);
         builder.add(STRAIGHT);
     }
-
-    // TODO: Change Orientation to CrossAxis, because of BlockState json limitations
     
+    // TODO: Implement BlockState changes when neighbor is changed
+    
+    // TODO: Fix orientation rotation
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
         BlockGetter blockGetter = pContext.getLevel();
         BlockPos blockPos = pContext.getClickedPos();
         Direction.Axis mainAxis = pContext.getClickedFace().getAxis();
@@ -51,11 +60,11 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
         
         int i = 0;
         for (Direction.Axis axis : axes) {
-            BlockState axisPositive = blockGetter.getBlockState(blockPos.relative(axis, 1));
             BlockState axisNegative = blockGetter.getBlockState(blockPos.relative(axis, -1));
+            BlockState axisPositive = blockGetter.getBlockState(blockPos.relative(axis, 1));
                 
-            connectionList.set(i, axisPositive.getBlock() instanceof DarkdwellerStickBlock);
-            connectionList.set(i + 2, axisNegative.getBlock() instanceof DarkdwellerStickBlock);
+            connectionList.set(i, axisNegative.getBlock() instanceof DarkdwellerStickBlock);
+            connectionList.set(i + 2, axisPositive.getBlock() instanceof DarkdwellerStickBlock);
             
             i++;
         }
@@ -71,6 +80,7 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
         boolean straight = (connectionList.get(0) && connectionList.get(2)) || (connectionList.get(1) && connectionList.get(3));
         
         return this.defaultBlockState()
+                .setValue(AXIS, mainAxis)
                 .setValue(CONNECTIONS, connections)
                 .setValue(ORIENTATION, firstConnectionIndex)
                 .setValue(STRAIGHT, straight);

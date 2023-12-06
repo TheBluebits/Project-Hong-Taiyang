@@ -1,0 +1,9 @@
+{
+  "parent": "hongtaiyang:block/base/thin_pillar_c0",
+  "textures": {
+    "end": "hongtaiyang:block/placeholder",
+    "side": "hongtaiyang:block/placeholder",
+    "branch_end": "hongtaiyang:block/placeholder",
+    "branch_side": "hongtaiyang:block/placeholder"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "hongtaiyang:block/stick_pillar",
+  "parent": "hongtaiyang:block/base/stick_pillar",
   "textures": {
     "end": "hongtaiyang:block/placeholder",
     "side": "hongtaiyang:block/placeholder"
