@@ -139,87 +139,87 @@
 
     "axis=z,connections=0": {
       "model": "hongtaiyang:block/darkdweller_log_c0_horizontal",
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=1,orientation=0": {
       "model": "hongtaiyang:block/darkdweller_log_c1_horizontal",
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=1,orientation=1": {
       "model": "hongtaiyang:block/darkdweller_log_c1_horizontal",
       "x": 90,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=1,orientation=2": {
       "model": "hongtaiyang:block/darkdweller_log_c1_horizontal",
       "x": 180,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=1,orientation=3": {
       "model": "hongtaiyang:block/darkdweller_log_c1_horizontal",
       "x": 270,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=0,straight=false": {
       "model": "hongtaiyang:block/darkdweller_log_c2_horizontal",
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=1,straight=false": {
       "model": "hongtaiyang:block/darkdweller_log_c2_horizontal",
       "x": 90,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=2,straight=false": {
       "model": "hongtaiyang:block/darkdweller_log_c2_horizontal",
       "x": 180,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=3,straight=false": {
       "model": "hongtaiyang:block/darkdweller_log_c2_horizontal",
       "x": 270,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=0,straight=true": {
       "model": "hongtaiyang:block/darkdweller_log_c2_straight_horizontal",
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=1,straight=true": {
       "model": "hongtaiyang:block/darkdweller_log_c2_straight_horizontal",
       "x": 90,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=2,straight=true": {
       "model": "hongtaiyang:block/darkdweller_log_c2_straight_horizontal",
       "x": 180,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=2,orientation=3,straight=true": {
       "model": "hongtaiyang:block/darkdweller_log_c2_straight_horizontal",
       "x": 270,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=3,orientation=0": {
       "model": "hongtaiyang:block/darkdweller_log_c3_horizontal",
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=3,orientation=1": {
       "model": "hongtaiyang:block/darkdweller_log_c3_horizontal",
       "x": 90,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=3,orientation=2": {
       "model": "hongtaiyang:block/darkdweller_log_c3_horizontal",
       "x": 180,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=3,orientation=3": {
       "model": "hongtaiyang:block/darkdweller_log_c3_horizontal",
       "x": 270,
-      "y": 90
+      "y": 270
     },
     "axis=z,connections=4": {
       "model": "hongtaiyang:block/darkdweller_log_c4_horizontal",
-      "y": 90
+      "y": 270
     }
   }
 }

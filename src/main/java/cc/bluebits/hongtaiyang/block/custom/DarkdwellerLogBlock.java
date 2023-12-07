@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
     public static final IntegerProperty CONNECTIONS = IntegerProperty.create("connections", 0, 4);
@@ -47,26 +48,36 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
     
     // TODO: Implement BlockState changes when neighbor is changed
     
-    // TODO: Fix orientation rotation
+    // TODO: Fix orientation rotation (c2 not working with vertical north/west)
     @Override
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext pContext) {
         BlockGetter blockGetter = pContext.getLevel();
         BlockPos blockPos = pContext.getClickedPos();
         Direction.Axis mainAxis = pContext.getClickedFace().getAxis();
         
-        ArrayList<Boolean> connectionList = new ArrayList<>(Arrays.asList(false, false, false, false));
         ArrayList<Direction.Axis> axes = new ArrayList<>(Arrays.asList(Direction.Axis.VALUES));
+        Collections.rotate(axes, 1);
         axes.remove(mainAxis);
+
+        ArrayList<BlockPos> blockPosList = new ArrayList<>();
+        blockPosList.add(blockPos.relative(axes.get(0), -1));
+        blockPosList.add(blockPos.relative(axes.get(1), 1));
+        blockPosList.add(blockPos.relative(axes.get(0), 1));
+        blockPosList.add(blockPos.relative(axes.get(1), -1));
         
-        int i = 0;
-        for (Direction.Axis axis : axes) {
-            BlockState axisNegative = blockGetter.getBlockState(blockPos.relative(axis, -1));
-            BlockState axisPositive = blockGetter.getBlockState(blockPos.relative(axis, 1));
-                
-            connectionList.set(i, axisNegative.getBlock() instanceof DarkdwellerStickBlock);
-            connectionList.set(i + 2, axisPositive.getBlock() instanceof DarkdwellerStickBlock);
+        ArrayList<BlockState> blockStateList = new ArrayList<>();
+        for(BlockPos pos : blockPosList) blockStateList.add(blockGetter.getBlockState(pos));
+
+        ArrayList<Boolean> connectionList = new ArrayList<>();
+        for(int i = 0; i < blockPosList.size(); i++) {
+            boolean isStickInstance = blockStateList.get(i).getBlock() instanceof DarkdwellerStickBlock;
+            if(!isStickInstance) {
+                connectionList.add(false);
+                continue;
+            }
             
-            i++;
+            boolean isConnectingFace = blockStateList.get(i).getValue(AXIS) == axes.get(i % 2);
+            connectionList.add(isConnectingFace);
         }
 
         int connections = 0;
@@ -74,15 +85,15 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
             if(connection) connections++;
         }
         
-        int firstConnectionIndex = connectionList.indexOf(true);
-        if (firstConnectionIndex == -1) firstConnectionIndex = 0;
+        int orientation = connectionList.indexOf(true);
+        if (orientation == -1) orientation = 0;
         
         boolean straight = (connectionList.get(0) && connectionList.get(2)) || (connectionList.get(1) && connectionList.get(3));
         
         return this.defaultBlockState()
                 .setValue(AXIS, mainAxis)
                 .setValue(CONNECTIONS, connections)
-                .setValue(ORIENTATION, firstConnectionIndex)
+                .setValue(ORIENTATION, orientation)
                 .setValue(STRAIGHT, straight);
     }
 }
