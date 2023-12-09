@@ -1,28 +1,30 @@
 {
   "multipart": [
     {
-      "when": {
+      "when" : {
         "axis": "x"
       },
-      "apply": {
-        "model": "hongtaiyang:block/darkdweller_log_horizontal"
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log",
+        "x": 90,
+        "y": 90
       }
     },
     {
-      "when": {
+      "when" : {
         "axis": "y"
       },
-      "apply": {
+      "apply" : {
         "model": "hongtaiyang:block/darkdweller_log"
       }
     },
     {
-      "when": {
-        "axis": "z" 
+      "when" : {
+        "axis": "z"
       },
-      "apply": {
-        "model": "hongtaiyang:block/darkdweller_log_horizontal",
-        "y": 90
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log",
+        "x": 90
       }
     },
 
@@ -30,7 +32,7 @@
 
     {
       "when" : {
-        "north": true
+        "north": 1
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch"
@@ -38,7 +40,7 @@
     },
     {
       "when" : {
-        "east": true
+        "east": 1
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -47,7 +49,7 @@
     },
     {
       "when" : {
-        "south": true
+        "south": 1
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -56,7 +58,7 @@
     },
     {
       "when" : {
-        "west": true
+        "west": 1
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -65,7 +67,7 @@
     },
     {
       "when" : {
-        "above": true
+        "up": 1
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -74,10 +76,66 @@
     },
     {
       "when" : {
-        "below": true
+        "down": 1
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
+        "x": 90
+      }
+    },
+    
+    
+    
+    {
+      "when" : {
+        "north": 2
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log_thin_branch"
+      }
+    },
+    {
+      "when" : {
+        "east": 2
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "y": 90
+      }
+    },
+    {
+      "when" : {
+        "south": 2
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "y": 180
+      }
+    },
+    {
+      "when" : {
+        "west": 2
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "y": 270
+      }
+    },
+    {
+      "when" : {
+        "up": 2
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "x": 270
+      }
+    },
+    {
+      "when" : {
+        "down": 2
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
         "x": 90
       }
     }
