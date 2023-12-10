@@ -4,6 +4,7 @@ import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.custom.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
+import cc.bluebits.hongtaiyang.block.custom.SculkSoilBlock;
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.DarkdwellerTreeGrower;
@@ -77,7 +78,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SCULK_SOIL = registerBlock(
             "sculk_soil",
-            () -> new Block(BlockBehaviour.Properties.of(Material.SCULK)
+            () -> new SculkSoilBlock(BlockBehaviour.Properties.of(Material.SCULK)
                     .strength(1f)
                     .requiresCorrectToolForDrops()),
             ModCreativeModeTab.CHAPTER1_TAB

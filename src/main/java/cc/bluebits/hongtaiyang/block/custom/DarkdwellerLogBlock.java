@@ -26,6 +26,7 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
     public static final IntegerProperty EAST = IntegerProperty.create("east", 0, nBranchVariants - 1);
     public static final IntegerProperty DOWN = IntegerProperty.create("down", 0, nBranchVariants - 1);
     public static final IntegerProperty UP = IntegerProperty.create("up", 0, nBranchVariants - 1);
+    public static final IntegerProperty NUM_LOG_BRANCHES = IntegerProperty.create("num_log_branches", 0, 6);
 
     protected static final VoxelShape[] SHAPES = makeShapes();
 
@@ -38,14 +39,15 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
                 .setValue(SOUTH, 0)
                 .setValue(WEST, 0)
                 .setValue(UP, 0)
-                .setValue(DOWN, 0));
+                .setValue(DOWN, 0)
+                .setValue(NUM_LOG_BRANCHES, 0));
     }
 
     protected static VoxelShape[] makeShapes() {
         // One for each axis in order: X, Y, Z
         VoxelShape baseShape = Block.box(4, 4, 4, 12, 12, 12);
 
-        // First index is the variant, second is the orientation in order: WEST, EAST, DOWN, UP, NORTH, SOUTH
+        // First index is the variant, second is the orientation in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
         VoxelShape[][] branchShapes = new VoxelShape[][] {
             {
                 Shapes.empty(),
@@ -56,20 +58,20 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
                 Shapes.empty()
             },
             {
-                Block.box(0, 4, 4, 4, 12, 12),
-                Block.box(12, 4, 4, 16, 12, 12),
                 Block.box(4, 0, 4, 12, 4, 12),
                 Block.box(4, 12, 4, 12, 16, 12),
                 Block.box(4, 4, 0, 12, 12, 4),
-                Block.box(4, 4, 12, 12, 12, 16)
+                Block.box(4, 4, 12, 12, 12, 16),
+                Block.box(0, 4, 4, 4, 12, 12),
+                Block.box(12, 4, 4, 16, 12, 12)
             },
             {
-                Block.box(0, 6, 6, 4, 10, 10),
-                Block.box(12, 6, 6, 16, 10, 10),
                 Block.box(6, 0, 6, 10, 4, 10),
                 Block.box(6, 12, 6, 10, 16, 10),
                 Block.box(6, 6, 0, 10, 10, 4),
-                Block.box(6, 6, 12, 10, 10, 16)
+                Block.box(6, 6, 12, 10, 10, 16),
+                Block.box(0, 6, 6, 4, 10, 10),
+                Block.box(12, 6, 6, 16, 10, 10)
             }
         };
 
@@ -103,35 +105,16 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
         int axisIndex = ArrayUtils.indexOf(Direction.Axis.VALUES, axis);
         int axisOffset = nShapesPerAxis * axisIndex;
         
-        int[] faces = new int[] { west, east, down, up, north, south };
+        int[] faces = new int[] { down, up, north, south, west, east };
+        
+        if(getNumLogBranches(faces) < 2) {
+            int faceOffset = getFaceOffsetFromAxisIndex(axisIndex);
+            faces[faceOffset] = 1;
+            faces[faceOffset + 1] = 1;
+        }
         
         int variantIndex = BaseConverter.convertBaseNDigitsToDecimal(faces, nBranchVariants);
         return axisOffset + variantIndex;
-    }
-    
-    public static IntegerProperty getPropertyByDirection(Direction direction) {
-        switch (direction) {
-            case UP -> {
-                return UP;
-            }
-            case DOWN -> {
-                return DOWN;
-            }
-            case EAST -> {
-                return EAST;
-            }
-            case WEST -> {
-                return WEST;
-            }
-            case NORTH -> {
-                return NORTH;
-            }
-            case SOUTH -> {
-                return SOUTH;
-            }
-        }
-        
-        return NORTH;
     }
 
     @Override
@@ -142,11 +125,12 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
+        builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN, NUM_LOG_BRANCHES);
     }
 
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+        Direction.Axis mainAxis = pState.getValue(AXIS);
         int[] branches = new int[] {
            pState.getValue(DOWN),
            pState.getValue(UP),
@@ -156,18 +140,11 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
            pState.getValue(EAST)
         };
         
-        int branchType = getBranchType(pNeighborState);
+        int branchType = getBranchType(pCurrentPos, pNeighborPos, pNeighborState, mainAxis);
         int directionIndex = ArrayUtils.indexOf(Direction.values(), pDirection);
         branches[directionIndex] = branchType;
-        branches = fixBranches(branches, pState.getValue(AXIS));
-
-        return pState
-                .setValue(DOWN, branches[0])
-                .setValue(UP, branches[1])
-                .setValue(NORTH, branches[2])
-                .setValue(SOUTH, branches[3])
-                .setValue(WEST, branches[4])
-                .setValue(EAST, branches[5]);
+        
+        return applyBlockState(pState, branches, mainAxis);
     }
 
     @Override
@@ -177,56 +154,82 @@ public class DarkdwellerLogBlock extends ModFlammableRotatedPillarBlock {
         Direction.Axis mainAxis = pContext.getClickedFace().getAxis();
 
         // All branches in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
-        int[] branches = new int[] {
-            getBranchType(blockGetter.getBlockState(blockPos.relative(Direction.Axis.Y, -1))),
-            getBranchType(blockGetter.getBlockState(blockPos.relative(Direction.Axis.Y, 1))),
-            getBranchType(blockGetter.getBlockState(blockPos.relative(Direction.Axis.Z, -1))),
-            getBranchType(blockGetter.getBlockState(blockPos.relative(Direction.Axis.Z, 1))),
-            getBranchType(blockGetter.getBlockState(blockPos.relative(Direction.Axis.X, -1))),
-            getBranchType(blockGetter.getBlockState(blockPos.relative(Direction.Axis.X, 1)))
-        };
+        int[] branches = new int[nBranches];
         
-        branches = fixBranches(branches, mainAxis);
-        return this.defaultBlockState()
+        for(int i = 0; i < nBranches; i++) {
+            int axisIndex = getAxisIndexFromFaceIndex(i);
+
+            Direction.Axis branchAxis = Direction.Axis.VALUES[axisIndex];
+            BlockPos branchPos = blockPos.relative(branchAxis, i % 2 == 0 ? -1 : 1); // Inline condition to oscillate between negative and positive distance
+            BlockState branchState = blockGetter.getBlockState(branchPos);
+            
+            branches[i] = getBranchType(blockPos, branchPos, branchState, mainAxis);
+        }
+        
+        return applyBlockState(this.defaultBlockState(), branches, mainAxis);
+    }
+    
+    private BlockState applyBlockState(BlockState state, int[] branches, Direction.Axis mainAxis) {
+        int numLogBranches = getNumLogBranches(branches);
+        if(numLogBranches < 2) {
+            Direction.Axis fixedMainAxis = fixMainAxis(branches);
+            if(fixedMainAxis != null) mainAxis = fixedMainAxis;
+        }
+        
+        return state
                 .setValue(AXIS, mainAxis)
                 .setValue(DOWN, branches[0])
                 .setValue(UP, branches[1])
                 .setValue(NORTH, branches[2])
                 .setValue(SOUTH, branches[3])
                 .setValue(WEST, branches[4])
-                .setValue(EAST, branches[5]);
+                .setValue(EAST, branches[5])
+                .setValue(NUM_LOG_BRANCHES, numLogBranches);
     }
     
-    // TODO: Make defaulting log visual go away if no longer necessary
-    public int[] fixBranches(int[] branches, Direction.Axis mainAxis) {
-        int branchCount = 0;
-        int firstBranchIndex = -1;
-        for (int i = 0; i < branches.length; i++) {
-            if (branches[i] == 1) { // Check if branch is present and if it is another log
-                branchCount++;
-                if(firstBranchIndex < 0) firstBranchIndex = i;
-            }
-        }
-
-        // Use default log visual along the main axis when less than 2 branches are present
-        if(branchCount < 2) {
-            int axisIndex;
-
-            if (firstBranchIndex >= 0) axisIndex = firstBranchIndex / 2;
-            else axisIndex = ArrayUtils.indexOf(Direction.Axis.VALUES, mainAxis) + 1;
-            if(axisIndex >= Direction.Axis.VALUES.length) axisIndex -= Direction.Axis.VALUES.length;
-
-            int branchIndex = axisIndex * 2;
-            branches[branchIndex] = 1;
-            branches[branchIndex + 1] = 1;
+    private static int getNumLogBranches(int[] branches) {
+        int numLogBranches = 0;
+        for(int branch : branches) {
+            if(branch == 1) numLogBranches++;
         }
         
-        return branches;
+        return numLogBranches;
+    }
+    
+    private Direction.Axis fixMainAxis(int[] branches) {
+        int firstIndex = -1;
+        
+        for(int i = 0; i < branches.length; i++) {
+            if(branches[i] == 1) {
+                firstIndex = i;
+                break;
+            }
+        }
+        
+        if(firstIndex == -1) return null;
+
+        int axisIndex = getAxisIndexFromFaceIndex(firstIndex);
+        return Direction.Axis.VALUES[axisIndex];
     }
 
-    public final int getBranchType(BlockState state) {
-        if(state.getBlock() instanceof DarkdwellerLogBlock) return 1;
-        if(state.getBlock() instanceof DarkdwellerStickBlock) return 2;
+    private static int getAxisIndexFromFaceIndex(int faceIndex) {
+        int axisIndex = (faceIndex / 2) + 1;
+        if(axisIndex >= Direction.Axis.VALUES.length) axisIndex -= Direction.Axis.VALUES.length;
+        return axisIndex;
+    }
+
+    private static int getFaceOffsetFromAxisIndex(int axisIndex) {
+        int faceOffset = (axisIndex - 1) * 2;
+        if(faceOffset < 0) faceOffset += nBranches;
+        return faceOffset;
+    }
+
+    private int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis) {
+        boolean axisCheckOverride = rootPos.get(mainAxis) != branchPos.get(mainAxis);
+		if(branchState.hasProperty(AXIS) && branchState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
+        
+        if(branchState.getBlock() instanceof DarkdwellerLogBlock || branchState.getBlock() instanceof SculkSoilBlock) return 1;
+        if(branchState.getBlock() instanceof DarkdwellerStickBlock) return 2;
         
         return 0;
     }

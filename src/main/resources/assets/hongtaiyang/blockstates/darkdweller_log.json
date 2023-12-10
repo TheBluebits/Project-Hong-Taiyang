@@ -32,7 +32,10 @@
 
     {
       "when" : {
-        "north": 1
+        "OR": [
+          { "north": 1 },
+          { "num_log_branches": "0|1", "axis": "z" }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch"
@@ -40,7 +43,10 @@
     },
     {
       "when" : {
-        "east": 1
+        "OR": [
+          { "east": 1 },
+          { "num_log_branches": "0|1", "axis": "x" }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -49,7 +55,10 @@
     },
     {
       "when" : {
-        "south": 1
+        "OR": [
+          { "south": 1 },
+          { "num_log_branches": "0|1", "axis": "z" }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -58,7 +67,10 @@
     },
     {
       "when" : {
-        "west": 1
+        "OR": [
+          { "west": 1 },
+          { "num_log_branches": "0|1", "axis": "x" }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -67,7 +79,10 @@
     },
     {
       "when" : {
-        "up": 1
+        "OR": [
+          { "up": 1 },
+          { "num_log_branches": "0|1", "axis": "y" }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -76,7 +91,10 @@
     },
     {
       "when" : {
-        "down": 1
+        "OR": [
+          { "down": 1 },
+          { "num_log_branches": "0|1", "axis": "y" }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_branch",
@@ -88,7 +106,15 @@
     
     {
       "when" : {
-        "north": 2
+        "AND": [
+          { "north": 2 },
+          {
+            "OR": [
+              { "num_log_branches": "2|3|4|5|6" },
+              { "num_log_branches": "0|1", "axis":  "x|y" }
+            ]
+          }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_thin_branch"
@@ -96,7 +122,15 @@
     },
     {
       "when" : {
-        "east": 2
+        "AND": [
+          { "east": 2 },
+          {
+            "OR": [
+              { "num_log_branches": "2|3|4|5|6" },
+              { "num_log_branches": "0|1", "axis":  "y|z" }
+            ]
+          }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_thin_branch",
@@ -105,7 +139,15 @@
     },
     {
       "when" : {
-        "south": 2
+        "AND": [
+          { "south": 2 },
+          {
+            "OR": [
+              { "num_log_branches": "2|3|4|5|6" },
+              { "num_log_branches": "0|1", "axis":  "x|y" }
+            ]
+          }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_thin_branch",
@@ -114,7 +156,15 @@
     },
     {
       "when" : {
-        "west": 2
+        "AND": [
+          { "west": 2 },
+          {
+            "OR": [
+              { "num_log_branches": "2|3|4|5|6" },
+              { "num_log_branches": "0|1", "axis":  "y|z" }
+            ]
+          }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_thin_branch",
@@ -123,7 +173,15 @@
     },
     {
       "when" : {
-        "up": 2
+        "AND": [
+          { "up": 2 },
+          {
+            "OR": [
+              { "num_log_branches": "2|3|4|5|6" },
+              { "num_log_branches": "0|1", "axis":  "x|z" }
+            ]
+          }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_thin_branch",
@@ -132,7 +190,15 @@
     },
     {
       "when" : {
-        "down": 2
+        "AND": [
+          { "down": 2 },
+          {
+            "OR": [
+              { "num_log_branches": "2|3|4|5|6" },
+              { "num_log_branches": "0|1", "axis":  "x|z" }
+            ]
+          }
+        ]
       },
       "apply" : {
         "model": "hongtaiyang:block/darkdweller_log_thin_branch",
