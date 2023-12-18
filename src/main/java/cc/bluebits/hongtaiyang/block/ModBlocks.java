@@ -1,7 +1,7 @@
 package cc.bluebits.hongtaiyang.block;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.block.custom.ModFlammableRotatedPillarBlock;
+import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.custom.SculkSoilBlock;

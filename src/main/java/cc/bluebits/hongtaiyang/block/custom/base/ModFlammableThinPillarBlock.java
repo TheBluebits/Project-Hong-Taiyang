@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.block.custom;
+package cc.bluebits.hongtaiyang.block.custom.base;
 
 import cc.bluebits.hongtaiyang.util.BaseConverter;
 import net.minecraft.core.BlockPos;

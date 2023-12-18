@@ -1,20 +1,13 @@
 package cc.bluebits.hongtaiyang.block.custom;
 
+import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.util.BaseConverter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.apache.commons.lang3.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
 
 public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
     public DarkdwellerLogBlock(Properties pProperties) {
