@@ -20,6 +20,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -160,32 +161,28 @@ public class ModBlocks {
             "darkdweller_door",
             () -> new DoorBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion(),
-                    SoundEvents.BAMBOO_WOOD_DOOR_CLOSE,
-                    SoundEvents.BAMBOO_WOOD_DOOR_OPEN)
+                    BlockSetType.BAMBOO)
     );
     public static final RegistryObject<Block> DARKDWELLER_TRAPDOOR = registerBlock(
             "darkdweller_trapdoor",
             () -> new TrapDoorBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion(),
-                    SoundEvents.BAMBOO_WOOD_TRAPDOOR_CLOSE,
-                    SoundEvents.BAMBOO_WOOD_TRAPDOOR_OPEN)
+                    BlockSetType.BAMBOO)
     );
     public static final RegistryObject<Block> DARKDWELLER_BUTTON = registerBlock(
             "darkdweller_button",
             () -> new ButtonBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission(),
+                    BlockSetType.BAMBOO,
                     15,
-                    true,
-                    SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_OFF,
-                    SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_ON)
+                    true)
     );
     public static final RegistryObject<Block> DARKDWELLER_PRESSURE_PLATE = registerBlock(
             "darkdweller_pressure_plate",
             () -> new PressurePlateBlock(
                     PressurePlateBlock.Sensitivity.EVERYTHING,
                     BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE),
-                    SoundEvents.BAMBOO_WOOD_PRESSURE_PLATE_CLICK_OFF,
-                    SoundEvents.BAMBOO_WOOD_PRESSURE_PLATE_CLICK_ON)
+                    BlockSetType.BAMBOO)
     );
 //    public static final RegistryObject<Block> DARKDWELLER_SIGN = registerBlock(
 //            "darkdweller_sign",
