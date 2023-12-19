@@ -7,7 +7,7 @@ import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.custom.SculkSoilBlock;
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
 import cc.bluebits.hongtaiyang.item.ModItems;
-import cc.bluebits.hongtaiyang.world.feature.tree.DarkdwellerTreeGrower;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;

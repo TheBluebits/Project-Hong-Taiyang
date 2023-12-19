@@ -3,6 +3,8 @@ package cc.bluebits.hongtaiyang;
 //import com.mojang.logging.LogUtils;
 import cc.bluebits.hongtaiyang.block.ModBlocks;
 import cc.bluebits.hongtaiyang.item.ModItems;
+import cc.bluebits.hongtaiyang.world.feature.ModConfiguredFeatures;
+import cc.bluebits.hongtaiyang.world.feature.tree.ModFoliagePlacers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,6 +29,9 @@ public class HongTaiyang
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModFoliagePlacers.register(modEventBus);
+        ModConfiguredFeatures.register(modEventBus);
+        
         modEventBus.addListener(this::commonSetup);
         
         MinecraftForge.EVENT_BUS.register(this);

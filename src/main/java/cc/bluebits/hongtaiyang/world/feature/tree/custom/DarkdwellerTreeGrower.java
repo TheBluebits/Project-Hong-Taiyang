@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.world.feature.tree;
+package cc.bluebits.hongtaiyang.world.feature.tree.custom;
 
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
