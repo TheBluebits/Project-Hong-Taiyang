@@ -2,13 +2,12 @@ package cc.bluebits.hongtaiyang;
 
 //import com.mojang.logging.LogUtils;
 import cc.bluebits.hongtaiyang.block.ModBlocks;
-import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
+import cc.bluebits.hongtaiyang.item.ModCreativeModeTabs;
 import cc.bluebits.hongtaiyang.item.ModItems;
-import cc.bluebits.hongtaiyang.world.feature.ModConfiguredFeatures;
 import cc.bluebits.hongtaiyang.world.feature.tree.ModFoliagePlacers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +27,8 @@ public class HongTaiyang
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModCreativeModeTabs.register(modEventBus);
+        
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
@@ -40,8 +41,8 @@ public class HongTaiyang
         modEventBus.addListener(this::addCreative);
     }
     
-    private void addCreative(CreativeModeTabEvent.BuildContents event) {
-        if(event.getTab() == ModCreativeModeTab.CHAPTER1_TAB) {
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTab() == ModCreativeModeTabs.CHAPTER1_TAB.get()) {
             // Items
             event.accept(ModItems.LOGBOOK);
             event.accept(ModItems.WRITINGS);

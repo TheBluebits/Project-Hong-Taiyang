@@ -1,27 +1,23 @@
 package cc.bluebits.hongtaiyang.block;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
-import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
+import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.custom.SculkSoilBlock;
-import cc.bluebits.hongtaiyang.item.ModCreativeModeTab;
+import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerTreeGrower;
-import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,7 +51,7 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> UMBRAL_ORE = registerBlock(
             "umbral_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.STONE)
                     .strength(6f)
                     .requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7))
@@ -63,7 +59,7 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> DEEPSLATE_UMBRAL_ORE = registerBlock(
             "deepslate_umbral_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
                     .strength(6f)
                     .requiresCorrectToolForDrops(),
                     UniformInt.of(3, 7))
@@ -71,21 +67,21 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> UMBRAL_BLOCK = registerBlock(
             "umbral_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.EMERALD_BLOCK)
                     .strength(6f)
                     .requiresCorrectToolForDrops())
     );
 
     public static final RegistryObject<Block> SCULK_SOIL = registerBlock(
             "sculk_soil",
-            () -> new SculkSoilBlock(BlockBehaviour.Properties.of(Material.SCULK)
+            () -> new SculkSoilBlock(BlockBehaviour.Properties.copy(Blocks.SCULK)
                     .strength(1f)
                     .requiresCorrectToolForDrops())
     );
 
     public static final RegistryObject<Block> ROOTED_SCULK_SOIL = registerBlock(
             "rooted_sculk_soil",
-            () -> new Block(BlockBehaviour.Properties.of(Material.SCULK)
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SCULK)
                     .strength(1f)
                     .requiresCorrectToolForDrops())
     );
