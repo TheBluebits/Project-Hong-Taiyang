@@ -24,12 +24,12 @@ public class ModConfiguredFeatures {
 	
 	
 	
-	public static final RegistryObject<ConfiguredFeature<?, ?>> DARKDWELLER = CONFIGURED_FEATRUES.register(
-			"darkdweller",
-			() -> new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-					BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
-					new StraightTrunkPlacer(5, 6, 3),
-					BlockStateProvider.simple(ModBlocks.DARKDWELLER_STICK.get()),
-					new DarkdwellerFoliagePlacer
-			)))
+//	public static final RegistryObject<ConfiguredFeature<?, ?>> DARKDWELLER = CONFIGURED_FEATRUES.register(
+//			"darkdweller",
+//			() -> new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+//					BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
+//					new StraightTrunkPlacer(5, 6, 3),
+//					BlockStateProvider.simple(ModBlocks.DARKDWELLER_STICK.get()),
+//					new DarkdwellerFoliagePlacer
+//			)))
 }

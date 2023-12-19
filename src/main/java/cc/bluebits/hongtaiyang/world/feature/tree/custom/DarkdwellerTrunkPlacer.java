@@ -24,7 +24,7 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 
 	@Override
 	protected TrunkPlacerType<?> type() {
-		return ;
+		return null;
 	}
 
 	@Override
