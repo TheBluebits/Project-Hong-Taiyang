@@ -1,0 +1,7 @@
+{
+  "parent": "hongtaiyang:block/base/thin_pillar_stick_branch",
+  "textures": {
+    "end": "hongtaiyang:block/darkdweller_stick_end",
+    "side": "hongtaiyang:block/darkdweller_log_stick_branch_side"
+  }
+}

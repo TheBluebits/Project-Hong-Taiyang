@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
@@ -28,9 +29,41 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	public static final IntegerProperty UP = IntegerProperty.create("up", 0, nBranchVariants - 1);
 	public static final IntegerProperty NUM_PRIMARY_BRANCHES = IntegerProperty.create("num_primary_branches", 0, nBranches);
 
-	protected final VoxelShape[] SHAPES = makeShapes();
-	protected VoxelShape[] makeShapes() {
-		return new VoxelShape[]{};
+	protected VoxelShape makeBaseShape() {
+		return Shapes.empty();
+	}
+	
+	protected VoxelShape[][] makeBranchShapes() {
+		// First index is the variant, second is the orientation in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
+		return new VoxelShape[][] {};
+	}
+
+	protected final VoxelShape[] SHAPES = makeShapes(makeBaseShape(), makeBranchShapes());
+	
+	
+	protected VoxelShape[] makeShapes(VoxelShape baseShape, VoxelShape[][] branchShapes) {
+		int nShapesPerAxis = (int) (Math.pow(nBranchVariants, nBranches));
+		int nShapes = nShapesPerAxis * 3;
+
+		VoxelShape[] shapes = new VoxelShape[nShapes];
+
+		for(int a = 0; a < 3; a++) {
+			for(int i = 0; i < nShapesPerAxis; i++) {
+				VoxelShape shape = baseShape;
+
+				int idx = a * nShapesPerAxis + i;
+				int[] baseNDigits = BaseConverter.convertDecimalToBaseNDigits(i, nBranchVariants, nBranches);
+
+				for(int d = 0; d < baseNDigits.length; d++) {
+					int variant = baseNDigits[d];
+					shape = Shapes.or(shape, branchShapes[variant][d]);
+				}
+
+				shapes[idx] = shape;
+			}
+		}
+
+		return shapes;
 	}
 	
 	

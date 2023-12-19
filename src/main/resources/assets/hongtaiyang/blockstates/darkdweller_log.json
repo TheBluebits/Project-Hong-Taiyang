@@ -117,7 +117,7 @@
         ]
       },
       "apply" : {
-        "model": "hongtaiyang:block/darkdweller_log_thin_branch"
+        "model": "hongtaiyang:block/darkdweller_log_stick_branch"
       }
     },
     {
@@ -133,7 +133,7 @@
         ]
       },
       "apply" : {
-        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "model": "hongtaiyang:block/darkdweller_log_stick_branch",
         "y": 90
       }
     },
@@ -150,7 +150,7 @@
         ]
       },
       "apply" : {
-        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "model": "hongtaiyang:block/darkdweller_log_stick_branch",
         "y": 180
       }
     },
@@ -167,7 +167,7 @@
         ]
       },
       "apply" : {
-        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "model": "hongtaiyang:block/darkdweller_log_stick_branch",
         "y": 270
       }
     },
@@ -184,7 +184,7 @@
         ]
       },
       "apply" : {
-        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "model": "hongtaiyang:block/darkdweller_log_stick_branch",
         "x": 270
       }
     },
@@ -201,7 +201,7 @@
         ]
       },
       "apply" : {
-        "model": "hongtaiyang:block/darkdweller_log_thin_branch",
+        "model": "hongtaiyang:block/darkdweller_log_stick_branch",
         "x": 90
       }
     }
