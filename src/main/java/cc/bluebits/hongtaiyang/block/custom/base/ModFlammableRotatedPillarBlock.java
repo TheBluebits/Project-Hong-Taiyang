@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.block.custom;
+package cc.bluebits.hongtaiyang.block.custom.base;
 
 import cc.bluebits.hongtaiyang.block.ModBlocks;
 import net.minecraft.core.BlockPos;
