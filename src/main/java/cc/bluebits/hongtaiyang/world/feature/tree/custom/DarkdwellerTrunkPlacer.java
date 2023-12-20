@@ -1,5 +1,7 @@
 package cc.bluebits.hongtaiyang.world.feature.tree.custom;
 
+import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -10,6 +12,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -23,12 +26,19 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 	}
 
 	@Override
-	protected TrunkPlacerType<?> type() {
-		return null;
+	protected @NotNull TrunkPlacerType<?> type() {
+		return ModTrunkPlacers.DARKDWELLER_TRUNK_PLACER.get();
 	}
 
 	@Override
-	public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader pLevel, BiConsumer<BlockPos, BlockState> pBlockSetter, RandomSource pRandom, int pFreeTreeHeight, BlockPos pPos, TreeConfiguration pConfig) {
-		return null;
+	public @NotNull List<FoliagePlacer.FoliageAttachment> placeTrunk(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, @NotNull RandomSource pRandom, int pFreeTreeHeight, BlockPos pPos, @NotNull TreeConfiguration pConfig) {
+		setDirtAt(pLevel, pBlockSetter, pRandom, pPos.below(), pConfig);
+		int height = baseHeight + pRandom.nextInt(heightRandA - 2, heightRandA + 1) + pRandom.nextInt(heightRandB - 1, heightRandB + 1);
+		
+		for(int i = 0; i < height; i++) {
+			placeLog(pLevel, pBlockSetter, pRandom, pPos.above(i), pConfig);
+		}
+		
+		return ImmutableList.of(new FoliagePlacer.FoliageAttachment(pPos.below(), 0, false));
 	}
 }

@@ -5,6 +5,7 @@ import cc.bluebits.hongtaiyang.block.ModBlocks;
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTabs;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.ModFoliagePlacers;
+import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -33,7 +34,7 @@ public class HongTaiyang
         ModBlocks.register(modEventBus);
 
         ModFoliagePlacers.register(modEventBus);
-        
+        ModTrunkPlacers.register(modEventBus);
         
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);

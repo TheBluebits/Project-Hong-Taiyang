@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "hongtaiyang:block/placeholder"
+    "all": "hongtaiyang:block/rooted_sculk_soil"
   }
 }

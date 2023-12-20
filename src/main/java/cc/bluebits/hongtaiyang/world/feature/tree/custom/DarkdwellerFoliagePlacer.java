@@ -1,9 +1,11 @@
 package cc.bluebits.hongtaiyang.world.feature.tree.custom;
 
+import cc.bluebits.hongtaiyang.block.ModBlocks;
 import cc.bluebits.hongtaiyang.world.feature.tree.ModFoliagePlacers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
@@ -11,9 +13,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 
 public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 	public static final Codec<DarkdwellerFoliagePlacer> CODEC = RecordCodecBuilder.create(
@@ -21,6 +25,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 					.and(Codec.intRange(0, 16).fieldOf("height").forGetter(fp -> fp.height))
 					.apply(darkdwellerFoliagePlacerInstance, DarkdwellerFoliagePlacer::new));
 	
+	protected static final int placementChance = 70; // Numeric value in percent e.g. 70 -> 70% chance of placement 
 	protected final int height;
 	
 	public DarkdwellerFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int height) {
@@ -34,8 +39,37 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader levelSimulatedReader, FoliageSetter foliageSetter, RandomSource randomSource, TreeConfiguration treeConfiguration, int i, FoliageAttachment foliageAttachment, int i1, int i2, int i3) {
-		
+	protected void createFoliage(@NotNull LevelSimulatedReader pLevel, FoliagePlacer.@NotNull FoliageSetter pBlockSetter, @NotNull RandomSource pRandom, @NotNull TreeConfiguration pConfig, int pMaxFreeTreeHeight, FoliagePlacer.@NotNull FoliageAttachment pAttachment, int pFoliageHeight, int pFoliageRadius, int pOffset) {
+		for(int y = pOffset; y >= pOffset - pFoliageRadius; --y) {
+			for(int x = -pFoliageRadius; x <= pFoliageRadius; x++) {
+				for(int z = -pFoliageRadius; z <= pFoliageRadius; z++) {
+					final BlockPos pos = pAttachment.pos()
+							.relative(Direction.Axis.X, x)
+							.relative(Direction.Axis.Y, y)
+							.relative(Direction.Axis.Z, z);
+
+					if(pLevel.isStateAtPosition(pos, state -> state == BlockStateProvider.simple(ModBlocks.SCULK_SOIL.get()).getState(pRandom, pos)))
+					{
+						int relX = Math.abs(pos.getX() - pAttachment.pos().getX());
+						int relY = Math.abs(pos.getY() - pAttachment.pos().getY());
+						int relZ = Math.abs(pos.getZ() - pAttachment.pos().getZ());
+						
+						int effectiveRadius = pFoliageRadius - relY;
+						
+						boolean skipPlacement = (relX == relZ && relZ > effectiveRadius) ||
+								(relX >= effectiveRadius && relZ == pFoliageRadius) ||
+								(relX == pFoliageRadius && relZ >= effectiveRadius);
+						
+						// Skip randomly sometimes
+						if(pRandom.nextInt(0, 100) > placementChance) skipPlacement = true;
+						
+						if(!skipPlacement) {
+							tryPlaceLeaf(pLevel, pBlockSetter, pRandom, pConfig, pos);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -45,6 +79,6 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected boolean shouldSkipLocation(@NotNull RandomSource pRandom, int pLocalX, int pLocalY, int pLocalZ, int pRange, boolean pLarge) {
-		return false;
+		return pLocalX >= pRange - pLocalY && pLocalZ >= pRange - pLocalY;
 	}
 }
