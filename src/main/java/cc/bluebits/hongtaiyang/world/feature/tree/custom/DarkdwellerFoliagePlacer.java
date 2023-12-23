@@ -9,12 +9,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import org.jetbrains.annotations.NotNull;
+import org.openjdk.nashorn.internal.ir.Block;
 
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
@@ -25,7 +27,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 					.and(Codec.intRange(0, 16).fieldOf("height").forGetter(fp -> fp.height))
 					.apply(darkdwellerFoliagePlacerInstance, DarkdwellerFoliagePlacer::new));
 	
-	protected static final int placementChance = 70; // Numeric value in percent e.g. 70 -> 70% chance of placement 
+	protected static final int placementChance = 75; // Numeric value in percent e.g. 70 -> 70% chance of placement 
 	protected final int height;
 	
 	public DarkdwellerFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int height) {
@@ -37,7 +39,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 	protected @NotNull FoliagePlacerType<?> type() {
 		return ModFoliagePlacers.DARKDWELLER_FOLIAGE_PLACER.get();
 	}
-
+	
 	@Override
 	protected void createFoliage(@NotNull LevelSimulatedReader pLevel, FoliagePlacer.@NotNull FoliageSetter pBlockSetter, @NotNull RandomSource pRandom, @NotNull TreeConfiguration pConfig, int pMaxFreeTreeHeight, FoliagePlacer.@NotNull FoliageAttachment pAttachment, int pFoliageHeight, int pFoliageRadius, int pOffset) {
 		for(int y = pOffset; y >= pOffset - pFoliageRadius; --y) {
@@ -48,7 +50,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 							.relative(Direction.Axis.Y, y)
 							.relative(Direction.Axis.Z, z);
 
-					if(pLevel.isStateAtPosition(pos, state -> state == BlockStateProvider.simple(ModBlocks.SCULK_SOIL.get()).getState(pRandom, pos)))
+					if(pLevel.isStateAtPosition(pos, state -> state.is(pConfig.dirtProvider.getState(pRandom, pos).getBlock())))
 					{
 						int relX = Math.abs(pos.getX() - pAttachment.pos().getX());
 						int relY = Math.abs(pos.getY() - pAttachment.pos().getY());
@@ -64,7 +66,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 						if(pRandom.nextInt(0, 100) > placementChance) skipPlacement = true;
 						
 						if(!skipPlacement) {
-							tryPlaceLeaf(pLevel, pBlockSetter, pRandom, pConfig, pos);
+							pBlockSetter.set(pos, pConfig.foliageProvider.getState(pRandom, pos));
 						}
 					}
 				}

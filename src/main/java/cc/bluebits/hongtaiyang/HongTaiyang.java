@@ -72,8 +72,7 @@ public class HongTaiyang
             event.accept(ModBlocks.UMBRAL_ORE);
             event.accept(ModBlocks.DEEPSLATE_UMBRAL_ORE);
             event.accept(ModBlocks.UMBRAL_BLOCK);
-            event.accept(ModBlocks.SCULK_SOIL);
-            event.accept(ModBlocks.ROOTED_SCULK_SOIL);
+            event.accept(ModBlocks.ROOTED_SCULK);
             event.accept(ModBlocks.DARKDWELLER_ROOT);
             event.accept(ModBlocks.DARKDWELLER_LOG);
             event.accept(ModBlocks.DARKDWELLER_STICK);

@@ -11,6 +11,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -46,11 +47,11 @@ public class ModConfiguredFeatures {
 		
 		register(context, DARKDWELLER_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
-				new DarkdwellerTrunkPlacer(3, 2, 1),
-				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK_SOIL.get()),
+				new DarkdwellerTrunkPlacer(2, 2, 1),
+				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),
 				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2), 
-				new TwoLayersFeatureSize(1, 0, 2))
-				.dirt(BlockStateProvider.simple(ModBlocks.SCULK_SOIL.get()))
+				new TwoLayersFeatureSize(0, 0, 0))
+				.dirt(BlockStateProvider.simple(Blocks.SCULK))
 				.build());
 	}
 }

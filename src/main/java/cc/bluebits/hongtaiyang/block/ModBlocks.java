@@ -3,8 +3,8 @@ package cc.bluebits.hongtaiyang.block;
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
-import cc.bluebits.hongtaiyang.block.custom.SculkSoilBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
+import cc.bluebits.hongtaiyang.block.custom.base.ModSaplingBlock;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
@@ -72,15 +72,8 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops())
     );
 
-    public static final RegistryObject<Block> SCULK_SOIL = registerBlock(
-            "sculk_soil",
-            () -> new SculkSoilBlock(BlockBehaviour.Properties.copy(Blocks.SCULK)
-                    .strength(1f)
-                    .requiresCorrectToolForDrops())
-    );
-
-    public static final RegistryObject<Block> ROOTED_SCULK_SOIL = registerBlock(
-            "rooted_sculk_soil",
+    public static final RegistryObject<Block> ROOTED_SCULK = registerBlock(
+            "rooted_sculk",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.SCULK)
                     .strength(1f)
                     .requiresCorrectToolForDrops())
@@ -90,8 +83,10 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> DARKDWELLER_ROOT = registerBlock(
             "darkdweller_root",
-            () -> new SaplingBlock(new DarkdwellerTreeGrower(),
-                    BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING))
+            () -> new ModSaplingBlock(new DarkdwellerTreeGrower(),
+                    BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING),
+                    () -> Blocks.SCULK,
+                    "deep_dark")
     );
     
     public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlock(
