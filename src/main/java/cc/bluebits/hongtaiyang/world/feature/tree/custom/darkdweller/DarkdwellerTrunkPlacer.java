@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.world.feature.tree.custom;
+package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
 
 import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
 import com.google.common.collect.ImmutableList;
@@ -18,11 +18,17 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class DarkdwellerTrunkPlacer extends TrunkPlacer {
-	public static final Codec<DarkdwellerTrunkPlacer> CODEC = RecordCodecBuilder.create(darkdwellerTrunkPlacerInstance -> trunkPlacerParts(darkdwellerTrunkPlacerInstance)
+	public static final Codec<DarkdwellerTrunkPlacer> CODEC = RecordCodecBuilder.create(
+			darkdwellerTrunkPlacerInstance -> trunkPlacerParts(darkdwellerTrunkPlacerInstance)
 			.apply(darkdwellerTrunkPlacerInstance, DarkdwellerTrunkPlacer::new));
 	
 	public DarkdwellerTrunkPlacer(int pBaseHeight, int pHeightRandA, int pHeightRandB) {
 		super(pBaseHeight, pHeightRandA, pHeightRandB);
+	}
+
+	@Override
+	public int getTreeHeight(RandomSource pRandom) {
+		return baseHeight + pRandom.nextInt(heightRandA - 2, heightRandA + 1) + pRandom.nextInt(heightRandB - 1, heightRandB + 1);
 	}
 
 	@Override
@@ -33,7 +39,7 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 	@Override
 	public @NotNull List<FoliagePlacer.FoliageAttachment> placeTrunk(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, @NotNull RandomSource pRandom, int pFreeTreeHeight, BlockPos pPos, @NotNull TreeConfiguration pConfig) {
 		setDirtAt(pLevel, pBlockSetter, pRandom, pPos.below(), pConfig);
-		int height = baseHeight + pRandom.nextInt(heightRandA - 2, heightRandA + 1) + pRandom.nextInt(heightRandB - 1, heightRandB + 1);
+		int height = getTreeHeight(pRandom);
 		
 		for(int i = 0; i < height; i++) {
 			placeLog(pLevel, pBlockSetter, pRandom, pPos.above(i), pConfig);

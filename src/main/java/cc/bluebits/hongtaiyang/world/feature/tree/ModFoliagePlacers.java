@@ -1,7 +1,7 @@
 package cc.bluebits.hongtaiyang.world.feature.tree;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerFoliagePlacer;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

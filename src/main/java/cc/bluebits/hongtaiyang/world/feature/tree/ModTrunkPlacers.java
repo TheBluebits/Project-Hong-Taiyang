@@ -1,13 +1,11 @@
 package cc.bluebits.hongtaiyang.world.feature.tree;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerTrunkPlacer;
-import net.minecraft.core.Registry;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModTrunkPlacers {

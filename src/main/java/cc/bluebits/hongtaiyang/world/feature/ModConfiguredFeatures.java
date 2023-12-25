@@ -2,10 +2,10 @@ package cc.bluebits.hongtaiyang.world.feature;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.ModBlocks;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerFoliagePlacer;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerTrunkPlacer;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerFoliagePlacer;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeDecorator;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTrunkPlacer;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
@@ -17,17 +17,12 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.List;
 
 public class ModConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKDWELLER_KEY = registerKey("darkdweller");
@@ -49,9 +44,10 @@ public class ModConfiguredFeatures {
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
 				new DarkdwellerTrunkPlacer(2, 2, 1),
 				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),
-				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2), 
+				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 75), 
 				new TwoLayersFeatureSize(0, 0, 0))
 				.dirt(BlockStateProvider.simple(Blocks.SCULK))
+				.decorators(Collections.singletonList(new DarkdwellerTreeDecorator(2, 35)))
 				.build());
 	}
 }

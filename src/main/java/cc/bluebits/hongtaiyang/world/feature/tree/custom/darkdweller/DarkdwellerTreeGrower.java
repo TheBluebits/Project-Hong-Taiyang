@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.world.feature.tree.custom;
+package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
 
 import cc.bluebits.hongtaiyang.world.feature.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;

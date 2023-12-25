@@ -1,7 +1,13 @@
 {
   "type": "minecraft:tree",
   "config": {
-    "decorators": [],
+    "decorators": [
+      {
+        "type": "hongtaiyang:darkdweller_tree_decorator",
+        "branchStartHeight": 2,
+        "probability": 35
+      }
+    ],
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
@@ -12,6 +18,7 @@
       "type": "hongtaiyang:darkdweller_foliage_placer",
       "height": 2,
       "offset": 0,
+      "probability": 75,
       "radius": 2
     },
     "foliage_provider": {

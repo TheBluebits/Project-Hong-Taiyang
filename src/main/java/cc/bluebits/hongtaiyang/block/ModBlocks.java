@@ -6,7 +6,7 @@ import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModSaplingBlock;
 import cc.bluebits.hongtaiyang.item.ModItems;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.DarkdwellerTreeGrower;
+import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
