@@ -33,8 +33,7 @@ public class ModItems {
             ()-> new Item(new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> WARDLING_ANTLER = ITEMS.register("wardling_antler",
             () -> new Item(new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> WARDLING_ANTLERS = ITEMS.register("wardling_antlers",
-            () -> new Item(new Item.Properties().stacksTo(16)));
+
     public static final RegistryObject<Item> UMBRAL_GEM = ITEMS.register("umbral_gem",
             () -> new Item(new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> UMBRAL_ESSENCE = ITEMS.register("umbral_essence",
