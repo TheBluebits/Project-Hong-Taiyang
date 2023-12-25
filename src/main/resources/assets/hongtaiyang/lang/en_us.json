@@ -4,8 +4,6 @@
   "item.hongtaiyang.tome_of_universe": "Tome of the Universe",
   "item.hongtaiyang.soul_core": "Soul Core",
   "item.hongtaiyang.cracked_soul_core": "Cracked Soul Core",
-  "item.hongtaiyang.darkdweller_stick": "Darkdweller Stick",
-  "item.hongtaiyang.darkdweller_root": "Darkdweller Root",
   "item.hongtaiyang.wardling_antler": "Wardling Antler",
   "item.hongtaiyang.umbral_gem": "Umbral Gem",
   "item.hongtaiyang.umbral_essence": "Umbral Essence",
@@ -27,8 +25,23 @@
   "block.hongtaiyang.umbral_ore": "Umbral Ore",
   "block.hongtaiyang.deepslate_umbral_ore": "Deepslate Umbral Ore",
   "block.hongtaiyang.umbral_block": "Block of Umbral",
-  "block.hongtaiyang.sculk_soil": "Sculk Soil",
-  "block.hongtaiyang.rooted_sculk_soil": "Rooted Sculk Soil",
+  "block.hongtaiyang.rooted_sculk": "Rooted Sculk",
+
+  "block.hongtaiyang.darkdweller_root": "Darkdweller Root",
+  "block.hongtaiyang.darkdweller_stick": "Darkdweller Stick",
+  "block.hongtaiyang.darkdweller_log": "Darkdweller Log",
+  "block.hongtaiyang.darkdweller_bundle": "Darkdweller Bundle",
+  "block.hongtaiyang.stripped_darkdweller_bundle": "Stripped Darkdweller Bundle",
+  "block.hongtaiyang.darkdweller_planks": "Darkdweller Planks",
+  "block.hongtaiyang.darkdweller_slab": "Darkdweller Slab",
+  "block.hongtaiyang.darkdweller_stairs": "Darkdweller Stairs",
+  "block.hongtaiyang.darkdweller_fence": "Darkdweller Fence",
+  "block.hongtaiyang.darkdweller_fence_gate": "Darkdweller Fence Gate",
+  "block.hongtaiyang.darkdweller_door": "Darkdweller Door",
+  "block.hongtaiyang.darkdweller_trapdoor": "Darkdweller Trapdoor",
+  "block.hongtaiyang.darkdweller_button": "Darkdweller Button",
+  "block.hongtaiyang.darkdweller_pressure_plate": "Darkdweller Pressure Plate",
+  "block.hongtaiyang.darkdweller_sign": "Darkdweller Sign",
   
-  "itemGroup.chapter1_tab": "Hong Taiyang - Chapter 1: Unveiling the shadows"
+  "itemGroup.chapter1_tab": "Hong Taiyang - Unveiling the shadows"
 }

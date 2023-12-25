@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "hongtaiyang:block/placeholder"
+  },
+  "render_type": "cutout"
+}

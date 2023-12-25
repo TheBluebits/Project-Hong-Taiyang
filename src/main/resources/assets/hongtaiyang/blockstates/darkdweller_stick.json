@@ -1,0 +1,105 @@
+{
+  "multipart": [
+    {
+      "when" : {
+        "axis": "x"
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick",
+        "x": 90,
+        "y": 90
+      }
+    },
+    {
+      "when" : {
+        "axis": "y"
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick"
+      }
+    },
+    {
+      "when" : {
+        "axis": "z"
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick",
+        "x": 90
+      }
+    },
+
+
+
+    {
+      "when" : {
+        "OR": [
+          { "north": 1 },
+          { "num_primary_branches": "0|1", "axis": "z" }
+        ]
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick_branch"
+      }
+    },
+    {
+      "when" : {
+        "OR": [
+          { "east": 1 },
+          { "num_primary_branches": "0|1", "axis": "x" }
+        ]
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick_branch",
+        "y": 90
+      }
+    },
+    {
+      "when" : {
+        "OR": [
+          { "south": 1 },
+          { "num_primary_branches": "0|1", "axis": "z" }
+        ]
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick_branch",
+        "y": 180
+      }
+    },
+    {
+      "when" : {
+        "OR": [
+          { "west": 1 },
+          { "num_primary_branches": "0|1", "axis": "x" }
+        ]
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick_branch",
+        "y": 270
+      }
+    },
+    {
+      "when" : {
+        "OR": [
+          { "up": 1 },
+          { "num_primary_branches": "0|1", "axis": "y" }
+        ]
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick_branch",
+        "x": 270
+      }
+    },
+    {
+      "when" : {
+        "OR": [
+          { "down": 1 },
+          { "num_primary_branches": "0|1", "axis": "y" }
+        ]
+      },
+      "apply" : {
+        "model": "hongtaiyang:block/darkdweller_stick_branch",
+        "x": 90
+      }
+    }
+  ]
+}
