@@ -90,6 +90,7 @@ public class HongTaiyang
             event.accept(ModBlocks.DARKDWELLER_TRAPDOOR);
             event.accept(ModBlocks.DARKDWELLER_BUTTON);
             event.accept(ModBlocks.DARKDWELLER_PRESSURE_PLATE);
+            event.accept(ModBlocks.RUNE);
             //event.accept(ModBlocks.DARKDWELLER_SIGN);
         }
     }

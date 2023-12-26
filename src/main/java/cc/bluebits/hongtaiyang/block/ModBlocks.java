@@ -175,6 +175,18 @@ public class ModBlocks {
                     BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE),
                     BlockSetType.BAMBOO)
     );
+
+    public static final RegistryObject<Block> RUNE = registerBlock(
+            "rune",
+            () -> new CarpetBlock(
+                    BlockBehaviour.Properties.copy(Blocks.WHITE_CARPET)
+            )
+
+    );
+
+
+
+
 //    public static final RegistryObject<Block> DARKDWELLER_SIGN = registerBlock(
 //            "darkdweller_sign",
 //            () -> new StandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN))

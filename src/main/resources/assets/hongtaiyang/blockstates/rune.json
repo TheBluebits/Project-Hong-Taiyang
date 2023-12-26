@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "":[
+      {"model": "hongtaiyang:block/rune0"},
+      {"model": "hongtaiyang:block/rune1"},
+      {"model": "hongtaiyang:block/rune2"}
+      ]
+    }
+  }

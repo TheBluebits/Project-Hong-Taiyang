@@ -1,0 +1,8 @@
+{
+  "parent": "hongtaiyang:block/base/thin_plate",
+  "textures": {
+    "rune": "hongtaiyang:block/rune2"
+  },
+  "render_type": "cutout"
+
+}
