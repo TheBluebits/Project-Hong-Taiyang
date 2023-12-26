@@ -2,6 +2,7 @@
   "parent": "hongtaiyang:block/base/stick_pillar_branch",
   "textures": {
     "end": "hongtaiyang:block/darkdweller_stick_end",
-    "side": "hongtaiyang:block/darkdweller_stick_branch_side"
+    "side": "hongtaiyang:block/darkdweller_stick_branch_side",
+    "particle": "hongtaiyang:block/darkdweller_stick_end"
   }
 }

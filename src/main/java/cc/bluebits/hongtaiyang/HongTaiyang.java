@@ -69,6 +69,8 @@ public class HongTaiyang
             event.accept(ModItems.WARDLING_CHESTPLATE);
             event.accept(ModItems.WARDLING_LEGGINGS);
             event.accept(ModItems.WARDLING_BOOTS);
+            event.accept(ModItems.DWELLBERRY);
+            event.accept(ModItems.DWELLBERRY_SEEDS);
             
             //Blocks
             event.accept(ModBlocks.UMBRAL_ORE);

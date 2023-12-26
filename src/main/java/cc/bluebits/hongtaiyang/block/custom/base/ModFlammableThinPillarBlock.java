@@ -7,9 +7,12 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -176,6 +179,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	}
 	
 	
+	
 	protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis) {
 		return 0;
 	}
@@ -219,5 +223,9 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 		}
 
 		return applyBlockState(this.defaultBlockState(), branches, mainAxis);
+	}
+	
+	public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
+		return false;
 	}
 }

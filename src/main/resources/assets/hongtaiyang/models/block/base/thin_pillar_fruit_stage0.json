@@ -1,0 +1,36 @@
+{
+	"textures": {
+		"fruit": "block/texture",
+		"particle": "block/texture"
+	},
+	"elements": [
+		{
+			"from": [8, 6, 14],
+			"to": [8, 9, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 14, 3], "texture": "#fruit"},
+				"west": {"uv": [14, 0, 16, 3], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 4, 13],
+			"to": [9, 6, 15],
+			"faces": {
+				"north": {"uv": [13, 3, 15, 5], "texture": "#fruit"},
+				"east": {"uv": [13, 3, 15, 5], "texture": "#fruit"},
+				"south": {"uv": [13, 3, 15, 5], "texture": "#fruit"},
+				"west": {"uv": [13, 3, 15, 5], "texture": "#fruit"},
+				"up": {"uv": [2, 2, 0, 0], "texture": "#fruit"},
+				"down": {"uv": [2, 0, 0, 2], "texture": "#fruit"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1]
+		}
+	]
+}

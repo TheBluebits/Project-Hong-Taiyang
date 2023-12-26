@@ -3,8 +3,10 @@ package cc.bluebits.hongtaiyang.block;
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
+import cc.bluebits.hongtaiyang.block.custom.base.DwellberryBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModSaplingBlock;
+import cc.bluebits.hongtaiyang.block.custom.base.ModThinPillarFruitBlock;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
@@ -28,10 +30,14 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HongTaiyang.MOD_ID);
     
-    private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
+    private static <T extends Block>RegistryObject<T> registerBlockWithItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
+    }
+
+    private static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+		return BLOCKS.register(name, block);
     }
     
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
@@ -49,7 +55,7 @@ public class ModBlocks {
     //  Chapter 1 Blocks
     // --------------------------------
     
-    public static final RegistryObject<Block> UMBRAL_ORE = registerBlock(
+    public static final RegistryObject<Block> UMBRAL_ORE = registerBlockWithItem(
             "umbral_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.STONE)
                     .strength(6f)
@@ -57,7 +63,7 @@ public class ModBlocks {
                     UniformInt.of(3, 7))
     );
     
-    public static final RegistryObject<Block> DEEPSLATE_UMBRAL_ORE = registerBlock(
+    public static final RegistryObject<Block> DEEPSLATE_UMBRAL_ORE = registerBlockWithItem(
             "deepslate_umbral_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
                     .strength(6f)
@@ -65,14 +71,14 @@ public class ModBlocks {
                     UniformInt.of(3, 7))
     );
 
-    public static final RegistryObject<Block> UMBRAL_BLOCK = registerBlock(
+    public static final RegistryObject<Block> UMBRAL_BLOCK = registerBlockWithItem(
             "umbral_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.EMERALD_BLOCK)
                     .strength(6f)
                     .requiresCorrectToolForDrops())
     );
 
-    public static final RegistryObject<Block> ROOTED_SCULK = registerBlock(
+    public static final RegistryObject<Block> ROOTED_SCULK = registerBlockWithItem(
             "rooted_sculk",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.SCULK)
                     .strength(1f)
@@ -81,7 +87,7 @@ public class ModBlocks {
     
     
     
-    public static final RegistryObject<Block> DARKDWELLER_ROOT = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_ROOT = registerBlockWithItem(
             "darkdweller_root",
             () -> new ModSaplingBlock(new DarkdwellerTreeGrower(),
                     BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING),
@@ -89,26 +95,34 @@ public class ModBlocks {
                     "deep_dark")
     );
     
-    public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlockWithItem(
             "darkdweller_log",
             () -> new DarkdwellerLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG))
     );
-    public static final RegistryObject<Block> DARKDWELLER_STICK = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_STICK = registerBlockWithItem(
             "darkdweller_stick",
             () -> new DarkdwellerStickBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG))
     );
-    public static final RegistryObject<Block> DARKDWELLER_BUNDLE = registerBlock(
+    public static final RegistryObject<Block> DWELLBERRY = registerBlockWithoutItem(
+            "dwellberry",
+            () -> new DwellberryBlock(
+                    BlockBehaviour.Properties
+                            .copy(Blocks.COCOA)
+                            .lightLevel(state -> 3),
+					ModBlocks.DARKDWELLER_LOG)
+    );
+    
+    
+    public static final RegistryObject<Block> DARKDWELLER_BUNDLE = registerBlockWithItem(
             "darkdweller_bundle",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG))
     );
-    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_BUNDLE = registerBlock(
+    public static final RegistryObject<Block> STRIPPED_DARKDWELLER_BUNDLE = registerBlockWithItem(
             "stripped_darkdweller_bundle",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG))
     );
     
-    
-    
-    public static final RegistryObject<Block> DARKDWELLER_PLANKS = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_PLANKS = registerBlockWithItem(
             "darkdweller_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
                 @Override
@@ -128,39 +142,39 @@ public class ModBlocks {
             }
     );
     
-    public static final RegistryObject<Block> DARKDWELLER_SLAB = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_SLAB = registerBlockWithItem(
             "darkdweller_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB))
     );
-    public static final RegistryObject<Block> DARKDWELLER_STAIRS = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_STAIRS = registerBlockWithItem(
             "darkdweller_stairs",
             () -> new StairBlock(() -> ModBlocks.DARKDWELLER_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS))
     );
-    public static final RegistryObject<Block> DARKDWELLER_FENCE = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_FENCE = registerBlockWithItem(
             "darkdweller_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE))
     );
-    public static final RegistryObject<Block> DARKDWELLER_FENCE_GATE = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_FENCE_GATE = registerBlockWithItem(
             "darkdweller_fence_gate",
             () -> new FenceGateBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE),
                     SoundEvents.BAMBOO_WOOD_FENCE_GATE_CLOSE,
                     SoundEvents.BAMBOO_WOOD_FENCE_GATE_OPEN)
     );
-    public static final RegistryObject<Block> DARKDWELLER_DOOR = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_DOOR = registerBlockWithItem(
             "darkdweller_door",
             () -> new DoorBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion(),
                     BlockSetType.BAMBOO)
     );
-    public static final RegistryObject<Block> DARKDWELLER_TRAPDOOR = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_TRAPDOOR = registerBlockWithItem(
             "darkdweller_trapdoor",
             () -> new TrapDoorBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion(),
                     BlockSetType.BAMBOO)
     );
-    public static final RegistryObject<Block> DARKDWELLER_BUTTON = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_BUTTON = registerBlockWithItem(
             "darkdweller_button",
             () -> new ButtonBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission(),
@@ -168,7 +182,7 @@ public class ModBlocks {
                     15,
                     true)
     );
-    public static final RegistryObject<Block> DARKDWELLER_PRESSURE_PLATE = registerBlock(
+    public static final RegistryObject<Block> DARKDWELLER_PRESSURE_PLATE = registerBlockWithItem(
             "darkdweller_pressure_plate",
             () -> new PressurePlateBlock(
                     PressurePlateBlock.Sensitivity.EVERYTHING,

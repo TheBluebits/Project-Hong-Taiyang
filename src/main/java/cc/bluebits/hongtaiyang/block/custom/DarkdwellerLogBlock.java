@@ -1,5 +1,6 @@
 package cc.bluebits.hongtaiyang.block.custom;
 
+import cc.bluebits.hongtaiyang.block.custom.base.DwellberryBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.util.AxisUtil;
 import net.minecraft.core.BlockPos;
@@ -64,8 +65,10 @@ public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
             return 0;
         }
         
-        if(branchState.getBlock() instanceof DarkdwellerLogBlock) return 1;
-        if(branchState.getBlock() instanceof DarkdwellerStickBlock) return 2;
+        Block branchBlock = branchState.getBlock(); 
+        
+        if(branchBlock instanceof DarkdwellerLogBlock) return 1;
+        if(branchBlock instanceof DarkdwellerStickBlock || branchBlock instanceof DwellberryBlock) return 2;
 
         return 0;
     }
