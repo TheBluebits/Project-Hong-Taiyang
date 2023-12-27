@@ -1,11 +1,12 @@
 package cc.bluebits.hongtaiyang.block.custom;
 
-import cc.bluebits.hongtaiyang.block.custom.base.DwellberryBlock;
+import cc.bluebits.hongtaiyang.block.ModBlocks;
 import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.util.AxisUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SculkBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -60,15 +61,13 @@ public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
 
         Direction.Axis relativeAxis = AxisUtil.getRelativeAxisFromPos(rootPos, branchPos);
         
-        if(branchState.getBlock() instanceof SculkBlock || branchState.getBlock() instanceof RootedSculkBlock) {
+        if(branchState.is(Blocks.SCULK) || branchState.is(ModBlocks.ROOTED_SCULK.get())) {
             if(relativeAxis == mainAxis) return 1;
             return 0;
         }
         
-        Block branchBlock = branchState.getBlock(); 
-        
-        if(branchBlock instanceof DarkdwellerLogBlock) return 1;
-        if(branchBlock instanceof DarkdwellerStickBlock || branchBlock instanceof DwellberryBlock) return 2;
+        if(branchState.is(ModBlocks.DARKDWELLER_LOG.get())) return 1;
+        if(branchState.is(ModBlocks.DARKDWELLER_STICK.get())) return 2;
 
         return 0;
     }

@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,12 +43,12 @@ public class ModConfiguredFeatures {
 		
 		register(context, DARKDWELLER_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
-				new DarkdwellerTrunkPlacer(2, 2, 1),
+				new DarkdwellerTrunkPlacer(2, 2, 1, 1, 0.45f),
 				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),
-				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 75), 
+				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 0.75f), 
 				new TwoLayersFeatureSize(0, 0, 0))
 				.dirt(BlockStateProvider.simple(Blocks.SCULK))
-				.decorators(Collections.singletonList(new DarkdwellerTreeDecorator(2, 35)))
+				.decorators(List.of(new DarkdwellerTreeDecorator(2, 1, 0.15f, 0.25f)))
 				.build());
 	}
 }

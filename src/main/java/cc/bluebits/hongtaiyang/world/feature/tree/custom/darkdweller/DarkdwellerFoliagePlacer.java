@@ -17,13 +17,13 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 	public static final Codec<DarkdwellerFoliagePlacer> CODEC = RecordCodecBuilder.create(
 			darkdwellerFoliagePlacerInstance -> foliagePlacerParts(darkdwellerFoliagePlacerInstance)
 					.and(Codec.intRange(0, 16).fieldOf("height").forGetter(fp -> fp.height))
-					.and(Codec.intRange(0, 100).fieldOf("probability").forGetter(fp -> fp.probability))
+					.and(Codec.floatRange(0, 1).fieldOf("probability").forGetter(fp -> fp.probability))
 					.apply(darkdwellerFoliagePlacerInstance, DarkdwellerFoliagePlacer::new));
 	
-	protected int probability; // Numeric value in percent e.g. 70 -> 70% chance of placement 
+	protected float probability;
 	protected final int height;
 	
-	public DarkdwellerFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int height, int placementChance) {
+	public DarkdwellerFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int height, float placementChance) {
 		super(pRadius, pOffset);
 		this.height = height;
 		this.probability = placementChance;
@@ -57,7 +57,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 								(relX == pFoliageRadius && relZ >= effectiveRadius);
 						
 						// Skip randomly sometimes
-						if(pRandom.nextInt(0, 100) > probability) skipPlacement = true;
+						if(pRandom.nextFloat() > probability) skipPlacement = true;
 						
 						if(!skipPlacement) {
 							pBlockSetter.set(pos, pConfig.foliageProvider.getState(pRandom, pos));

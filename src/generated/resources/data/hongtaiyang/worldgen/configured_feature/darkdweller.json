@@ -4,8 +4,10 @@
     "decorators": [
       {
         "type": "hongtaiyang:darkdweller_tree_decorator",
-        "branchStartHeight": 2,
-        "probability": 35
+        "berryProbability": 0.25,
+        "berryStartHeight": 1,
+        "branchProbability": 0.15,
+        "branchStartHeight": 2
       }
     ],
     "dirt_provider": {
@@ -18,7 +20,7 @@
       "type": "hongtaiyang:darkdweller_foliage_placer",
       "height": 2,
       "offset": 0,
-      "probability": 75,
+      "probability": 0.75,
       "radius": 2
     },
     "foliage_provider": {
@@ -38,6 +40,8 @@
     "trunk_placer": {
       "type": "hongtaiyang:darkdweller_trunk_placer",
       "base_height": 2,
+      "crookedHeight": 1,
+      "crookedProbability": 0.45,
       "height_rand_a": 2,
       "height_rand_b": 1
     },

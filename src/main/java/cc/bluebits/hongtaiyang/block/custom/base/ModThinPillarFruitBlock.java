@@ -85,7 +85,7 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 	public void randomTick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
 		int i = pState.getValue(AGE);
 		if (i < 2 && ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, pLevel.random.nextInt(5) == 0)) {
-			pLevel.setBlock(pPos, pState.setValue(AGE, i + 1), 2);
+			pLevel.setBlock(pPos, pState.setValue(AGE, i + 1), 3);
 			ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
 		}
 	}
@@ -107,6 +107,7 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 			if (direction.getAxis().isHorizontal()) {
 				blockState = blockState.setValue(FACING, direction);
 				if (blockState.canSurvive(levelReader, pos)) {
+					
 					return blockState;
 				}
 			}

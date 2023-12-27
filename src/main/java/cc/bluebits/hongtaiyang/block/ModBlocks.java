@@ -3,10 +3,9 @@ package cc.bluebits.hongtaiyang.block;
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
-import cc.bluebits.hongtaiyang.block.custom.base.DwellberryBlock;
+import cc.bluebits.hongtaiyang.block.custom.DwellberryBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.custom.base.ModSaplingBlock;
-import cc.bluebits.hongtaiyang.block.custom.base.ModThinPillarFruitBlock;
 import cc.bluebits.hongtaiyang.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
@@ -108,7 +107,7 @@ public class ModBlocks {
             () -> new DwellberryBlock(
                     BlockBehaviour.Properties
                             .copy(Blocks.COCOA)
-                            .lightLevel(state -> 3),
+                            .lightLevel(state -> 5),
 					ModBlocks.DARKDWELLER_LOG)
     );
     

@@ -3,7 +3,6 @@ package cc.bluebits.hongtaiyang.world.feature.tree;
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeDecorator;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
