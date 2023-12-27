@@ -16,6 +16,8 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -23,22 +25,26 @@ import java.util.function.Function;
 public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 	public static final Codec<DarkdwellerTrunkPlacer> CODEC = RecordCodecBuilder.create(
 			darkdwellerTrunkPlacerInstance -> trunkPlacerParts(darkdwellerTrunkPlacerInstance)
-			.and(Codec.intRange(0, 16).fieldOf("crookedHeight").forGetter(tp -> tp.crookedHeight))
+			.and(Codec.intRange(0, 16).fieldOf("minCrookedHeight").forGetter(tp -> tp.minCrookedHeight))
+			.and(Codec.intRange(0, 16).fieldOf("minBranchingHeight").forGetter(tp -> tp.minBranchingHeight))
+			.and(Codec.intRange(0, 16).fieldOf("maxBranchHeight").forGetter(tp -> tp.maxBranchHeight))
 			.and(Codec.floatRange(0, 1).fieldOf("crookedProbability").forGetter(tp -> tp.crookedProbability))
+			.and(Codec.floatRange(0, 1).fieldOf("maxBranchingProbability").forGetter(tp -> tp.maxBranchingProbability))
 			.apply(darkdwellerTrunkPlacerInstance, DarkdwellerTrunkPlacer::new));
 	
-	protected int crookedHeight;
+	protected int minCrookedHeight;
+	protected int minBranchingHeight;
+	protected int maxBranchHeight;
 	protected float crookedProbability;
-	
-	public DarkdwellerTrunkPlacer(int pBaseHeight, int pHeightRandA, int pHeightRandB, int crookedHeight, float crookedProbability) {
-		super(pBaseHeight, pHeightRandA, pHeightRandB);
-		this.crookedHeight = crookedHeight;
-		this.crookedProbability = crookedProbability;
-	}
+	protected float maxBranchingProbability;
 
-	@Override
-	public int getTreeHeight(RandomSource pRandom) {
-		return baseHeight + pRandom.nextInt(heightRandA - 2, heightRandA + 1) + pRandom.nextInt(heightRandB - 1, heightRandB + 1);
+	public DarkdwellerTrunkPlacer(int pBaseHeight, int pHeightRandA, int pHeightRandB, int crookedHeight, int branchingHeight, int maxBranchHeight, float crookedProbability, float maxBranchingProbability) {
+		super(pBaseHeight, pHeightRandA, pHeightRandB);
+		this.minCrookedHeight = crookedHeight;
+		this.minBranchingHeight = branchingHeight;
+		this.maxBranchHeight = maxBranchHeight;
+		this.crookedProbability = crookedProbability;
+		this.maxBranchingProbability = maxBranchingProbability;
 	}
 
 	@Override
@@ -47,30 +53,98 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 	}
 
 	@Override
+	public int getTreeHeight(RandomSource pRandom) {
+		return baseHeight + heightRandA + pRandom.nextInt(heightRandA - 2, heightRandA + 3) - pRandom.nextInt(heightRandB - 1, heightRandB + 1);
+	}
+
+	/**
+	 * Places a log sideways when the block is valid
+	 * @param pOrigin The origin of the trunk placer
+	 * @param pLogPos The position of the to be placed log
+	 * @param pAxis The axis the new log should bo oriented in
+	 * @return Returns true on success or false when block is not valid   
+	 */
+	private boolean placeLogSideways(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, TreeConfiguration pConfig, RandomSource pRandom, BlockPos pOrigin, BlockPos pLogPos, Direction.Axis pAxis) {
+		if(!validTreePos(pLevel, pLogPos)) return false;
+
+		pBlockSetter.accept(pLogPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pOrigin)
+				.setValue(RotatedPillarBlock.AXIS, pAxis)));
+
+		return true;
+	}
+	
+
+	
+	@Override
 	public @NotNull List<FoliagePlacer.FoliageAttachment> placeTrunk(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, @NotNull RandomSource pRandom, int pFreeTreeHeight, BlockPos pPos, @NotNull TreeConfiguration pConfig) {
 		setDirtAt(pLevel, pBlockSetter, pRandom, pPos.below(), pConfig);
 		int height = getTreeHeight(pRandom);
-		
-		BlockPos logPos = pPos;
-		
-		// TODO: Make it possible for multiple trunks to grow / branch off of each other (Probability to branch should scale with total height)
-		for(int i = 0; i < height; i++) {
-			placeLog(pLevel, pBlockSetter, pRandom, logPos, pConfig);
+		int mainTrunkHeight = pRandom.nextInt(baseHeight, height);
 
-			if(i >= crookedHeight && i < height - 1 && pRandom.nextFloat() < crookedProbability) {
-				Direction crookedDir = Direction.Plane.HORIZONTAL.getRandomDirection(pRandom);
-				logPos = logPos.relative(crookedDir);
+		ArrayList<Integer> branchEndHeights = new ArrayList<>(List.of(mainTrunkHeight));
+		ArrayList<BlockPos> activeLogPositions = new ArrayList<>(List.of(pPos));
+		
+		// Iterate over each slice of the tree
+		for(int y = 0; y < height; y++) {
+			ArrayList<BlockPos> newBranchPositions = new ArrayList<>();
+			ArrayList<Integer> newBranchEndHeights = new ArrayList<>();
+			ArrayList<Integer> finishedBranches = new ArrayList<>();
+			
+			// Iterate over all active log positions and update all of them
+			for(int i = 0; i < activeLogPositions.size(); i++) {
+				int branchEndHeight = branchEndHeights.get(i);
+				if(y >= branchEndHeight) {
+					finishedBranches.add(i);
+					continue;
+				}
+				
+				// Place log at active log position. If not possible the branch should end
+				BlockPos logPos = activeLogPositions.get(i);
+				if(!placeLog(pLevel, pBlockSetter, pRandom, logPos, pConfig)) {
+					finishedBranches.add(i);
+				}
 
-				if(isFree(pLevel, logPos)) {
-					pBlockSetter.accept(logPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pPos)
-							.setValue(RotatedPillarBlock.AXIS, crookedDir.getAxis())));
+				// Decide if crooking or branching should happen
+				boolean doCrook = y >= minCrookedHeight && y < Math.min(branchEndHeight, height) - 1 && pRandom.nextFloat() < crookedProbability;
+				boolean doBranch = y >= minBranchingHeight && y < Math.min(branchEndHeight, height) - 1 && pRandom.nextFloat() < (maxBranchingProbability / height) * y;
+				
+				// Create crook if flag is set
+				if(doCrook) {
+					Direction crookDir = Direction.Plane.HORIZONTAL.getRandomDirection(pRandom);
+					BlockPos crookPos = logPos.relative(crookDir);
+					
+					// When log placing was successful, advance position within current branch to the side
+					if(placeLogSideways(pLevel, pBlockSetter, pConfig, pRandom, pPos, crookPos, crookDir.getAxis())) {
+						logPos = crookPos;
+					}
 				}
-				else {
-					logPos = logPos.relative(crookedDir.getOpposite());
+				
+				// Create branch if flag is set
+				if(doBranch) {
+					Direction branchDir = Direction.Plane.HORIZONTAL.getRandomDirection(pRandom);
+					BlockPos branchPos = logPos.relative(branchDir);
+
+					// When log placing was successful, add new branch
+					if(placeLogSideways(pLevel, pBlockSetter, pConfig, pRandom, pPos, branchPos, branchDir.getAxis())) {
+						newBranchPositions.add(0, branchPos.above());
+						newBranchEndHeights.add(0, pRandom.nextInt(2, maxBranchHeight) + y);
+					}
 				}
+
+				// Advance position within current branch
+				activeLogPositions.set(i, logPos.above());
 			}
 			
-			logPos = logPos.above();
+			// Apply new branches
+			activeLogPositions.addAll(0, newBranchPositions);
+			branchEndHeights.addAll(0, newBranchEndHeights);
+			
+			// Optimization to not check finished branches every time again
+			finishedBranches.sort(Collections.reverseOrder());
+			for(int index : finishedBranches) {
+				branchEndHeights.remove(index);
+				activeLogPositions.remove(index);
+			}
 		}
 		
 		return ImmutableList.of(new FoliagePlacer.FoliageAttachment(pPos.below(), 0, false));

@@ -43,10 +43,10 @@ public class ModConfiguredFeatures {
 		
 		register(context, DARKDWELLER_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
-				new DarkdwellerTrunkPlacer(2, 2, 1, 1, 0.45f),
+				new DarkdwellerTrunkPlacer(2, 4, 3, 1, 1, 6, 0.65f, 0.9f),
 				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),
 				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 0.75f), 
-				new TwoLayersFeatureSize(0, 0, 0))
+				new TwoLayersFeatureSize(1, 0, 1))
 				.dirt(BlockStateProvider.simple(Blocks.SCULK))
 				.decorators(List.of(new DarkdwellerTreeDecorator(2, 1, 0.15f, 0.25f)))
 				.build());
