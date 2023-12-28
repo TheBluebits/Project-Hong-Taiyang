@@ -1,5 +1,6 @@
 package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
 
+import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
@@ -58,16 +59,30 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 	}
 
 	/**
-	 * Places a log sideways when the block is valid
-	 * @param pOrigin The origin of the trunk placer
+	 * Places a log sideways when the block is valid. Also sets the IS_DIRTY state to true
+	 * @param pLogPos The position of the to be placed log
+	 * @return Returns true on success or false when block is not valid   
+	 */
+	private boolean placeLogVerticalDirty(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, TreeConfiguration pConfig, RandomSource pRandom, BlockPos pLogPos) {
+		if(!validTreePos(pLevel, pLogPos)) return false;
+
+		pBlockSetter.accept(pLogPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pLogPos)
+				.setValue(ModFlammableThinPillarBlock.IS_DIRTY, true)));
+
+		return true;
+	}
+
+	/**
+	 * Places a log sideways when the block is valid. Also sets the IS_DIRTY state to true
 	 * @param pLogPos The position of the to be placed log
 	 * @param pAxis The axis the new log should bo oriented in
 	 * @return Returns true on success or false when block is not valid   
 	 */
-	private boolean placeLogSideways(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, TreeConfiguration pConfig, RandomSource pRandom, BlockPos pOrigin, BlockPos pLogPos, Direction.Axis pAxis) {
+	private boolean placeLogSidewaysDirty(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, TreeConfiguration pConfig, RandomSource pRandom, BlockPos pLogPos, Direction.Axis pAxis) {
 		if(!validTreePos(pLevel, pLogPos)) return false;
 
-		pBlockSetter.accept(pLogPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pOrigin)
+		pBlockSetter.accept(pLogPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pLogPos)
+				.setValue(ModFlammableThinPillarBlock.IS_DIRTY, true)
 				.setValue(RotatedPillarBlock.AXIS, pAxis)));
 
 		return true;
@@ -100,7 +115,7 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 				
 				// Place log at active log position. If not possible the branch should end
 				BlockPos logPos = activeLogPositions.get(i);
-				if(!placeLog(pLevel, pBlockSetter, pRandom, logPos, pConfig)) {
+				if(!placeLogVerticalDirty(pLevel, pBlockSetter, pConfig, pRandom, logPos)) {
 					finishedBranches.add(i);
 				}
 
@@ -114,7 +129,7 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 					BlockPos crookPos = logPos.relative(crookDir);
 					
 					// When log placing was successful, advance position within current branch to the side
-					if(placeLogSideways(pLevel, pBlockSetter, pConfig, pRandom, pPos, crookPos, crookDir.getAxis())) {
+					if(placeLogSidewaysDirty(pLevel, pBlockSetter, pConfig, pRandom, crookPos, crookDir.getAxis())) {
 						logPos = crookPos;
 					}
 				}
@@ -125,7 +140,7 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 					BlockPos branchPos = logPos.relative(branchDir);
 
 					// When log placing was successful, add new branch
-					if(placeLogSideways(pLevel, pBlockSetter, pConfig, pRandom, pPos, branchPos, branchDir.getAxis())) {
+					if(placeLogSidewaysDirty(pLevel, pBlockSetter, pConfig, pRandom, branchPos, branchDir.getAxis())) {
 						newBranchPositions.add(0, branchPos.above());
 						newBranchEndHeights.add(0, pRandom.nextInt(2, maxBranchHeight) + y);
 					}

@@ -100,7 +100,9 @@ public class ModBlocks {
     
     public static final RegistryObject<Block> DARKDWELLER_LOG = registerBlockWithItem(
             "darkdweller_log",
-            () -> new DarkdwellerLogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).noLootTable())
+            () -> new DarkdwellerLogBlock(
+                    BlockBehaviour.Properties.copy(Blocks.OAK_LOG)
+                            .noLootTable())
     );
     public static final RegistryObject<Block> DARKDWELLER_STICK = registerBlockWithItem(
             "darkdweller_stick",

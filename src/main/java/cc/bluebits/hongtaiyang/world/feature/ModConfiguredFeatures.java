@@ -26,8 +26,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class ModConfiguredFeatures {
-	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKDWELLER_KEY = registerKey("darkdweller");
-	
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(HongTaiyang.MOD_ID, name));
 	}
@@ -38,10 +36,14 @@ public class ModConfiguredFeatures {
 	
 	
 	
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKDWELLER_KEY = registerKey("darkdweller");
+	
+	
+	
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 		
-		register(context, DARKDWELLER_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+		register(context, DARKDWELLER_KEY, ModFeatures.CONNECTING_TREE_FEATURE.get(), new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
 				new DarkdwellerTrunkPlacer(2, 4, 3, 1, 1, 6, 0.65f, 0.9f),
 				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),

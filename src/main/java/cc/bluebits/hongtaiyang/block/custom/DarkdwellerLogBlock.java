@@ -5,12 +5,15 @@ import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.util.AxisUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SculkBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
     public DarkdwellerLogBlock(Properties pProperties) {
