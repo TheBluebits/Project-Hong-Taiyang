@@ -21,12 +21,13 @@
   "item.hongtaiyang.wardling_chestplate": "Wardling Chestplate",
   "item.hongtaiyang.wardling_leggings": "Wardling Leggings",
   "item.hongtaiyang.wardling_boots": "Wardling Boots",
+  "item.hongtaiyang.dwellberry": "Dwellberry",
+  "item.hongtaiyang.dwellberry_seeds": "Dwellberry Seeds",
 
   "block.hongtaiyang.umbral_ore": "Umbral Ore",
   "block.hongtaiyang.deepslate_umbral_ore": "Deepslate Umbral Ore",
   "block.hongtaiyang.umbral_block": "Block of Umbral",
-  "block.hongtaiyang.sculk_soil": "Sculk Soil",
-  "block.hongtaiyang.rooted_sculk_soil": "Rooted Sculk Soil",
+  "block.hongtaiyang.rooted_sculk": "Rooted Sculk",
 
   "block.hongtaiyang.darkdweller_root": "Darkdweller Root",
   "block.hongtaiyang.darkdweller_stick": "Darkdweller Stick",

@@ -1,7 +1,5 @@
 package cc.bluebits.hongtaiyang.util;
 
-import java.util.ArrayList;
-
 public class BaseConverter {
     public static int[] convertDecimalToBaseNDigits(int value, int base, int minDigits) {
         if(value == 0) return new int[minDigits];

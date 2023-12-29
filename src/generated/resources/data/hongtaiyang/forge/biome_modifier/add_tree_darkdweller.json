@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "minecraft:deep_dark",
+  "features": "hongtaiyang:darkdweller_placed",
+  "step": "vegetal_decoration"
+}
