@@ -114,7 +114,6 @@ public class ModBlocks {
             () -> new DwellberryBlock(
                     BlockBehaviour.Properties
                             .copy(Blocks.COCOA)
-                            .noLootTable()
                             .lightLevel(state -> 5),
 					ModBlocks.DARKDWELLER_LOG)
     );
