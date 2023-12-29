@@ -4,7 +4,7 @@
     "decorators": [
       {
         "type": "hongtaiyang:darkdweller_tree_decorator",
-        "berryProbability": 0.25,
+        "berryProbability": 0.2,
         "berryStartHeight": 1,
         "branchProbability": 0.15,
         "branchStartHeight": 2

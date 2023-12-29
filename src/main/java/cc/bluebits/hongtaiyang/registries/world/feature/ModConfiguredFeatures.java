@@ -49,7 +49,7 @@ public class ModConfiguredFeatures {
 				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 0.75f), 
 				new TwoLayersFeatureSize(1, 0, 1))
 				.dirt(BlockStateProvider.simple(Blocks.SCULK))
-				.decorators(List.of(new DarkdwellerTreeDecorator(2, 1, 0.15f, 0.25f)))
+				.decorators(List.of(new DarkdwellerTreeDecorator(2, 1, 0.15f, 0.20f)))
 				.build());
 	}
 }
