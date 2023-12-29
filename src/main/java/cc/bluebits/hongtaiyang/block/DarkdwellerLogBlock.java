@@ -54,7 +54,7 @@ public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
     }
 
     @Override
-    protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis) {
+    protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis, Direction dir) {
         boolean axisCheckOverride = rootPos.get(mainAxis) != branchPos.get(mainAxis);
         if(branchState.hasProperty(AXIS) && branchState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
 
@@ -67,6 +67,8 @@ public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
         
         if(branchState.is(ModBlocks.DARKDWELLER_LOG.get())) return 1;
         if(branchState.is(ModBlocks.DARKDWELLER_STICK.get())) return 2;
+        
+        if(branchState.is(ModBlocks.DWELLBERRY.get()) && branchState.getValue(DwellberryBlock.FACING) == dir.getOpposite()) return 2;
 
         return 0;
     }

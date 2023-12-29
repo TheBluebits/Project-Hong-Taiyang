@@ -178,7 +178,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	
 	
 	
-	protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis) {
+	protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis, Direction dir) {
 		return 0;
 	}
 	
@@ -194,7 +194,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 				pState.getValue(EAST)
 		};
 
-		int branchType = getBranchType(pCurrentPos, pNeighborPos, pNeighborState, mainAxis);
+		int branchType = getBranchType(pCurrentPos, pNeighborPos, pNeighborState, mainAxis, pDirection);
 		int directionIndex = ArrayUtils.indexOf(Direction.values(), pDirection);
 		branches[directionIndex] = branchType;
 
@@ -217,7 +217,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 			BlockPos branchPos = blockPos.relative(branchAxis, i % 2 == 0 ? -1 : 1); // Inline condition to oscillate between negative and positive distance
 			BlockState branchState = blockGetter.getBlockState(branchPos);
 
-			branches[i] = getBranchType(blockPos, branchPos, branchState, mainAxis);
+			branches[i] = getBranchType(blockPos, branchPos, branchState, mainAxis, Direction.values()[i]);
 		}
 
 		return applyBlockState(this.defaultBlockState(), branches, mainAxis);

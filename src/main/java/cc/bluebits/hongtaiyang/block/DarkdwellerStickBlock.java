@@ -51,7 +51,7 @@ public class DarkdwellerStickBlock extends ModFlammableThinPillarBlock {
     }
 
     @Override
-    protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis) {
+    protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis, Direction dir) {
         boolean axisCheckOverride = rootPos.get(mainAxis) != branchPos.get(mainAxis);
         if(branchState.hasProperty(AXIS) && branchState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
 
