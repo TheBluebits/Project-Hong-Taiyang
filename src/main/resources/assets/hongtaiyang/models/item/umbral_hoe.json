@@ -1,5 +1,5 @@
 {
-  "parent": "item/generated",
+  "parent": "item/handheld",
   "textures": {
     "layer0": "hongtaiyang:item/umbral_hoe_base",
     "layer1": "hongtaiyang:item/umbral_hoe_pulse"
