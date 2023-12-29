@@ -1,6 +1,6 @@
-package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
+package cc.bluebits.hongtaiyang.world.feature.tree.darkdweller;
 
-import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
+import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTrunkPlacers;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

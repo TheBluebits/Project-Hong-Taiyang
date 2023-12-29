@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.world.feature.tree;
+package cc.bluebits.hongtaiyang.world.feature;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -39,11 +39,11 @@ import java.util.function.BiConsumer;
  * and a constant that is available statically set to {@value DEFAULT_BLOCK_UPDATE_FLAGS}
  * @see net.minecraft.world.level.levelgen.feature.Feature 
  */
-public class ModTreeFeature extends Feature<TreeConfiguration> {
+public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 	private static final int DEFAULT_BLOCK_UPDATE_FLAGS = 3;
 	private final int blockUpdateFlags;
 
-	public ModTreeFeature(Codec<TreeConfiguration> pCodec, int blockUpdateFlags) {
+	public ModUpdatingTreeFeature(Codec<TreeConfiguration> pCodec, int blockUpdateFlags) {
 		super(pCodec);
 		this.blockUpdateFlags = blockUpdateFlags;
 	}

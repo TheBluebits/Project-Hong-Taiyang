@@ -1,10 +1,10 @@
-package cc.bluebits.hongtaiyang.world.feature;
+package cc.bluebits.hongtaiyang.registries.world.feature;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.block.ModBlocks;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerFoliagePlacer;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeDecorator;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTrunkPlacer;
+import cc.bluebits.hongtaiyang.registries.ModBlocks;
+import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerFoliagePlacer;
+import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeDecorator;
+import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTrunkPlacer;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -42,7 +42,7 @@ public class ModConfiguredFeatures {
 		@SuppressWarnings("unused")
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 		
-		register(context, DARKDWELLER_KEY, ModFeatures.CONNECTING_TREE_FEATURE.get(), new TreeConfiguration.TreeConfigurationBuilder(
+		register(context, DARKDWELLER_KEY, ModFeatures.UPDATING_TREE_FEATURE.get(), new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
 				new DarkdwellerTrunkPlacer(2, 4, 3, 1, 1, 6, 0.65f, 0.9f),
 				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),

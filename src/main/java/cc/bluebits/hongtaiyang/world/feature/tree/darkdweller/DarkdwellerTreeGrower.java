@@ -1,6 +1,6 @@
-package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
+package cc.bluebits.hongtaiyang.world.feature.tree.darkdweller;
 
-import cc.bluebits.hongtaiyang.world.feature.ModConfiguredFeatures;
+import cc.bluebits.hongtaiyang.registries.world.feature.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;

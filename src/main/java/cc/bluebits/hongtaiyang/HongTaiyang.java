@@ -1,13 +1,14 @@
 package cc.bluebits.hongtaiyang;
 
 //import com.mojang.logging.LogUtils;
-import cc.bluebits.hongtaiyang.block.ModBlocks;
+
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTabs;
-import cc.bluebits.hongtaiyang.item.ModItems;
-import cc.bluebits.hongtaiyang.world.feature.ModFeatures;
-import cc.bluebits.hongtaiyang.world.feature.tree.ModFoliagePlacers;
-import cc.bluebits.hongtaiyang.world.feature.tree.ModTreeDecorators;
-import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
+import cc.bluebits.hongtaiyang.registries.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.ModItems;
+import cc.bluebits.hongtaiyang.registries.world.feature.ModFeatures;
+import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
+import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
+import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTrunkPlacers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;

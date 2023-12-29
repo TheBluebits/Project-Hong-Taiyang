@@ -1,7 +1,7 @@
-package cc.bluebits.hongtaiyang.world.feature.tree;
+package cc.bluebits.hongtaiyang.registries.world.feature.tree;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTrunkPlacer;
+import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.eventbus.api.IEventBus;

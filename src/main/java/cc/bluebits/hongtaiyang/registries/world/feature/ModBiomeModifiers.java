@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.world.feature;
+package cc.bluebits.hongtaiyang.registries.world.feature;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import net.minecraft.core.HolderSet;

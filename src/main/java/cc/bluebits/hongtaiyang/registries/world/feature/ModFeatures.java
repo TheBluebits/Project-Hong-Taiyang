@@ -1,11 +1,11 @@
-package cc.bluebits.hongtaiyang.world.feature;
+package cc.bluebits.hongtaiyang.registries.world.feature;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.world.feature.tree.ModTreeFeature;
+import cc.bluebits.hongtaiyang.world.feature.ModUpdatingTreeFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -16,8 +16,8 @@ public class ModFeatures {
 		FEATURES.register(eventBus);
 	}
 	
-	public static final RegistryObject<ModTreeFeature> CONNECTING_TREE_FEATURE = FEATURES.register(
-			"connecting_tree_feature",
-			() -> new ModTreeFeature(TreeConfiguration.CODEC, 3)
+	public static final RegistryObject<ModUpdatingTreeFeature> UPDATING_TREE_FEATURE = FEATURES.register(
+			"updating_tree_feature",
+			() -> new ModUpdatingTreeFeature(TreeConfiguration.CODEC, 3)
 	);
 }

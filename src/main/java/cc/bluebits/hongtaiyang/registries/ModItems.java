@@ -1,8 +1,7 @@
-package cc.bluebits.hongtaiyang.item;
+package cc.bluebits.hongtaiyang.registries;
 
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.block.ModBlocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;

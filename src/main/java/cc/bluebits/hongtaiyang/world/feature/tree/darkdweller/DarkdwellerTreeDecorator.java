@@ -1,9 +1,9 @@
-package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
+package cc.bluebits.hongtaiyang.world.feature.tree.darkdweller;
 
-import cc.bluebits.hongtaiyang.block.ModBlocks;
-import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
-import cc.bluebits.hongtaiyang.block.custom.DwellberryBlock;
-import cc.bluebits.hongtaiyang.world.feature.tree.ModTreeDecorators;
+import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
+import cc.bluebits.hongtaiyang.block.DwellberryBlock;
+import cc.bluebits.hongtaiyang.registries.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;

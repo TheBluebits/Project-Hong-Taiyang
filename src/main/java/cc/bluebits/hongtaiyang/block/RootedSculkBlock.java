@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.block.custom;
+package cc.bluebits.hongtaiyang.block;
 
 import net.minecraft.world.level.block.Block;
 

@@ -1,6 +1,6 @@
-package cc.bluebits.hongtaiyang.block.custom.base;
+package cc.bluebits.hongtaiyang.block.base;
 
-import cc.bluebits.hongtaiyang.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.AxeItem;

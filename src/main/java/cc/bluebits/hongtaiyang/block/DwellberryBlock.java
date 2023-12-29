@@ -1,6 +1,6 @@
-package cc.bluebits.hongtaiyang.block.custom;
+package cc.bluebits.hongtaiyang.block;
 
-import cc.bluebits.hongtaiyang.block.custom.base.ModThinPillarFruitBlock;
+import cc.bluebits.hongtaiyang.block.base.ModThinPillarFruitBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 

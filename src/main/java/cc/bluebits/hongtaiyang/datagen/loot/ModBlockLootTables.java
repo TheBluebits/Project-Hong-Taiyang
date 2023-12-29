@@ -1,10 +1,10 @@
 package cc.bluebits.hongtaiyang.datagen.loot;
 
-import cc.bluebits.hongtaiyang.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.ModBlocks;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;

@@ -1,7 +1,7 @@
-package cc.bluebits.hongtaiyang.world.feature.tree;
+package cc.bluebits.hongtaiyang.registries.world.feature.tree;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeDecorator;
+import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeDecorator;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.eventbus.api.IEventBus;

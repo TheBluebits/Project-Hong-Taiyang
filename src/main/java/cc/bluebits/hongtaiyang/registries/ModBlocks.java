@@ -1,13 +1,12 @@
-package cc.bluebits.hongtaiyang.block;
+package cc.bluebits.hongtaiyang.registries;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.block.custom.DarkdwellerLogBlock;
-import cc.bluebits.hongtaiyang.block.custom.DarkdwellerStickBlock;
-import cc.bluebits.hongtaiyang.block.custom.DwellberryBlock;
-import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableRotatedPillarBlock;
-import cc.bluebits.hongtaiyang.block.custom.base.ModSaplingBlock;
-import cc.bluebits.hongtaiyang.item.ModItems;
-import cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller.DarkdwellerTreeGrower;
+import cc.bluebits.hongtaiyang.block.DarkdwellerLogBlock;
+import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
+import cc.bluebits.hongtaiyang.block.DwellberryBlock;
+import cc.bluebits.hongtaiyang.block.base.ModFlammableRotatedPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModSaplingBlock;
+import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -199,6 +198,6 @@ public class ModBlocks {
     );
     public static final RegistryObject<Block> DARKDWELLER_SIGN = registerBlockWithItem(
             "darkdweller_sign",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN))
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN).noLootTable())
     );
 }

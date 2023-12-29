@@ -1,9 +1,9 @@
 package cc.bluebits.hongtaiyang.datagen;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.world.feature.ModBiomeModifiers;
-import cc.bluebits.hongtaiyang.world.feature.ModConfiguredFeatures;
-import cc.bluebits.hongtaiyang.world.feature.ModPlacedFeatures;
+import cc.bluebits.hongtaiyang.registries.world.feature.ModBiomeModifiers;
+import cc.bluebits.hongtaiyang.registries.world.feature.ModConfiguredFeatures;
+import cc.bluebits.hongtaiyang.registries.world.feature.ModPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

@@ -1,6 +1,6 @@
-package cc.bluebits.hongtaiyang.block.custom;
+package cc.bluebits.hongtaiyang.block;
 
-import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModFlammableThinPillarBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;

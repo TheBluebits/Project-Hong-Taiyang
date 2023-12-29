@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.block.custom.base;
+package cc.bluebits.hongtaiyang.block.base;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
