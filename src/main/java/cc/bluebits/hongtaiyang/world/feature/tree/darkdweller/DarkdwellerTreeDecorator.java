@@ -2,7 +2,7 @@ package cc.bluebits.hongtaiyang.world.feature.tree.darkdweller;
 
 import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.DwellberryBlock;
-import cc.bluebits.hongtaiyang.registries.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

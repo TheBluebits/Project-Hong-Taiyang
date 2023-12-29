@@ -1,7 +1,7 @@
 package cc.bluebits.hongtaiyang.registries.world.feature;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.registries.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerFoliagePlacer;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeDecorator;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTrunkPlacer;

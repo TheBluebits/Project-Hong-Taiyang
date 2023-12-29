@@ -1,7 +1,8 @@
-package cc.bluebits.hongtaiyang.registries;
+package cc.bluebits.hongtaiyang.registries.item;
 
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
+import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -67,7 +68,10 @@ public class ModItems {
     public static final RegistryObject<Item> WARDLING_BOOTS = ITEMS.register("wardling_boots",
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> DWELLBERRY = ITEMS.register("dwellberry",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new Item(new Item.Properties()
+                    .stacksTo(64)
+                    .food(ModFoods.DWELLBERRY)
+            ));
     public static final RegistryObject<Item> DWELLBERRY_SEEDS = ITEMS.register("dwellberry_seeds",
             () -> new ItemNameBlockItem(ModBlocks.DWELLBERRY.get(), new Item.Properties().stacksTo(64)));
 }

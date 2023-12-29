@@ -3,8 +3,8 @@ package cc.bluebits.hongtaiyang;
 //import com.mojang.logging.LogUtils;
 
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTabs;
-import cc.bluebits.hongtaiyang.registries.ModBlocks;
-import cc.bluebits.hongtaiyang.registries.ModItems;
+import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.registries.world.feature.ModFeatures;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
