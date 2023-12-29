@@ -1,8 +1,8 @@
 package cc.bluebits.hongtaiyang.datagen.loot;
 
 import cc.bluebits.hongtaiyang.block.DwellberryBlock;
-import cc.bluebits.hongtaiyang.registries.ModBlocks;
-import cc.bluebits.hongtaiyang.registries.ModItems;
+import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;

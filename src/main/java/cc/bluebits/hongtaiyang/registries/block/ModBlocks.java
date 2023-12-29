@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.registries;
+package cc.bluebits.hongtaiyang.registries.block;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.DarkdwellerLogBlock;
@@ -6,6 +6,7 @@ import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.DwellberryBlock;
 import cc.bluebits.hongtaiyang.block.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.base.ModSaplingBlock;
+import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
