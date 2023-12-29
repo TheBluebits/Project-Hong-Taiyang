@@ -1,33 +1,21 @@
 package cc.bluebits.hongtaiyang.block.custom.base;
 
-import cc.bluebits.hongtaiyang.block.ModBlocks;
 import cc.bluebits.hongtaiyang.util.BaseConverter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ToolAction;
 import org.apache.commons.lang3.ArrayUtils;
-import org.checkerframework.common.returnsreceiver.qual.This;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
@@ -41,7 +29,6 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	public static final IntegerProperty DOWN = IntegerProperty.create("down", 0, nBranchVariants - 1);
 	public static final IntegerProperty UP = IntegerProperty.create("up", 0, nBranchVariants - 1);
 	public static final IntegerProperty NUM_PRIMARY_BRANCHES = IntegerProperty.create("num_primary_branches", 0, nBranches);
-	public static final BooleanProperty IS_DIRTY = BooleanProperty.create("is_dirty");
 
 	protected VoxelShape makeBaseShape() {
 		return Shapes.empty();
@@ -92,8 +79,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 				.setValue(WEST, 0)
 				.setValue(UP, 0)
 				.setValue(DOWN, 0)
-				.setValue(NUM_PRIMARY_BRANCHES, 0)
-				.setValue(IS_DIRTY, true));
+				.setValue(NUM_PRIMARY_BRANCHES, 0));
 	}
 
 
@@ -151,7 +137,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN, NUM_PRIMARY_BRANCHES, IS_DIRTY);
+		builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN, NUM_PRIMARY_BRANCHES);
 	}
 
 
@@ -242,29 +228,4 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
 		return false;
 	}
-
-
-
-//	/**
-//	 * @return whether this block needs random ticking.
-//	 */
-//	@Override
-//	public boolean isRandomlyTicking(BlockState pState) {
-//		return pState.getValue(IS_DIRTY);
-//	}
-//
-//	/**
-//	 * Performs a random tick on a block.
-//	 */
-//	@Override
-//	public void randomTick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
-//		for(Direction dir : Direction.values()) {
-//			BlockPos neighborPos = pPos.relative(dir);
-//			BlockState neighborState = pLevel.getBlockState(neighborPos);
-//			
-//			pState = updateShape(pState, dir, neighborState, pLevel, pPos, neighborPos);
-//		}
-//		
-//		pLevel.setBlockAndUpdate(pPos, pState.setValue(IS_DIRTY, false));
-//	}
 }

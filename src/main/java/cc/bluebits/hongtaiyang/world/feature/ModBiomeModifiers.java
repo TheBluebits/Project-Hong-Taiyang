@@ -13,6 +13,7 @@ import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModBiomeModifiers {
+	@SuppressWarnings("SameParameterValue")
 	private static ResourceKey<BiomeModifier> registerKey(String name) {
 		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(HongTaiyang.MOD_ID, name));
 	}

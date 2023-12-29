@@ -1,6 +1,5 @@
 package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
 
-import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.world.feature.tree.ModTrunkPlacers;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
@@ -61,20 +60,6 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 	/**
 	 * Places a log sideways when the block is valid. Also sets the IS_DIRTY state to true
 	 * @param pLogPos The position of the to be placed log
-	 * @return Returns true on success or false when block is not valid   
-	 */
-	private boolean placeLogVerticalDirty(@NotNull LevelSimulatedReader pLevel, @NotNull BiConsumer<BlockPos, BlockState> pBlockSetter, TreeConfiguration pConfig, RandomSource pRandom, BlockPos pLogPos) {
-		if(!validTreePos(pLevel, pLogPos)) return false;
-
-		pBlockSetter.accept(pLogPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pLogPos)
-				.setValue(ModFlammableThinPillarBlock.IS_DIRTY, true)));
-
-		return true;
-	}
-
-	/**
-	 * Places a log sideways when the block is valid. Also sets the IS_DIRTY state to true
-	 * @param pLogPos The position of the to be placed log
 	 * @param pAxis The axis the new log should bo oriented in
 	 * @return Returns true on success or false when block is not valid   
 	 */
@@ -82,7 +67,6 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 		if(!validTreePos(pLevel, pLogPos)) return false;
 
 		pBlockSetter.accept(pLogPos, (BlockState) Function.identity().apply(pConfig.trunkProvider.getState(pRandom, pLogPos)
-				.setValue(ModFlammableThinPillarBlock.IS_DIRTY, true)
 				.setValue(RotatedPillarBlock.AXIS, pAxis)));
 
 		return true;
@@ -115,7 +99,7 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 				
 				// Place log at active log position. If not possible the branch should end
 				BlockPos logPos = activeLogPositions.get(i);
-				if(!placeLogVerticalDirty(pLevel, pBlockSetter, pConfig, pRandom, logPos)) {
+				if(!placeLog(pLevel, pBlockSetter, pRandom, logPos, pConfig)) {
 					finishedBranches.add(i);
 				}
 

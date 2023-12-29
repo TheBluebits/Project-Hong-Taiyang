@@ -18,11 +18,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ModConfiguredFeatures {
@@ -30,7 +27,8 @@ public class ModConfiguredFeatures {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(HongTaiyang.MOD_ID, name));
 	}
 	
-	private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,  ResourceKey<ConfiguredFeature<?, ?>> key,  F feature, FC configuration) {
+	@SuppressWarnings("SameParameterValue")
+	private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
 		context.register(key, new ConfiguredFeature<>(feature, configuration));
 	}
 	
@@ -41,6 +39,7 @@ public class ModConfiguredFeatures {
 	
 	
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+		@SuppressWarnings("unused")
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 		
 		register(context, DARKDWELLER_KEY, ModFeatures.CONNECTING_TREE_FEATURE.get(), new TreeConfiguration.TreeConfigurationBuilder(

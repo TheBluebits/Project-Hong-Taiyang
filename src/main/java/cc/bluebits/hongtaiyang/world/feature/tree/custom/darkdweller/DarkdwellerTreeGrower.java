@@ -1,9 +1,7 @@
 package cc.bluebits.hongtaiyang.world.feature.tree.custom.darkdweller;
 
-import cc.bluebits.hongtaiyang.block.custom.base.ModFlammableThinPillarBlock;
 import cc.bluebits.hongtaiyang.world.feature.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
