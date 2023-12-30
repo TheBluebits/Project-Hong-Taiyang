@@ -10,12 +10,14 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModTreeDecorators {
 	public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATORS = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, HongTaiyang.MOD_ID);
-	public static void register(IEventBus eventBus) { TREE_DECORATORS.register(eventBus); }
-	
-	
-	
+
+	public static void register(IEventBus eventBus) {
+		TREE_DECORATORS.register(eventBus);
+	}
+
+
 	public static final RegistryObject<TreeDecoratorType<DarkdwellerTreeDecorator>> DARKDWELLER_TREE_DECORATOR = TREE_DECORATORS.register(
-		"darkdweller_tree_decorator",
-			() -> new TreeDecoratorType<>(DarkdwellerTreeDecorator.CODEC)	
+			"darkdweller_tree_decorator",
+			() -> new TreeDecoratorType<>(DarkdwellerTreeDecorator.CODEC)
 	);
 }

@@ -10,12 +10,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModFoliagePlacers {
 	public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACERS = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, HongTaiyang.MOD_ID);
+
 	public static void register(IEventBus eventBus) {
 		FOLIAGE_PLACERS.register(eventBus);
 	}
-	
-	
-	
+
+
 	public static final RegistryObject<FoliagePlacerType<DarkdwellerFoliagePlacer>> DARKDWELLER_FOLIAGE_PLACER = FOLIAGE_PLACERS.register(
 			"darkdweller_foliage_placer",
 			() -> new FoliagePlacerType<>(DarkdwellerFoliagePlacer.CODEC)

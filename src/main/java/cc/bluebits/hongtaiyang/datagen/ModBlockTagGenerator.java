@@ -11,12 +11,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagGenerator extends BlockTagsProvider {
-    public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, HongTaiyang.MOD_ID, existingFileHelper);
-    }
+	public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+		super(output, lookupProvider, HongTaiyang.MOD_ID, existingFileHelper);
+	}
 
-    @Override
-    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
+	@Override
+	protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 
-    }
+	}
 }

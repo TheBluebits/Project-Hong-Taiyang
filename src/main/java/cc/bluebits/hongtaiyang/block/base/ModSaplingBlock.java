@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class ModSaplingBlock extends SaplingBlock {
 	private final Supplier<Block> soilBlock;
 	private final String plantType;
-	
+
 	public ModSaplingBlock(AbstractTreeGrower pTreeGrower, Properties pProperties, Supplier<Block> soilBlock, String plantType) {
 		super(pTreeGrower, pProperties);
 		this.soilBlock = soilBlock;

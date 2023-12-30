@@ -24,17 +24,28 @@ public class DarkdwellerTreeDecorator extends TreeDecorator {
 					Codec.floatRange(0, 1).fieldOf("berryProbability").forGetter(DarkdwellerTreeDecorator::getBerryProbability)
 			).apply(darkdwellerTreeDecoratorInstance, DarkdwellerTreeDecorator::new)
 	);
-	
+
 	private final int branchStartHeight;
 	private final int berryStartHeight;
-	private final float branchProbability; 
+	private final float branchProbability;
 	private final float berryProbability;
-	
-	protected int getBranchStartHeight() { return branchStartHeight; }
-	protected int getBerryStartHeight() { return berryStartHeight; }
-	protected float getBranchProbability() { return branchProbability; }
-	protected float getBerryProbability() { return berryProbability; }
-	
+
+	protected int getBranchStartHeight() {
+		return branchStartHeight;
+	}
+
+	protected int getBerryStartHeight() {
+		return berryStartHeight;
+	}
+
+	protected float getBranchProbability() {
+		return branchProbability;
+	}
+
+	protected float getBerryProbability() {
+		return berryProbability;
+	}
+
 	public DarkdwellerTreeDecorator(int branchStartHeight, int berryStartHeight, float branchProbability, float berryProbability) {
 		super();
 		this.branchStartHeight = branchStartHeight;
@@ -42,7 +53,7 @@ public class DarkdwellerTreeDecorator extends TreeDecorator {
 		this.branchProbability = branchProbability;
 		this.berryProbability = berryProbability;
 	}
-	
+
 	@Override
 	protected @NotNull TreeDecoratorType<?> type() {
 		return ModTreeDecorators.DARKDWELLER_TREE_DECORATOR.get();
@@ -53,33 +64,33 @@ public class DarkdwellerTreeDecorator extends TreeDecorator {
 		RandomSource randomSource = pContext.random();
 		List<BlockPos> logPositions = pContext.logs();
 		int startY = logPositions.get(0).getY();
-		
-		for(BlockPos pos : logPositions) {
-			if(pos.getY() == startY) continue;
+
+		for (BlockPos pos : logPositions) {
+			if (pos.getY() == startY) continue;
 			boolean isAboveBranchStartHeight = pos.getY() - startY >= branchStartHeight;
 			boolean isAboveBerryStartHeight = pos.getY() - startY >= berryStartHeight;
 
-			for(Direction dir : Direction.Plane.HORIZONTAL) {
+			for (Direction dir : Direction.Plane.HORIZONTAL) {
 				BlockPos decorPos = pos.offset(dir.getOpposite().getStepX(), 0, dir.getOpposite().getStepZ());
 
-				if(!pContext.isAir(decorPos)) continue;
-				
+				if (!pContext.isAir(decorPos)) continue;
+
 				boolean genBerry = randomSource.nextFloat() < getBerryProbability() && isAboveBerryStartHeight;
 				boolean genBranch = randomSource.nextFloat() < getBranchProbability() && isAboveBranchStartHeight;
-				
-				if(genBranch && genBerry) {
-					if(randomSource.nextBoolean()) genBranch = false;
+
+				if (genBranch && genBerry) {
+					if (randomSource.nextBoolean()) genBranch = false;
 					else genBerry = false;
 				}
-				
-				if(genBerry) {
+
+				if (genBerry) {
 					pContext.setBlock(decorPos, ModBlocks.DWELLBERRY.get().defaultBlockState()
 							.setValue(DwellberryBlock.FACING, dir)
 							.setValue(DwellberryBlock.AGE, randomSource.nextInt(0, DwellberryBlock.MAX_AGE + 1))
 					);
 				}
-				
-				if(genBranch) {
+
+				if (genBranch) {
 					pContext.setBlock(decorPos, ModBlocks.DARKDWELLER_STICK.get().defaultBlockState()
 							.setValue(DarkdwellerStickBlock.AXIS, dir.getAxis())
 					);

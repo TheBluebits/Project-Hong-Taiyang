@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hongtaiyang:item/soul_core_base",
+    "layer1": "hongtaiyang:item/soul_core_animation",
+    "layer2": "hongtaiyang:item/soul_core_top"
+  }
+}

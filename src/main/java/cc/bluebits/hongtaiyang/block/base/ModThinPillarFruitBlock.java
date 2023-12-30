@@ -32,46 +32,45 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
 
 
-
 	protected final Supplier<Block> SURVIVES_ON;
 	protected final VoxelShape[] SHAPES = makeShapes();
 
 	/**
 	 * Generates all possible shapes.
+	 *
 	 * @return An array containing all possible shapes organized by age first, then facing
 	 */
-	protected VoxelShape[] makeShapes() { return new VoxelShape[] {}; }
+	protected VoxelShape[] makeShapes() {
+		return new VoxelShape[]{};
+	}
 
-	
 
 	public ModThinPillarFruitBlock(Properties pProperties, Supplier<Block> survivesOn) {
 		super(pProperties);
 		this.SURVIVES_ON = survivesOn;
-		
+
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(AGE, 0));
 	}
-	
-	
+
 
 	public static int getShapeIndex(int age, Direction facing) {
 		int nShapesPerAge = (int) Direction.Plane.HORIZONTAL.stream().count();
 		int ageOffset = nShapesPerAge * age;
-		
+
 		int dirIndex = 0;
-		for(Direction dir : Direction.Plane.HORIZONTAL) {
-			if(dir == facing) break;
+		for (Direction dir : Direction.Plane.HORIZONTAL) {
+			if (dir == facing) break;
 			dirIndex++;
 		}
-		
+
 		return ageOffset + dirIndex;
 	}
 
 	public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
 		return SHAPES[getShapeIndex(pState.getValue(AGE), pState.getValue(FACING))];
 	}
-
 
 
 	/**
@@ -96,8 +95,7 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 		BlockState blockstate = pLevel.getBlockState(pPos.relative(pState.getValue(FACING)));
 		return blockstate.is(SURVIVES_ON.get());
 	}
-	
-	
+
 
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -105,11 +103,11 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 		LevelReader levelReader = pContext.getLevel();
 		BlockPos pos = pContext.getClickedPos();
 
-		for(Direction direction : pContext.getNearestLookingDirections()) {
+		for (Direction direction : pContext.getNearestLookingDirections()) {
 			if (direction.getAxis().isHorizontal()) {
 				blockState = blockState.setValue(FACING, direction);
 				if (blockState.canSurvive(levelReader, pos)) {
-					
+
 					return blockState;
 				}
 			}

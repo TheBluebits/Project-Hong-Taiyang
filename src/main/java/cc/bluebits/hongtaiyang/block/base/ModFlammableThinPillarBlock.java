@@ -18,7 +18,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
-public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
+public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock {
 	public static final int nBranches = 6;
 	public static final int nBranchVariants = 3;
 
@@ -33,29 +33,29 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	protected VoxelShape makeBaseShape() {
 		return Shapes.empty();
 	}
-	
+
 	protected VoxelShape[][] makeBranchShapes() {
 		// First index is the variant, second is the orientation in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
-		return new VoxelShape[][] {};
+		return new VoxelShape[][]{};
 	}
 
 	protected final VoxelShape[] SHAPES = makeShapes(makeBaseShape(), makeBranchShapes());
-	
-	
+
+
 	protected VoxelShape[] makeShapes(VoxelShape baseShape, VoxelShape[][] branchShapes) {
 		int nShapesPerAxis = (int) (Math.pow(nBranchVariants, nBranches));
 		int nShapes = nShapesPerAxis * 3;
 
 		VoxelShape[] shapes = new VoxelShape[nShapes];
 
-		for(int a = 0; a < 3; a++) {
-			for(int i = 0; i < nShapesPerAxis; i++) {
+		for (int a = 0; a < 3; a++) {
+			for (int i = 0; i < nShapesPerAxis; i++) {
 				VoxelShape shape = baseShape;
 
 				int idx = a * nShapesPerAxis + i;
 				int[] baseNDigits = BaseConverter.convertDecimalToBaseNDigits(i, nBranchVariants, nBranches);
 
-				for(int d = 0; d < baseNDigits.length; d++) {
+				for (int d = 0; d < baseNDigits.length; d++) {
 					int variant = baseNDigits[d];
 					shape = Shapes.or(shape, branchShapes[variant][d]);
 				}
@@ -66,12 +66,11 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 
 		return shapes;
 	}
-	
-	
-	
+
+
 	public ModFlammableThinPillarBlock(Properties pProperties) {
 		super(pProperties);
-		
+
 		this.registerDefaultState(this.defaultBlockState()
 				.setValue(NORTH, 0)
 				.setValue(EAST, 0)
@@ -83,41 +82,38 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	}
 
 
-
 	private static int getNumPrimaryBranches(int[] branches) {
 		int numLogBranches = 0;
-		for(int branch : branches) {
-			if(branch == 1) numLogBranches++;
+		for (int branch : branches) {
+			if (branch == 1) numLogBranches++;
 		}
 
 		return numLogBranches;
 	}
-	
-	
+
 
 	private static int getFaceOffsetFromAxisIndex(int axisIndex) {
 		int faceOffset = (axisIndex - 1) * 2;
-		if(faceOffset < 0) faceOffset += nBranches;
+		if (faceOffset < 0) faceOffset += nBranches;
 		return faceOffset;
 	}
 
 	private static int getAxisIndexFromFaceIndex(int faceIndex) {
 		int axisIndex = (faceIndex / 2) + 1;
-		if(axisIndex >= Direction.Axis.VALUES.length) axisIndex -= Direction.Axis.VALUES.length;
+		if (axisIndex >= Direction.Axis.VALUES.length) axisIndex -= Direction.Axis.VALUES.length;
 		return axisIndex;
 	}
-	
-	
-	
+
+
 	public static int getShapeIndex(Direction.Axis axis, int north, int east, int south, int west, int up, int down) {
 		int nShapesPerAxis = (int) (Math.pow(nBranchVariants, nBranches));
 
 		int axisIndex = ArrayUtils.indexOf(Direction.Axis.VALUES, axis);
 		int axisOffset = nShapesPerAxis * axisIndex;
 
-		int[] faces = new int[] { down, up, north, south, west, east };
+		int[] faces = new int[]{down, up, north, south, west, east};
 
-		if(getNumPrimaryBranches(faces) < 2) {
+		if (getNumPrimaryBranches(faces) < 2) {
 			int faceOffset = getFaceOffsetFromAxisIndex(axisIndex);
 			faces[faceOffset] = 1;
 			faces[faceOffset + 1] = 1;
@@ -127,8 +123,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 		return axisOffset + variantIndex;
 	}
 
-	
-	
+
 	@Override
 	public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
 		return SHAPES[getShapeIndex(pState.getValue(AXIS), pState.getValue(NORTH), pState.getValue(EAST), pState.getValue(SOUTH), pState.getValue(WEST), pState.getValue(UP), pState.getValue(DOWN))];
@@ -141,28 +136,27 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 	}
 
 
-
 	private Direction.Axis fixMainAxis(int[] branches) {
 		int firstIndex = -1;
 
-		for(int i = 0; i < branches.length; i++) {
-			if(branches[i] == 1) {
+		for (int i = 0; i < branches.length; i++) {
+			if (branches[i] == 1) {
 				firstIndex = i;
 				break;
 			}
 		}
 
-		if(firstIndex == -1) return null;
+		if (firstIndex == -1) return null;
 
 		int axisIndex = getAxisIndexFromFaceIndex(firstIndex);
 		return Direction.Axis.VALUES[axisIndex];
 	}
-	
+
 	private BlockState applyBlockState(BlockState state, int[] branches, Direction.Axis mainAxis) {
 		int numPrimaryBranches = getNumPrimaryBranches(branches);
-		if(numPrimaryBranches < 2) {
+		if (numPrimaryBranches < 2) {
 			Direction.Axis fixedMainAxis = fixMainAxis(branches);
-			if(fixedMainAxis != null) mainAxis = fixedMainAxis;
+			if (fixedMainAxis != null) mainAxis = fixedMainAxis;
 		}
 
 		return state
@@ -175,17 +169,16 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 				.setValue(EAST, branches[5])
 				.setValue(NUM_PRIMARY_BRANCHES, numPrimaryBranches);
 	}
-	
-	
-	
+
+
 	protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis, Direction dir) {
 		return 0;
 	}
-	
+
 	@Override
 	public @NotNull BlockState updateShape(BlockState pState, @NotNull Direction pDirection, @NotNull BlockState pNeighborState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pCurrentPos, @NotNull BlockPos pNeighborPos) {
 		Direction.Axis mainAxis = pState.getValue(AXIS);
-		int[] branches = new int[] {
+		int[] branches = new int[]{
 				pState.getValue(DOWN),
 				pState.getValue(UP),
 				pState.getValue(NORTH),
@@ -210,7 +203,7 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 		// All branches in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
 		int[] branches = new int[nBranches];
 
-		for(int i = 0; i < nBranches; i++) {
+		for (int i = 0; i < nBranches; i++) {
 			int axisIndex = getAxisIndexFromFaceIndex(i);
 
 			Direction.Axis branchAxis = Direction.Axis.VALUES[axisIndex];
@@ -222,9 +215,8 @@ public class ModFlammableThinPillarBlock extends ModFlammableRotatedPillarBlock{
 
 		return applyBlockState(this.defaultBlockState(), branches, mainAxis);
 	}
-	
-	
-	
+
+
 	public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
 		return false;
 	}

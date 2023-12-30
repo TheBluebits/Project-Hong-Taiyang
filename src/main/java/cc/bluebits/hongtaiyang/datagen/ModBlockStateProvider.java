@@ -8,16 +8,16 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockStateProvider extends BlockStateProvider {
-    public ModBlockStateProvider(PackOutput output,  ExistingFileHelper exFileHelper) {
-        super(output, HongTaiyang.MOD_ID, exFileHelper);
-    }
+	public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+		super(output, HongTaiyang.MOD_ID, exFileHelper);
+	}
 
-    @Override
-    protected void registerStatesAndModels() {
+	@Override
+	protected void registerStatesAndModels() {
 
-    }
+	}
 
-    private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
-            simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get())) ;
-    }
+	private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
+		simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+	}
 }

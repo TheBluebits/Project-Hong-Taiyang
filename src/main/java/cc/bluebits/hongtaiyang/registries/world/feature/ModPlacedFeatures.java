@@ -31,16 +31,14 @@ public class ModPlacedFeatures {
 	private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
 		context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
 	}
-	
-	
-	
+
+
 	public static final ResourceKey<PlacedFeature> DARKDWELLER_PLACED_KEY = registerKey("darkdweller_placed");
-	
-	
-	
+
+
 	public static void bootstrap(BootstapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
-		
+
 		register(context, DARKDWELLER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DARKDWELLER_KEY),
 				ImmutableList.<PlacementModifier>builder()
 						.add(PlacementUtils.countExtra(12, 0.1f, 8))
@@ -48,8 +46,8 @@ public class ModPlacedFeatures {
 						.add(BiomeFilter.biome())
 						.add(HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.aboveBottom(0), VerticalAnchor.absolute(0))))
 						.add(EnvironmentScanPlacement.scanningFor(
-								Direction.DOWN, 
-								BlockPredicate.wouldSurvive(ModBlocks.DARKDWELLER_ROOT.get().defaultBlockState(), BlockPos.ZERO), 
+								Direction.DOWN,
+								BlockPredicate.wouldSurvive(ModBlocks.DARKDWELLER_ROOT.get().defaultBlockState(), BlockPos.ZERO),
 								BlockPredicate.matchesBlocks(Blocks.AIR), 32))
 						.build()
 		);

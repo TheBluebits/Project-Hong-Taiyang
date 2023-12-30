@@ -19,7 +19,7 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
 			.add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
 			.add(ForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
-	
+
 	public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries, BUILDER, Collections.singleton(HongTaiyang.MOD_ID));
 	}

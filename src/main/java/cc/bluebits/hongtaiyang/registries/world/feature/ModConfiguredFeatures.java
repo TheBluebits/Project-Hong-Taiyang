@@ -26,27 +26,25 @@ public class ModConfiguredFeatures {
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(HongTaiyang.MOD_ID, name));
 	}
-	
+
 	@SuppressWarnings("SameParameterValue")
 	private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
 		context.register(key, new ConfiguredFeature<>(feature, configuration));
 	}
-	
-	
-	
+
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKDWELLER_KEY = registerKey("darkdweller");
-	
-	
-	
+
+
 	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		@SuppressWarnings("unused")
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
-		
+
 		register(context, DARKDWELLER_KEY, ModFeatures.UPDATING_TREE_FEATURE.get(), new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(ModBlocks.DARKDWELLER_LOG.get()),
 				new DarkdwellerTrunkPlacer(2, 4, 3, 1, 1, 6, 0.65f, 0.9f),
 				BlockStateProvider.simple(ModBlocks.ROOTED_SCULK.get()),
-				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 0.75f), 
+				new DarkdwellerFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 2, 0.75f),
 				new TwoLayersFeatureSize(1, 0, 1))
 				.dirt(BlockStateProvider.simple(Blocks.SCULK))
 				.decorators(List.of(new DarkdwellerTreeDecorator(2, 1, 0.15f, 0.20f)))

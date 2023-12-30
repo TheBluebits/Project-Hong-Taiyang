@@ -15,7 +15,7 @@ public class ModFeatures {
 	public static void register(IEventBus eventBus) {
 		FEATURES.register(eventBus);
 	}
-	
+
 	public static final RegistryObject<ModUpdatingTreeFeature> UPDATING_TREE_FEATURE = FEATURES.register(
 			"updating_tree_feature",
 			() -> new ModUpdatingTreeFeature(TreeConfiguration.CODEC, 3)

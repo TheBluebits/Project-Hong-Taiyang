@@ -9,12 +9,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    public ModRecipeProvider(PackOutput pOutput) {
-        super(pOutput);
-    }
+	public ModRecipeProvider(PackOutput pOutput) {
+		super(pOutput);
+	}
 
-    @Override
-    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
+	@Override
+	protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
 
-    }
+	}
 }

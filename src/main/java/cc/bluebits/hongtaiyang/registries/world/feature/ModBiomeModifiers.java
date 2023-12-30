@@ -17,17 +17,15 @@ public class ModBiomeModifiers {
 	private static ResourceKey<BiomeModifier> registerKey(String name) {
 		return ResourceKey.create(ForgeRegistries.Keys.BIOME_MODIFIERS, new ResourceLocation(HongTaiyang.MOD_ID, name));
 	}
-	
-	
-	
+
+
 	public static final ResourceKey<BiomeModifier> ADD_TREE_DARKDWELLER = registerKey("add_tree_darkdweller");
-	
-	
-	
+
+
 	public static void bootstrap(BootstapContext<BiomeModifier> context) {
 		var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 		var biomes = context.lookup(Registries.BIOME);
-		
+
 		context.register(ADD_TREE_DARKDWELLER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
 				HolderSet.direct(biomes.getOrThrow(Biomes.DEEP_DARK)),
 				HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.DARKDWELLER_PLACED_KEY)),
