@@ -2,6 +2,7 @@
   "parent": "hongtaiyang:block/base/thin_pillar_inventory",
   "textures": {
     "end": "hongtaiyang:block/darkdweller_log_end",
-    "side": "hongtaiyang:block/darkdweller_log_side_inventory"
+    "side": "hongtaiyang:block/darkdweller_log_side_inventory",
+    "particle": "hongtaiyang:block/darkdweller_log_end"
   }
 }

@@ -1,6 +1,7 @@
 {
   "parent": "hongtaiyang:block/base/thin_pillar",
   "textures": {
-    "side": "hongtaiyang:block/darkdweller_log_side"
+    "side": "hongtaiyang:block/darkdweller_log_side",
+    "particle": "hongtaiyang:block/darkdweller_log_end"
   }
 }

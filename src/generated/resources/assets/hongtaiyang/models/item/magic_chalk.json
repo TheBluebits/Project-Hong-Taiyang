@@ -1,0 +1,6 @@
+{
+  "parent": "hongtaiyang:item/base/magic_chalk",
+  "textures": {
+    "layer0": "hongtaiyang:item/magic_chalk"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "hongtaiyang:block/base/thin_pillar_fruit_stage2",
+  "textures": {
+    "fruit": "hongtaiyang:block/placeholder",
+    "particle": "hongtaiyang:block/placeholder"
+  }
+}

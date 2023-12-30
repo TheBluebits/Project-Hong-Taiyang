@@ -75,9 +75,9 @@ minecraft {
             }
         }
 
-        // This run config launches GameTestServer and runs all registered gametests, then exits.
-        // By default, the server will crash when no gametests are provided.
-        // The gametest system is also enabled by default for other run configs under the /test command.
+        // This run config launches GameTestServer and runs all registered game tests, then exits.
+        // By default, the server will crash when no game tests are provided.
+        // The game test system is also enabled by default for other run configs under the /test command.
         gameTestServer {
             workingDirectory project.file('run')
 

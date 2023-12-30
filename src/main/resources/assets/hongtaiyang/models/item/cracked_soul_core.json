@@ -1,8 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "hongtaiyang:item/soul_core_1",
-    "layer1": "hongtaiyang:item/souls_animated2",
-    "layer2": "hongtaiyang:item/soul_core_cracked2"
-  }
-}
