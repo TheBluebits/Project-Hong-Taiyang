@@ -1,37 +1,35 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/texture",
-		"particle": "block/texture"
+		"fruit": "hongtaiyang:block/placeholder",
+		"particle": "hongtaiyang:block/placeholder"
 	},
 	"elements": [
 		{
-			"from": [8, 6, 14],
-			"to": [8, 9, 16],
+			"from": [7, 4, 13],
+			"to": [9, 6, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"east": {"uv": [16, 0, 14, 3], "texture": "#0"},
-				"west": {"uv": [14, 0, 16, 3], "texture": "#0"}
+				"north": {"uv": [0, 12, 2, 14], "texture": "#fruit"},
+				"east": {"uv": [0, 12, 2, 14], "texture": "#fruit"},
+				"south": {"uv": [0, 12, 2, 14], "texture": "#fruit"},
+				"west": {"uv": [0, 12, 2, 14], "texture": "#fruit"},
+				"up": {"uv": [0, 12, 2, 14], "rotation": 180, "texture": "#fruit"},
+				"down": {"uv": [0, 12, 2, 14], "rotation": 180, "texture": "#fruit"}
 			}
 		},
 		{
-			"from": [7, 4, 13],
-			"to": [9, 6, 15],
+			"from": [8, 6, 14],
+			"to": [8, 9, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
 			"faces": {
-				"north": {"uv": [13, 3, 15, 5], "texture": "#0"},
-				"east": {"uv": [13, 3, 15, 5], "texture": "#0"},
-				"south": {"uv": [13, 3, 15, 5], "texture": "#0"},
-				"west": {"uv": [13, 3, 15, 5], "texture": "#0"},
-				"up": {"uv": [2, 2, 0, 0], "texture": "#0"},
-				"down": {"uv": [2, 0, 0, 2], "texture": "#0"}
+				"north": {"uv": [0, 0, 0, 2], "texture": "#fruit"},
+				"east": {"uv": [8, 11, 6, 14], "texture": "#fruit"},
+				"south": {"uv": [0, 0, 0, 2], "texture": "#fruit"},
+				"west": {"uv": [6, 11, 8, 14], "texture": "#fruit"},
+				"up": {"uv": [0, 0, 0, 2], "rotation": 180, "texture": "#fruit"},
+				"down": {"uv": [0, 0, 0, 2], "rotation": 180, "texture": "#fruit"}
 			}
-		}
-	],
-	"groups": [
-		{
-			"name": "VoxelShapes",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [0, 1]
 		}
 	]
 }

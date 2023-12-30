@@ -1,7 +1,8 @@
 {
   "parent": "hongtaiyang:block/base/thin_pillar_fruit_stage1",
   "textures": {
-    "fruit": "hongtaiyang:block/placeholder",
-    "particle": "hongtaiyang:block/placeholder"
-  }
+    "fruit": "hongtaiyang:block/dwellberry_stage1",
+    "particle": "hongtaiyang:block/dwellberry_stage1"
+  },
+  "render_type": "cutout"
 }
