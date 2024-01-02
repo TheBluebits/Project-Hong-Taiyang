@@ -1,8 +1,9 @@
-// 1.20.1	2023-12-30T14:26:54.5330514	Item Models: hongtaiyang
+// 1.20.1	2023-12-30T17:20:31.0754784	Item Models: hongtaiyang
 7cc8c7a7056189f3fc6289c412acc047a1c8677c assets/hongtaiyang/models/item/cracked_soul_core.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_boat.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/dwellberry.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/dwellberry_seeds.json
+d6a69370ca1d49410986da8ef1988ad8de38ef66 assets/hongtaiyang/models/item/handsponge.json
 953566cf49c49851087c1cf36bd8be06adef30b4 assets/hongtaiyang/models/item/logbook.json
 f12b79eebbbab5a709f996800c97247987598394 assets/hongtaiyang/models/item/magic_chalk.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/sonar_compass.json
@@ -22,4 +23,5 @@ e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/wardling
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/wardling_chestplate.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/wardling_helmet.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/wardling_leggings.json
+d0fa309134b185e8544b4f80f714a5335ac3858a assets/hongtaiyang/models/item/wet_handsponge.json
 71a8842eb5ed558ea5432a988936e1370a75abaf assets/hongtaiyang/models/item/writings.json

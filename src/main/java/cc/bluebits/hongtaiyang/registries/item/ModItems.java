@@ -2,13 +2,19 @@ package cc.bluebits.hongtaiyang.registries.item;
 
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
+import cc.bluebits.hongtaiyang.item.custom.ChalkItem;
+import cc.bluebits.hongtaiyang.item.custom.HandSpongeItem;
+import cc.bluebits.hongtaiyang.item.custom.WetHandSpongeItem;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.List;
 
 public class ModItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HongTaiyang.MOD_ID);
@@ -44,7 +50,11 @@ public class ModItems {
 	public static final RegistryObject<Item> UMBRAL_LOCATOR = ITEMS.register("umbral_locator",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> MAGIC_CHALK = ITEMS.register("magic_chalk",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new ChalkItem(new Item.Properties().stacksTo(1).durability(64)));
+	public static final RegistryObject<Item> HANDSPONGE = ITEMS.register("handsponge",
+			() -> new HandSpongeItem(new Item.Properties().stacksTo(1).durability(64), List.of(Fluids.WATER, Fluids.FLOWING_WATER)));
+	public static final RegistryObject<Item> WET_HANDSPONGE = ITEMS.register("wet_handsponge",
+			() -> new WetHandSpongeItem(new Item.Properties().stacksTo(1).durability(64)));
 	public static final RegistryObject<Item> TUNING_FORK = ITEMS.register("tuning_fork",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> DARKDWELLER_BOAT = ITEMS.register("darkdweller_boat",

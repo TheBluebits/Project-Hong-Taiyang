@@ -60,14 +60,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 		return parentedLayeredItem(item, "item/handheld", layerTextureNames);
 	}
 
-	private ItemModelBuilder customModelItem(RegistryObject<Item> item, Map<String, String> textures) {
-		ItemModelBuilder builder = withExistingParent(item.getId().getPath(), new ResourceLocation(HongTaiyang.MOD_ID, "item/base/" + item.getId().getPath()));
+	private ItemModelBuilder modParentedCustomModelItem(RegistryObject<Item> item, String parent, Map<String, String> textures) {
+		ItemModelBuilder builder = withExistingParent(item.getId().getPath(), new ResourceLocation(HongTaiyang.MOD_ID, "item/base/" + parent));
 
 		for (Map.Entry<String, String> texture : textures.entrySet()) {
 			builder = builder.texture(texture.getKey(), new ResourceLocation(HongTaiyang.MOD_ID, "item/" + texture.getValue()));
 		}
 
 		return builder;
+	}
+
+	private ItemModelBuilder customModelItem(RegistryObject<Item> item, Map<String, String> textures) {
+		return modParentedCustomModelItem(item, item.getId().getPath(), textures);
 	}
 
 	private ItemModelBuilder simpleCustomModelItem(RegistryObject<Item> item) {
@@ -102,5 +106,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		placeholderItem(ModItems.WARDLING_LEGGINGS);
 		placeholderItem(ModItems.WARDLING_BOOTS);
 		simpleItem(ModItems.WRITINGS);
+		customModelItem(ModItems.HANDSPONGE, Map.of("handle", "stripped_dark_oak_log", "sponge", "sponge"));
+		modParentedCustomModelItem(ModItems.WET_HANDSPONGE, "handsponge", Map.of("handle", "stripped_dark_oak_log", "sponge", "wet_sponge"));
 	}
 }

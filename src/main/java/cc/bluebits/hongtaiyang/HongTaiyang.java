@@ -3,12 +3,14 @@ package cc.bluebits.hongtaiyang;
 //import com.mojang.logging.LogUtils;
 
 import cc.bluebits.hongtaiyang.item.ModCreativeModeTabs;
+import cc.bluebits.hongtaiyang.item.custom.HandSpongeItem;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.registries.world.feature.ModFeatures;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTrunkPlacers;
+import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -59,6 +61,8 @@ public class HongTaiyang {
 			event.accept(ModItems.SONAR_COMPASS);
 			event.accept(ModItems.UMBRAL_LOCATOR);
 			event.accept(ModItems.MAGIC_CHALK);
+			event.accept(ModItems.HANDSPONGE);
+			event.accept(ModItems.WET_HANDSPONGE);
 			event.accept(ModItems.TUNING_FORK);
 			event.accept(ModItems.DARKDWELLER_BOAT);
 			event.accept(ModItems.UMBRAL_SWORD);
@@ -97,7 +101,7 @@ public class HongTaiyang {
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
-
+		CauldronInteraction.WATER.put(ModItems.HANDSPONGE.get(), HandSpongeItem::getCauldronInteraction);
 	}
 
 	// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

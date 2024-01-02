@@ -1,0 +1,7 @@
+{
+  "parent": "hongtaiyang:item/base/handsponge",
+  "textures": {
+    "handle": "hongtaiyang:item/stripped_dark_oak_log",
+    "sponge": "hongtaiyang:item/sponge"
+  }
+}
