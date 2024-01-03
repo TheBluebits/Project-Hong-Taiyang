@@ -2,10 +2,11 @@ package cc.bluebits.hongtaiyang;
 
 //import com.mojang.logging.LogUtils;
 
-import cc.bluebits.hongtaiyang.item.ModCreativeModeTabs;
-import cc.bluebits.hongtaiyang.item.custom.HandSpongeItem;
+import cc.bluebits.hongtaiyang.item.HandSpongeItem;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.item.ModCreativeModeTabs;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
+import cc.bluebits.hongtaiyang.registries.sound.ModSounds;
 import cc.bluebits.hongtaiyang.registries.world.feature.ModFeatures;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
@@ -40,6 +41,7 @@ public class HongTaiyang {
 		ModTrunkPlacers.register(modEventBus);
 		ModTreeDecorators.register(modEventBus);
 		ModFeatures.register(modEventBus);
+		ModSounds.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);

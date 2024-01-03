@@ -1,7 +1,9 @@
-package cc.bluebits.hongtaiyang.item.custom;
+package cc.bluebits.hongtaiyang.item;
 
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.sound.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -39,6 +41,7 @@ public class ChalkItem extends Item {
 
         level.setBlock(runePos, rune.defaultBlockState(), 3);
         level.gameEvent(pContext.getPlayer(), GameEvent.BLOCK_PLACE, runePos);
+        level.playSeededSound(null, runePos.getX(), runePos.getY(), runePos.getZ(), ModSounds.CHALK_WRITING.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
 
         pContext.getItemInHand().hurtAndBreak(1, player, playerHand -> playerHand.broadcastBreakEvent(player.getUsedItemHand())) ;

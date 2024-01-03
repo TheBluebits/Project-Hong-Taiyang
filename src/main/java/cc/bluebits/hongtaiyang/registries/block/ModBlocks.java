@@ -7,6 +7,7 @@ import cc.bluebits.hongtaiyang.block.DwellberryBlock;
 import cc.bluebits.hongtaiyang.block.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.base.ModSaplingBlock;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
+import cc.bluebits.hongtaiyang.registries.sound.ModSounds;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -203,7 +204,12 @@ public class ModBlocks {
                     .copy(Blocks.WHITE_CARPET)
                     .noLootTable()
                     .noOcclusion()
-                    .noCollission())
+                    .noCollission()
+                    .strength(-1.0f, 4.0f)
+                    .sound(ModSounds.RUNE_SOUNDS))
+
+
+
     );
 
 

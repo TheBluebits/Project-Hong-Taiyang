@@ -1,0 +1,20 @@
+{
+  "handsponge_scrub": {
+    "subtitles": "sounds.hongtaiyang.handsponge_scrub",
+    "sounds": [
+      "hongtaiyang:handsponge_scrub"
+    ]
+  },
+  "rune_empty": {
+    "subtitles": "",
+    "sounds": [
+      "hongtaiyang:rune_empty"
+    ]
+  },
+  "chalk_writing": {
+    "subtitles": "sounds.hongtaiyang.chalk_writing",
+    "sounds": [
+      "hongtaiyang:chalk_writing"
+    ]
+  }
+}

@@ -1,7 +1,6 @@
-package cc.bluebits.hongtaiyang.item;
+package cc.bluebits.hongtaiyang.registries.item;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
