@@ -52,6 +52,7 @@ public class ModItems {
 	public static final RegistryObject<Item> HANDSPONGE = ITEMS.register("handsponge",
 			() -> new HandSpongeItem(new Item.Properties()
 					.durability(8),
+					List.of(ModBlocks.RUNE.get()),
 					List.of(Fluids.WATER, Fluids.FLOWING_WATER),
 					0x2e58d3,
 					true));
