@@ -107,6 +107,5 @@ public class ModItemModelProvider extends ItemModelProvider {
 		placeholderItem(ModItems.WARDLING_BOOTS);
 		simpleItem(ModItems.WRITINGS);
 		customModelItem(ModItems.HANDSPONGE, Map.of("handle", "stripped_dark_oak_log", "sponge", "sponge"));
-		modParentedCustomModelItem(ModItems.WET_HANDSPONGE, "handsponge", Map.of("handle", "stripped_dark_oak_log", "sponge", "wet_sponge"));
 	}
 }

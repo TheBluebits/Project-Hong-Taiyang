@@ -12,6 +12,7 @@ import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTrunkPlacers;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -63,8 +64,6 @@ public class HongTaiyang {
 			event.accept(ModItems.SONAR_COMPASS);
 			event.accept(ModItems.UMBRAL_LOCATOR);
 			event.accept(ModItems.MAGIC_CHALK);
-			event.accept(ModItems.HANDSPONGE);
-			event.accept(ModItems.WET_HANDSPONGE);
 			event.accept(ModItems.TUNING_FORK);
 			event.accept(ModItems.DARKDWELLER_BOAT);
 			event.accept(ModItems.UMBRAL_SWORD);
@@ -78,6 +77,11 @@ public class HongTaiyang {
 			event.accept(ModItems.WARDLING_BOOTS);
 			event.accept(ModItems.DWELLBERRY);
 			event.accept(ModItems.DWELLBERRY_SEEDS);
+
+			// Special Items
+			ItemStack handspongeStack = new ItemStack(ModItems.HANDSPONGE.get());
+			handspongeStack.setDamageValue(ModItems.HANDSPONGE.get().getMaxDamage(handspongeStack));
+			event.accept(handspongeStack);
 
 			//Blocks
 			event.accept(ModBlocks.UMBRAL_ORE);
