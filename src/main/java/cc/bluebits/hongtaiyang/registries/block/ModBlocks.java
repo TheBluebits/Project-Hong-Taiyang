@@ -193,8 +193,4 @@ public class ModBlocks {
 					BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).noLootTable(),
 					BlockSetType.BAMBOO)
 	);
-	public static final RegistryObject<Block> DARKDWELLER_SIGN = registerBlockWithItem(
-			"darkdweller_sign",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN).noLootTable())
-	);
 }
