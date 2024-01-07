@@ -4,6 +4,7 @@ package cc.bluebits.hongtaiyang.datagen;
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
+import cc.bluebits.hongtaiyang.util.DataGenUtil;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
@@ -73,6 +74,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	 * Decides which namespace to use for {@code ResourceLocations}
 	 * @param isModded Flag to determine which namespace to use
 	 * @return The mod id if {@code isModded} is {@code true} and {@code "minecraft"} otherwise
+	 * @see ResourceLocation
 	 */
 	private String getNamespace(boolean isModded) {
 		return isModded ? HongTaiyang.MOD_ID : "minecraft";
@@ -164,12 +166,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	}
 
 	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, List<Tuple<String, String>> textures, String parent, boolean isParentModded) {
-		Map<Tuple<String, String>, Boolean> texturesMap = new LinkedHashMap<>();
-		
-		for(Tuple<String, String> texture : textures) {
-			texturesMap.put(texture, true);
-		}
-		
+		Map<Tuple<String, String>, Boolean> texturesMap = DataGenUtil.convertTextureListToFlaggedTextureMap(textures);
 		return customModelItem(item, texturesMap, parent, isParentModded);
 	}
 
@@ -257,11 +254,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModBlocks.DARKDWELLER_DOOR, "placeholder");
 		parentedItem(ModBlocks.DARKDWELLER_FENCE, "fence_inventory", false, "placeholder", true, "texture");
 		blockItem(ModBlocks.DARKDWELLER_FENCE_GATE);
+		blockItem(ModBlocks.DARKDWELLER_LOG, "darkdweller_log_inventory");
 		blockItem(ModBlocks.DARKDWELLER_PLANKS);
 		blockItem(ModBlocks.DARKDWELLER_PRESSURE_PLATE);
 		// Darkdweller Sign
+		simpleItem(ModBlocks.DARKDWELLER_ROOT, "placeholder");
 		blockItem(ModBlocks.DARKDWELLER_SLAB);
 		blockItem(ModBlocks.DARKDWELLER_STAIRS);
+		simpleItem(ModBlocks.DARKDWELLER_STICK, "placeholder");
 		blockItem(ModBlocks.DARKDWELLER_TRAPDOOR, getName(ModBlocks.DARKDWELLER_TRAPDOOR) + "_bottom");
 		blockItem(ModBlocks.DEEPSLATE_UMBRAL_ORE);
 		blockItem(ModBlocks.ROOTED_SCULK);

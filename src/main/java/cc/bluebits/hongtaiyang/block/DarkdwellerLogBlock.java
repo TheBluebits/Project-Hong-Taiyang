@@ -1,6 +1,6 @@
 package cc.bluebits.hongtaiyang.block;
 
-import cc.bluebits.hongtaiyang.block.base.ModFlammableThinPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModModularPillarBlock;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.util.AxisUtil;
 import net.minecraft.core.BlockPos;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
+public class DarkdwellerLogBlock extends ModModularPillarBlock {
 	public DarkdwellerLogBlock(Properties pProperties) {
 		super(pProperties);
 	}
@@ -23,7 +23,7 @@ public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
 	}
 
 	@Override
-	protected VoxelShape[][] makeBranchShapes() {
+	protected VoxelShape[][] makeLinkShapes() {
 		// First index is the variant, second is the orientation in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
 		return new VoxelShape[][]{
 				{
@@ -54,21 +54,21 @@ public class DarkdwellerLogBlock extends ModFlammableThinPillarBlock {
 	}
 
 	@Override
-	protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis, Direction dir) {
-		boolean axisCheckOverride = rootPos.get(mainAxis) != branchPos.get(mainAxis);
-		if (branchState.hasProperty(AXIS) && branchState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
+	protected int getLinkType(BlockPos rootPos, BlockPos linkPos, BlockState linkState, Direction.Axis mainAxis, Direction dir) {
+		boolean axisCheckOverride = rootPos.get(mainAxis) != linkPos.get(mainAxis);
+		if (linkState.hasProperty(AXIS) && linkState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
 
-		Direction.Axis relativeAxis = AxisUtil.getRelativeAxisFromPos(rootPos, branchPos);
+		Direction.Axis relativeAxis = AxisUtil.getRelativeAxisFromPos(rootPos, linkPos);
 
-		if (branchState.is(Blocks.SCULK) || branchState.is(ModBlocks.ROOTED_SCULK.get())) {
+		if (linkState.is(Blocks.SCULK) || linkState.is(ModBlocks.ROOTED_SCULK.get())) {
 			if (relativeAxis == mainAxis) return 1;
 			return 0;
 		}
 
-		if (branchState.is(ModBlocks.DARKDWELLER_LOG.get())) return 1;
-		if (branchState.is(ModBlocks.DARKDWELLER_STICK.get())) return 2;
+		if (linkState.is(ModBlocks.DARKDWELLER_LOG.get())) return 1;
+		if (linkState.is(ModBlocks.DARKDWELLER_STICK.get())) return 2;
 
-		if (branchState.is(ModBlocks.DWELLBERRY.get()) && branchState.getValue(DwellberryBlock.FACING) == dir.getOpposite())
+		if (linkState.is(ModBlocks.DWELLBERRY.get()) && linkState.getValue(DwellberryBlock.FACING) == dir.getOpposite())
 			return 2;
 
 		return 0;

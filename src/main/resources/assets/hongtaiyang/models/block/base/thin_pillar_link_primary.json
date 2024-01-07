@@ -1,22 +1,22 @@
 {
   "texture_size": [
-    4,
-    4
+    8,
+    8
   ],
   "textures": {
-    "side": "block/side",
-    "end": "block/end"
+    "side": "hongtaiyang:block/placeholder",
+    "end": "hongtaiyang:block/placeholder"
   },
   "elements": [
     {
       "from": [
-        6,
-        6,
+        4,
+        4,
         0
       ],
       "to": [
-        10,
-        10,
+        12,
+        12,
         4
       ],
       "rotation": {
@@ -41,9 +41,9 @@
         },
         "east": {
           "uv": [
+            0,
+            0,
             16,
-            0,
-            0,
             16
           ],
           "rotation": 270,
@@ -51,12 +51,12 @@
         },
         "west": {
           "uv": [
-            16,
-            16,
             0,
-            0
+            0,
+            16,
+            16
           ],
-          "rotation": 270,
+          "rotation": 90,
           "texture": "#side"
         },
         "up": {

@@ -1,13 +1,11 @@
 {
-  "credit": "Made with Blockbench",
   "texture_size": [
     8,
     16
   ],
   "textures": {
-    "end": "block/end",
-    "particle": "block/side",
-    "side": "block/side"
+    "side": "hongtaiyang:block/placeholder",
+    "end": "hongtaiyang:block/placeholder"
   },
   "elements": [
     {

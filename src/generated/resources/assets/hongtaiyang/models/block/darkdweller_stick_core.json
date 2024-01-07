@@ -1,0 +1,6 @@
+{
+  "parent": "hongtaiyang:block/base/stick_pillar_core",
+  "textures": {
+    "side": "hongtaiyang:block/darkdweller_stick_core"
+  }
+}

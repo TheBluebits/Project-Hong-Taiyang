@@ -1,40 +1,273 @@
 package cc.bluebits.hongtaiyang.datagen;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
+import cc.bluebits.hongtaiyang.block.base.ModModularPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModThinPillarFruitBlock;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.util.DataGenUtil;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.level.block.*;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Objects;
+import java.util.*;
 
 @SuppressWarnings("ALL")
 public class ModBlockStateProvider extends BlockStateProvider {
 	public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
 		super(output, HongTaiyang.MOD_ID, exFileHelper);
 	}
+
+
+	
+	/**
+	 * Pulls the name of a block from the registry and adds a suffix to it, if specified
+	 * @param block The instance of the block which name is pulled
+	 * @param suffix The suffix that will be added behind the name after a {@code "_"} character    
+	 * @return The name of the specified block with the specified suffix
+	 */
+	private String getName(Block block, String suffix) {
+		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
+		if(suffix != null && !suffix.isBlank()) name += "_" + suffix;
+		
+		return name;
+	}
+
+	/**
+	 * Pulls the name of a block from the registry without adding a suffix
+	 * @param block The instance of the block which name is pulled
+	 * @return The name of the specified block
+	 */
+	private String getName(Block block) {
+		return getName(block, "");
+	}
+	
+	/**
+	 * Decides which namespace to use for {@code ResourceLocations}
+	 * @param isModded Flag to determine which namespace to use
+	 * @return The mod id if {@code isModded} is {@code true} and {@code "minecraft"} otherwise
+	 * @see ResourceLocation
+	 */
+	private String getNamespace(boolean isModded) {
+		return isModded ? HongTaiyang.MOD_ID : "minecraft";
+	}
 	
 	
 	
 	private void simpleBlock(Block block, ResourceLocation texture) {
-		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
-		ModelFile model = models().cubeAll(name, texture);
+		ModelFile model = models().cubeAll(getName(block), texture);
 		simpleBlock(block, model);
 	}
 	
+	
+	
 	private void crossBlock(Block block, ResourceLocation texture) {
-		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
-		ModelFile model = models().cross(name, texture).renderType("cutout");
+		ModelFile model = models().cross(getName(block), texture).renderType("cutout");
 		simpleBlock(block, model);
 	}
 	
 	private void crossBlock(Block block) {
 		ResourceLocation texture = blockTexture(block);
 		crossBlock(block, texture);
+	}
+	
+	
+	
+	private ModelBuilder parentedBlockModel(Block block, String nameSuffix, String parent, Map<Tuple<String, String>, Boolean> textures) {
+		ModelBuilder model = null;
+		
+		if(parent != null && !parent.isEmpty()) {
+			model = models().withExistingParent(getName(block, nameSuffix), new ResourceLocation(HongTaiyang.MOD_ID, "block/" + parent));
+
+			for(Map.Entry<Tuple<String, String>, Boolean> texture : textures.entrySet()) {
+				String textureKey = texture.getKey().getA();
+				String textureName = texture.getKey().getB();
+				boolean isTextureModded = texture.getValue();
+
+				model.texture(textureKey, new ResourceLocation(getNamespace(isTextureModded), "block/" + textureName));
+			}
+		}
+		
+		return model;
+	}
+
+
+
+	private void modularPillarMultipart(MultiPartBlockStateBuilder builder, ModelFile primaryLink, ModelFile secondaryLink) {
+		for(Direction dir : Direction.values()) {
+			int xRot = 0;
+			int yRot = 0;
+
+			if(dir.get2DDataValue() >= 0) {
+				yRot = (180 + (int) dir.toYRot()) % 360;
+			} else {
+				xRot = (180 + (dir.getAxisDirection().getStep() * 90)) % 360;
+			}
+
+			List<Direction.Axis> otherAxesList = new ArrayList<>(Arrays.asList(Direction.Axis.VALUES));
+			otherAxesList.remove(dir.getAxis());
+			Direction.Axis[] otherAxes = otherAxesList.toArray(new Direction.Axis[2]);
+
+			if(primaryLink != null) {
+				builder.part()
+						.modelFile(primaryLink)
+						.rotationX(xRot)
+						.rotationY(yRot)
+						.addModel()
+						.useOr()
+						.nestedGroup()
+						.condition(ModModularPillarBlock.PROPERTY_BY_DIRECTION.get(dir), 1)
+						.end()
+						.nestedGroup()
+						.condition(ModModularPillarBlock.NUM_PRIMARY_LINKS, 0, 1)
+						.condition(ModModularPillarBlock.AXIS, dir.getAxis())
+						.end()
+						.end();
+			}
+
+			if(secondaryLink != null) {
+				builder.part()
+						.modelFile(secondaryLink)
+						.rotationX(xRot)
+						.rotationY(yRot)
+						.addModel()
+						.nestedGroup()
+						.condition(ModModularPillarBlock.PROPERTY_BY_DIRECTION.get(dir), 2)
+						.end()
+						.nestedGroup()
+						.useOr()
+						.nestedGroup()
+						.condition(ModModularPillarBlock.NUM_PRIMARY_LINKS, 2, 3, 4, 5, 6)
+						.endNestedGroup()
+						.nestedGroup()
+						.condition(ModModularPillarBlock.NUM_PRIMARY_LINKS, 0, 1)
+						.condition(ModModularPillarBlock.AXIS, otherAxes)
+						.endNestedGroup()
+						.end()
+						.end();
+			}
+		}
+	}
+	
+	private void modularPillarBlock(ModModularPillarBlock block,
+									String coreModel, Map<Tuple<String, String>, Boolean> coreTextures,
+									String primaryLinkModel, Map<Tuple<String, String>, Boolean> primaryLinkTextures,
+									String secondaryLinkModel, Map<Tuple<String, String>, Boolean> secondaryLinkTextures,
+									String inventoryModel, Map<Tuple<String, String>, Boolean> inventoryTextures) {
+		ModelFile core = parentedBlockModel(block, "core", coreModel, coreTextures);
+		ModelFile primaryLink = parentedBlockModel(block, "link_primary", primaryLinkModel, primaryLinkTextures);
+		ModelFile secondaryLink = parentedBlockModel(block, "link_secondary", secondaryLinkModel, secondaryLinkTextures);
+		ModelFile inventory = parentedBlockModel(block, "inventory", inventoryModel, inventoryTextures);
+		
+		MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
+		
+		for(Direction.Axis axis : Direction.Axis.VALUES)
+			builder.part()
+				.modelFile(core)
+				.rotationX((axis.isHorizontal() ? 90 : 0) % 360)
+				.rotationY((axis == Direction.Axis.X ? 90 : 0) % 360)
+				.addModel()
+				.condition(ModModularPillarBlock.AXIS, axis)
+				.end();
+		modularPillarMultipart(builder, primaryLink, secondaryLink);
+	}
+	
+	private void modularPillarBlock(ModModularPillarBlock block, 
+									String coreModel, List<Tuple<String, String>> coreTextures,
+									String primaryLinkModel, List<Tuple<String, String>> primaryLinkTextures,
+									String secondaryLinkModel, List<Tuple<String, String>> secondaryLinkTextures,
+									String inventoryModel, List<Tuple<String, String>> inventoryTextures) {
+		Map<Tuple<String, String>, Boolean> coreTexturesMap = DataGenUtil.convertTextureListToFlaggedTextureMap(coreTextures);
+		Map<Tuple<String, String>, Boolean> primaryLinkTexturesMap = DataGenUtil.convertTextureListToFlaggedTextureMap(primaryLinkTextures);
+		Map<Tuple<String, String>, Boolean> secondaryLinkTexturesMap = DataGenUtil.convertTextureListToFlaggedTextureMap(secondaryLinkTextures);
+		Map<Tuple<String, String>, Boolean> inventoryTexturesMap = DataGenUtil.convertTextureListToFlaggedTextureMap(inventoryTextures);
+
+		modularPillarBlock(block, coreModel, coreTexturesMap, primaryLinkModel, primaryLinkTexturesMap, secondaryLinkModel, secondaryLinkTexturesMap, inventoryModel, inventoryTexturesMap);
+	}
+
+	private void modularPillarBlock(ModModularPillarBlock block, 
+									String coreModel, List<Tuple<String, String>> coreTextures,
+									String primaryLinkModel, List<Tuple<String, String>> primaryLinkTextures,
+									String inventoryModel, List<Tuple<String, String>> inventoryTextures) {
+		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel, primaryLinkTextures, null, null, inventoryModel, inventoryTextures);
+	}
+
+	private void modularPillarBlock(ModModularPillarBlock block,
+									String coreModel, Map<Tuple<String, String>, Boolean> coreTextures,
+									String primaryLinkModel, Map<Tuple<String, String>, Boolean> primaryLinkTextures,
+									String inventoryModel, Map<Tuple<String, String>, Boolean> inventoryTextures) {
+		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel, primaryLinkTextures, null, null, inventoryModel, inventoryTextures);
+	}
+
+	private void modularPillarBlock(ModModularPillarBlock block,
+									String coreModel, List<Tuple<String, String>> coreTextures,
+									String primaryLinkModel, List<Tuple<String, String>> primaryLinkTextures) {
+		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel,primaryLinkTextures, null, null);
+	}
+
+	private void modularPillarBlock(ModModularPillarBlock block,
+									String coreModel, Map<Tuple<String, String>, Boolean> coreTextures,
+									String primaryLinkModel, Map<Tuple<String, String>, Boolean> primaryLinkTextures) {
+		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel,primaryLinkTextures, null, null);
+	}
+	
+	
+	
+	private void thinPillarBlock(ModModularPillarBlock block,
+								 Map<Tuple<String, String>, Boolean> coreTextures,
+								 Map<Tuple<String, String>, Boolean> primaryLinkTextures,
+								 Map<Tuple<String, String>, Boolean> secondaryLinkTextures,
+								 Map<Tuple<String, String>, Boolean> inventoryTextures) {
+		modularPillarBlock(block,
+				"base/thin_pillar_core", coreTextures,
+				"base/thin_pillar_link_primary", primaryLinkTextures,
+				"base/thin_pillar_link_secondary", secondaryLinkTextures,
+				"base/thin_pillar_inventory", inventoryTextures); 
+	}
+	
+	private void thinPillarBlock(ModModularPillarBlock block,
+								 List<Tuple<String, String>> coreTextures,
+								 List<Tuple<String, String>> primaryLinkTextures,
+								 List<Tuple<String, String>> secondaryLinkTextures,
+								 List<Tuple<String, String>> inventoryTextures) {
+		modularPillarBlock(block,
+				"base/thin_pillar_core", coreTextures,
+				"base/thin_pillar_link_primary", primaryLinkTextures,
+				"base/thin_pillar_link_secondary", secondaryLinkTextures,
+				"base/thin_pillar_inventory", inventoryTextures);
+	}
+
+
+
+	private void stickPillarBlock(ModModularPillarBlock block, Map<Tuple<String, String>, Boolean> coreTextures, Map<Tuple<String, String>, Boolean> primaryLinkTextures) {
+		modularPillarBlock(block, "base/stick_pillar_core", coreTextures, "base/stick_pillar_link_primary", primaryLinkTextures);
+	}
+
+	private void stickPillarBlock(ModModularPillarBlock block, List<Tuple<String, String>> coreTextures, List<Tuple<String, String>> primaryLinkTextures) {
+		modularPillarBlock(block, "base/stick_pillar_core", coreTextures, "base/stick_pillar_link_primary", primaryLinkTextures);
+	}
+
+	
+	
+	private void thinPillarFruitBlock(ModThinPillarFruitBlock block, List<Map<Tuple<String, String>, Boolean>> textures) {
+		if(textures.size() != block.MAX_AGE + 1) return;
+		List<ModelFile> models = new ArrayList<>();
+		
+		int stage = 0;
+		for(Map<Tuple<String, String>, Boolean> map : textures) {
+			models.add(parentedBlockModel(block, "stage" + stage, "base/thin_pillar_fruit_stage" + stage++, map));
+		}
+
+		VariantBlockStateBuilder builder = getVariantBuilder(block);
+		builder.forAllStates(state -> 
+				ConfiguredModel.builder()
+						.modelFile(models.get(state.getValue(ModThinPillarFruitBlock.AGE)))
+						.rotationY((int) state.getValue(ModThinPillarFruitBlock.FACING).toYRot())
+						.build());
 	}
 	
 	
@@ -55,17 +288,44 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		doorBlockWithRenderType(((DoorBlock) ModBlocks.DARKDWELLER_DOOR.get()), placeholderLocation, placeholderLocation, "cutout");
 		fenceBlock((FenceBlock) ModBlocks.DARKDWELLER_FENCE.get(), placeholderLocation);
 		fenceGateBlock((FenceGateBlock) ModBlocks.DARKDWELLER_FENCE_GATE.get(), placeholderLocation);
-		// Darkdweller Log
+		thinPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_LOG.get(), List.of(
+				new Tuple<>("side", "darkdweller_log_core"),
+				new Tuple<>("particle", "darkdweller_log_end")
+		), List.of(
+				new Tuple<>("side", "darkdweller_log_link_primary"),
+				new Tuple<>("end", "darkdweller_log_end")
+		), List.of(
+				new Tuple<>("side", "darkdweller_log_link_secondary"),
+				new Tuple<>("end", "darkdweller_stick_end")	
+		), List.of(
+				new Tuple<>("side", "darkdweller_log_inventory"),
+				new Tuple<>("end", "darkdweller_log_end")
+		));
 		simpleBlock(ModBlocks.DARKDWELLER_PLANKS.get(), placeholderLocation);
 		pressurePlateBlock(((PressurePlateBlock) ModBlocks.DARKDWELLER_PRESSURE_PLATE.get()), placeholderLocation);
 		crossBlock(ModBlocks.DARKDWELLER_ROOT.get(), placeholderLocation);
 		// Darkdweller Sign
 		slabBlock(((SlabBlock) ModBlocks.DARKDWELLER_SLAB.get()), darkdwellerPlanksLocation, placeholderLocation); // First location is a block model, second one is a texture
 		stairsBlock(((StairBlock) ModBlocks.DARKDWELLER_STAIRS.get()), placeholderLocation);
-		// Darkdweller Sticks
+		stickPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_STICK.get(), List.of(
+				new Tuple<>("side", "darkdweller_stick_core")
+		), List.of(
+				new Tuple<>("side", "darkdweller_stick_link_primary"),
+				new Tuple<>("end", "darkdweller_stick_end")
+		));
 		trapdoorBlockWithRenderType((TrapDoorBlock) ModBlocks.DARKDWELLER_TRAPDOOR.get(), placeholderLocation, true, "cutout");
 		simpleBlock(ModBlocks.DEEPSLATE_UMBRAL_ORE.get(), mcLoc("block/deepslate"));
-		// Dwellberry
+		thinPillarFruitBlock((ModThinPillarFruitBlock) ModBlocks.DWELLBERRY.get(), List.of(
+				Map.of(
+						new Tuple<>("fruit", "placeholder"), true,
+						new Tuple<>("particle", "placeholder"), true),
+				Map.of(
+						new Tuple<>("fruit", "placeholder"), true,
+						new Tuple<>("particle", "placeholder"), true),
+				Map.of(
+						new Tuple<>("fruit", "placeholder"), true,
+						new Tuple<>("particle", "placeholder"), true)
+		));
 		simpleBlock(ModBlocks.ROOTED_SCULK.get());
 		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
 		// Stripped Darkdweller Log
