@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-06T20:59:04.5368622	Block States: hongtaiyang
+// 1.20.1	2024-01-07T01:29:00.0675392	Block States: hongtaiyang
 b645eb947e5245f021642181ac56f47bf2793b81 assets/hongtaiyang/blockstates/darkdweller_bundle.json
 2ccdaf1b930fe957096623c1e9df086f8a5138cb assets/hongtaiyang/blockstates/darkdweller_button.json
 a34a4f22264204fa2ab476a0491aeb9b8df378cf assets/hongtaiyang/blockstates/darkdweller_door.json
@@ -6,6 +6,7 @@ a34a4f22264204fa2ab476a0491aeb9b8df378cf assets/hongtaiyang/blockstates/darkdwel
 a16706dd6346fce1759c3fe572fc85c8de2c5be2 assets/hongtaiyang/blockstates/darkdweller_fence_gate.json
 1fe72566145d38d7e7ea60ba70d2c1092f088458 assets/hongtaiyang/blockstates/darkdweller_planks.json
 28d63cd2bb6c09ee84fa1879cb95090e80a979e6 assets/hongtaiyang/blockstates/darkdweller_pressure_plate.json
+9374375d4f48423db55b8c150adc81053c42f7cf assets/hongtaiyang/blockstates/darkdweller_root.json
 82d984d7f5a82b39f00c621c94457b3647c18df5 assets/hongtaiyang/blockstates/darkdweller_slab.json
 1e35b87e911c87ff22fcaa5a75ff40c8f8d442bc assets/hongtaiyang/blockstates/darkdweller_stairs.json
 dbe95a42cd62865b92ef7cbab549808558fb7d82 assets/hongtaiyang/blockstates/darkdweller_trapdoor.json
@@ -35,6 +36,7 @@ e0b14b1cdc0f996b9fe713cc3cbbfbdd1ed90615 assets/hongtaiyang/models/block/darkdwe
 fb53515fc8a6b08023f0cd319e2e6d05e1b8bb7b assets/hongtaiyang/models/block/darkdweller_planks.json
 ea01fc6bba286e16ee25ca43eb07818f9c006b50 assets/hongtaiyang/models/block/darkdweller_pressure_plate.json
 afa703f8104902464d2b4d8b370af9141cafa976 assets/hongtaiyang/models/block/darkdweller_pressure_plate_down.json
+4f230c259d4b50f3b27ea47d2a17b78bc0af8bad assets/hongtaiyang/models/block/darkdweller_root.json
 a83b81dc24a938c2a4b428b725d8f252aa0139a9 assets/hongtaiyang/models/block/darkdweller_slab.json
 2f4b58b183cc1fa1cbc85e8f480ad066e6872006 assets/hongtaiyang/models/block/darkdweller_slab_top.json
 cca230ce59d43e30d04caa29b28f5b45a4839c82 assets/hongtaiyang/models/block/darkdweller_stairs.json

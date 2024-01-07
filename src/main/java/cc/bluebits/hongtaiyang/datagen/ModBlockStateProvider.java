@@ -12,24 +12,43 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
+@SuppressWarnings("ALL")
 public class ModBlockStateProvider extends BlockStateProvider {
 	public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
 		super(output, HongTaiyang.MOD_ID, exFileHelper);
 	}
 	
-	private void texturedBlock(Block block, ResourceLocation texture) {
-		ModelFile placeholderModel = models().cubeAll(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath(), texture);
-		simpleBlock(block, placeholderModel);
+	
+	
+	private void simpleBlock(Block block, ResourceLocation texture) {
+		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
+		ModelFile model = models().cubeAll(name, texture);
+		simpleBlock(block, model);
 	}
 	
-	private void placeholderBlock(Block block) {
-		texturedBlock(block, modLoc("block/placeholder"));
+	private void crossBlock(Block block, ResourceLocation texture) {
+		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
+		ModelFile model = models().cross(name, texture).renderType("cutout");
+		simpleBlock(block, model);
 	}
+	
+	private void crossBlock(Block block) {
+		ResourceLocation texture = blockTexture(block);
+		crossBlock(block, texture);
+	}
+	
+	
 	
 	@Override
 	protected void registerStatesAndModels() {
+		// ========[ Resources ]========
+		
 		ResourceLocation darkdwellerPlanksLocation = blockTexture(ModBlocks.DARKDWELLER_PLANKS.get());
 		ResourceLocation placeholderLocation = modLoc("block/placeholder");
+
+		
+		
+		// ========[ Chapter 1 ]========
 
 		axisBlock((RotatedPillarBlock) ModBlocks.DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
 		buttonBlock(((ButtonBlock) ModBlocks.DARKDWELLER_BUTTON.get()), placeholderLocation);
@@ -37,21 +56,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		fenceBlock((FenceBlock) ModBlocks.DARKDWELLER_FENCE.get(), placeholderLocation);
 		fenceGateBlock((FenceGateBlock) ModBlocks.DARKDWELLER_FENCE_GATE.get(), placeholderLocation);
 		// Darkdweller Log
-		placeholderBlock(ModBlocks.DARKDWELLER_PLANKS.get());
+		simpleBlock(ModBlocks.DARKDWELLER_PLANKS.get(), placeholderLocation);
 		pressurePlateBlock(((PressurePlateBlock) ModBlocks.DARKDWELLER_PRESSURE_PLATE.get()), placeholderLocation);
-		// Darkdweller Root
+		crossBlock(ModBlocks.DARKDWELLER_ROOT.get(), placeholderLocation);
 		// Darkdweller Sign
 		slabBlock(((SlabBlock) ModBlocks.DARKDWELLER_SLAB.get()), darkdwellerPlanksLocation, placeholderLocation); // First location is a block model, second one is a texture
 		stairsBlock(((StairBlock) ModBlocks.DARKDWELLER_STAIRS.get()), placeholderLocation);
 		// Darkdweller Sticks
 		trapdoorBlockWithRenderType((TrapDoorBlock) ModBlocks.DARKDWELLER_TRAPDOOR.get(), placeholderLocation, true, "cutout");
-		texturedBlock(ModBlocks.DEEPSLATE_UMBRAL_ORE.get(), mcLoc("block/deepslate"));
+		simpleBlock(ModBlocks.DEEPSLATE_UMBRAL_ORE.get(), mcLoc("block/deepslate"));
 		// Dwellberry
 		simpleBlock(ModBlocks.ROOTED_SCULK.get());
 		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
 		// Stripped Darkdweller Log
 		// Stripped Darkdweller Stick
-		placeholderBlock(ModBlocks.UMBRAL_BLOCK.get());
-		texturedBlock(ModBlocks.UMBRAL_ORE.get(), mcLoc("block/stone"));
+		simpleBlock(ModBlocks.UMBRAL_BLOCK.get(), placeholderLocation);
+		simpleBlock(ModBlocks.UMBRAL_ORE.get(), mcLoc("block/stone"));
 	}
 }

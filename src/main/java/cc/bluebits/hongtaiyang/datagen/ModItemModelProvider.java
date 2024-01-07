@@ -27,22 +27,53 @@ public class ModItemModelProvider extends ItemModelProvider {
 		super(output, HongTaiyang.MOD_ID, existingFileHelper);
 	}
 
-	private <T extends ItemLike> String getPathDirectory(RegistryObject<T> t, boolean forceItem) {
-		if(t.get() instanceof Item || forceItem) return "item/";
-		if(t.get() instanceof Block) return "block/";
+
+	/**
+	 * Get subdirectory for paths depending on type of item
+	 * @param item The RegistryObject of the item that is being checked for the type
+	 * @param forceItem If set to {@code true} it will always return {@code "item/"}
+	 * @return {@code "item/"} if {@code item} is of type {@code Item} and {@code "block/"} if {@code item} is of type {@code Block}. If the type cannot be determined returns an empty string.
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 */
+	private <T extends ItemLike> String getPathDirectory(RegistryObject<T> item, boolean forceItem) {
+		if(item.get() instanceof Item || forceItem) return "item/";
+		if(item.get() instanceof Block) return "block/";
 		return "";
 	}
 
-	private <T extends ItemLike> String getPathDirectory(RegistryObject<T> t) {
-		return getPathDirectory(t, false);
+	/**
+	 * Get subdirectory for paths depending on type of item
+	 * @param item The {@code RegistryObject} of the item that is being checked for the type
+	 * @return {@code "item/"} if {@code item} is of type {@code Item} and {@code "block/"} if {@code item} is of type {@code Block}
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 */
+	private <T extends ItemLike> String getPathDirectory(RegistryObject<T> item) {
+		return getPathDirectory(item, false);
 	}
-	
-	private <T extends ItemLike> String getName(RegistryObject<T> t) {
-		if(t.get() instanceof Item) return Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(((Item) t.get()))).getPath();
-		if(t.get() instanceof Block) return Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey((Block) t.get())).getPath();
+
+	/**
+	 * Pulls the name of an item from the corresponding registry
+	 * @param item The {@code RegistryObject} of the item of which the name is pulled
+	 * @return The name of the specified item
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 */
+	private <T extends ItemLike> String getName(RegistryObject<T> item) {
+		if(item.get() instanceof Item) return Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(((Item) item.get()))).getPath();
+		if(item.get() instanceof Block) return Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey((Block) item.get())).getPath();
 		return "";
 	}
-	
+
+	/**
+	 * Decides which namespace to use for {@code ResourceLocations}
+	 * @param isModded Flag to determine which namespace to use
+	 * @return The mod id if {@code isModded} is {@code true} and {@code "minecraft"} otherwise
+	 */
 	private String getNamespace(boolean isModded) {
 		return isModded ? HongTaiyang.MOD_ID : "minecraft";
 	}
@@ -178,7 +209,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		// Pure Items
+		// --------------------------------
+		//  Pure Items
+		// --------------------------------
+		
+		// ========[ Chapter 1 ]========
+		
 		simpleLayeredItem(ModItems.CRACKED_SOUL_CORE, List.of("soul_core_base", "soul_core_animation_fast", "soul_core_top_cracked"));
 		simpleItem(ModItems.DARKDWELLER_BOAT, "placeholder");
 		simpleItem(ModItems.DWELLBERRY, "placeholder");
@@ -208,7 +244,14 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.WARDLING_BOOTS, "placeholder");
 		simpleItem(ModItems.WRITINGS);
 		
-		// Block Items
+		
+		
+		// --------------------------------
+		//  Block Items
+		// --------------------------------
+
+		// ========[ Chapter 1 ]========
+		
 		blockItem(ModBlocks.DARKDWELLER_BUNDLE);
 		parentedItem(ModBlocks.DARKDWELLER_BUTTON, "button_inventory", false, "placeholder", true, "texture");
 		simpleItem(ModBlocks.DARKDWELLER_DOOR, "placeholder");
@@ -216,6 +259,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		blockItem(ModBlocks.DARKDWELLER_FENCE_GATE);
 		blockItem(ModBlocks.DARKDWELLER_PLANKS);
 		blockItem(ModBlocks.DARKDWELLER_PRESSURE_PLATE);
+		// Darkdweller Sign
 		blockItem(ModBlocks.DARKDWELLER_SLAB);
 		blockItem(ModBlocks.DARKDWELLER_STAIRS);
 		blockItem(ModBlocks.DARKDWELLER_TRAPDOOR, getName(ModBlocks.DARKDWELLER_TRAPDOOR) + "_bottom");
