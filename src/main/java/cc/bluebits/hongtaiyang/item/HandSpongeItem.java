@@ -2,14 +2,14 @@ package cc.bluebits.hongtaiyang.item;
 
 import cc.bluebits.hongtaiyang.registries.sound.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +26,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import org.joml.Quaternionf;
 
 import java.util.List;
 
@@ -70,6 +69,10 @@ public class HandSpongeItem extends Item {
             player.awardStat(Stats.USE_CAULDRON);
             player.awardStat(Stats.ITEM_USED.get(item));
 
+
+            sheeeesh(level, blockPos.above().getCenter().add(0d, -0.5d, 0d));
+
+
             LayeredCauldronBlock.lowerFillLevel(blockState, level, blockPos);
             level.playSound(null, blockPos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0f, 1.0f);
             level.gameEvent(null, GameEvent.FLUID_PICKUP, blockPos);
@@ -77,10 +80,9 @@ public class HandSpongeItem extends Item {
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
-    
-    
-    
-    public @NotNull InteractionResult fillSponge(ItemStack pItemStack, Level pLevel, Player pPlayer) {
+
+
+    public @NotNull InteractionResult fillSponge(ItemStack pItemStack, Level pLevel, Player pPlayer, BlockPos blockPos) {
         if (pItemStack.getDamageValue() <= 0) {
             return InteractionResult.PASS;
         }
@@ -99,7 +101,8 @@ public class HandSpongeItem extends Item {
                 for (Fluid wettingFluid : wettingFluids) {
                     if (fluidState.is(wettingFluid)) {
                         pItemStack.setDamageValue(0);
-                        sheeeesh(pPlayer, pLevel);
+                        sheeeesh(pLevel, blockHitResult.getLocation());
+                        pLevel.playSound(pPlayer, blockPos, SoundEvents.BUCKET_FILL, SoundSource.PLAYERS, 1f, 1f);
 
                         return InteractionResult.sidedSuccess(pLevel.isClientSide());
                     }
@@ -125,6 +128,7 @@ public class HandSpongeItem extends Item {
                 level.playSeededSound(null, clickedPos.getX(), clickedPos.getY(), clickedPos.getZ(), ModSounds.HANDSPONGE_SCRUB.get(), SoundSource.PLAYERS, 1f, 1f, 0);
 
                 pContext.getItemInHand().hurt(1, player.getRandom(), null);
+                sheeeesh(level, pContext.getClickLocation());
                 return InteractionResult.SUCCESS;
             }
         }
@@ -139,39 +143,26 @@ public class HandSpongeItem extends Item {
         if (player == null) { return InteractionResult.PASS; }
         ItemStack itemStack = player.getItemInHand(pContext.getHand());
 
-        InteractionResult result = fillSponge(itemStack, level, player);
+        InteractionResult result = fillSponge(itemStack, level, player, pContext.getClickedPos());
         if(result != InteractionResult.PASS) return result;
         
         return breakRune(pContext, itemStack, level, player);
     }
 
     @SuppressWarnings("unused")
-    public void sheeeesh(Entity entity, Level level) {
-        Vec3 handPos = entity.getRopeHoldPosition(0f);
-        //Vec3 playerPos = player.position();
-        Direction entityDirection = entity.getDirection();
-        Quaternionf entityRotation = entityDirection.getRotation();
+    public static void sheeeesh(Level level, Vec3 clickedVec) {
 
-        Vec3 entityForward = entity.getForward();
-        double particlePosX = handPos.x + 0.2d * (double) entityRotation.x;
-        double particlePosY = handPos.y - 0.2d;
-        double particlePosZ = handPos.z + 0.2d * (double) entityRotation.z;
-        level.addParticle(ParticleTypes.FALLING_WATER, particlePosX, particlePosY, particlePosZ, 0d, 0d, 0d);
-
+        if (level.isClientSide()) {
+            return;
+        }
+        RandomSource randomSource = level.getRandom();
+        double particlePosX = clickedVec.offsetRandom(randomSource, 0.05f).x;
+        double particlePosY = clickedVec.offsetRandom(randomSource, 0.01f).y;
+        double particlePosZ = clickedVec.offsetRandom(randomSource, 0.05f).z;
+        int particleAmount = randomSource.nextInt(1, 6);
+        ((ServerLevel) level).sendParticles(ParticleTypes.SPLASH, particlePosX, particlePosY, particlePosZ, particleAmount, 0d, 0d, 0d, 0d);
 
     }
 
-    @Override
-    public void inventoryTick(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull Entity pEntity, int pSlotId, boolean pIsSelected) {
-        super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
-        if (!pIsSelected) {
-            return;
 
-        }
-        if (pStack.getDamageValue() == pStack.getMaxDamage()) {
-            return;
-        }
-        sheeeesh(pEntity, pLevel);
-
-    }
 }
