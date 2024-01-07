@@ -2,11 +2,14 @@ package cc.bluebits.hongtaiyang.item;
 
 import cc.bluebits.hongtaiyang.registries.sound.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +24,9 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Quaternionf;
 
 import java.util.List;
 
@@ -61,7 +66,6 @@ public class HandSpongeItem extends Item {
             if (itemStack.getDamageValue() <= 0) {
                 return InteractionResult.PASS;
             }
-
             itemStack.setDamageValue(0);
             player.awardStat(Stats.USE_CAULDRON);
             player.awardStat(Stats.ITEM_USED.get(item));
@@ -86,7 +90,6 @@ public class HandSpongeItem extends Item {
         if (blockHitResult.getType() != HitResult.Type.MISS) {
             if (blockHitResult.getType() == HitResult.Type.BLOCK) {
                 BlockPos blockpos = blockHitResult.getBlockPos();
-
                 if (!pLevel.mayInteract(pPlayer, blockpos)) {
                     return InteractionResult.PASS;
                 }
@@ -96,6 +99,8 @@ public class HandSpongeItem extends Item {
                 for (Fluid wettingFluid : wettingFluids) {
                     if (fluidState.is(wettingFluid)) {
                         pItemStack.setDamageValue(0);
+                        sheeeesh(pPlayer, pLevel);
+
                         return InteractionResult.sidedSuccess(pLevel.isClientSide());
                     }
                 }
@@ -131,7 +136,6 @@ public class HandSpongeItem extends Item {
     public @NotNull InteractionResult useOn(@NotNull UseOnContext pContext) {
         Level level = pContext.getLevel();
         Player player = pContext.getPlayer();
-
         if (player == null) { return InteractionResult.PASS; }
         ItemStack itemStack = player.getItemInHand(pContext.getHand());
 
@@ -139,5 +143,35 @@ public class HandSpongeItem extends Item {
         if(result != InteractionResult.PASS) return result;
         
         return breakRune(pContext, itemStack, level, player);
+    }
+
+    @SuppressWarnings("unused")
+    public void sheeeesh(Entity entity, Level level) {
+        Vec3 handPos = entity.getRopeHoldPosition(0f);
+        //Vec3 playerPos = player.position();
+        Direction entityDirection = entity.getDirection();
+        Quaternionf entityRotation = entityDirection.getRotation();
+
+        Vec3 entityForward = entity.getForward();
+        double particlePosX = handPos.x + 0.2d * (double) entityRotation.x;
+        double particlePosY = handPos.y - 0.2d;
+        double particlePosZ = handPos.z + 0.2d * (double) entityRotation.z;
+        level.addParticle(ParticleTypes.FALLING_WATER, particlePosX, particlePosY, particlePosZ, 0d, 0d, 0d);
+
+
+    }
+
+    @Override
+    public void inventoryTick(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull Entity pEntity, int pSlotId, boolean pIsSelected) {
+        super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
+        if (!pIsSelected) {
+            return;
+
+        }
+        if (pStack.getDamageValue() == pStack.getMaxDamage()) {
+            return;
+        }
+        sheeeesh(pEntity, pLevel);
+
     }
 }
