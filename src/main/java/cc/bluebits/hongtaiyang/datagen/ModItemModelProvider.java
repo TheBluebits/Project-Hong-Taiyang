@@ -258,9 +258,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
 	/**
-	 * Creates an {@code ItemModelBuilder} for items with a custom model
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. Textures are encoded in a {@code Map} of {@code Tuple<String, String>} that contain the texture key, texture name and {@code isModded} flag, which determines which namespace to use, for each texture
 	 * @param item The {@code RegistryObject} of the item for which the item model is created
-	 * @param textures A {@code Map} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture and their corresponding {@code isModded} flag, that determines which namespace to use for the texture
+	 * @param textures The textures as described above
 	 * @param model The name of the custom model file
 	 * @param isModelModded Flag to determine which namespace to use for the custom model
 	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
@@ -287,9 +287,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 	}
 
 	/**
-	 * Creates an {@code ItemModelBuilder} for items with a custom model. The model namespace will default to the modded namespace. The model name will default to {@code "base/" + item name}
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. The model namespace will default to the modded namespace. The model name will default to {@code "base/" + item name}. Textures are encoded in a {@code Map} of {@code Tuple<String, String>} that contain the texture key, texture name and {@code isModded} flag, which determines which namespace to use, for each texture
 	 * @param item The {@code RegistryObject} of the item for which the item model is created
-	 * @param textures A {@code Map} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture and their corresponding {@code isModded} flag, that determines which namespace to use for the texture
+	 * @param textures The textures as described above
 	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
 	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
 	 * @see Tuple
@@ -302,9 +302,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 	}
 
 	/**
-	 * Creates an {@code ItemModelBuilder} for items with a custom model. The texture namespace will default to the modded namespace
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. The texture namespace will default to the modded namespace. Textures are encoded in a {@code List} of {@code Tuple<String, String>} that contain the texture key and texture name for each texture
 	 * @param item The {@code RegistryObject} of the item for which the item model is created
-	 * @param textures A {@code List} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture
+	 * @param textures The textures as described above
 	 * @param model The name of the custom model file
 	 * @param isModelModded Flag to determine which namespace to use for the custom model
 	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
@@ -320,9 +320,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 	}
 
 	/**
-	 * Creates an {@code ItemModelBuilder} for items with a custom model. The texture namespace will default to the modded namespace. The model name will default to {@code "base/" + item name}
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. The texture namespace will default to the modded namespace. The model name will default to {@code "base/" + item name}. Textures are encoded in a {@code List} of {@code Tuple<String, String>} that contain the texture key and texture name for each texture
 	 * @param item The {@code RegistryObject} of the item for which the item model is created
-	 * @param textures A {@code List} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture
+	 * @param textures The textures as described above
 	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
 	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
 	 * @see Tuple
@@ -379,9 +379,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
 	/**
-	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a texture consisting of multiple layers
+	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a texture consisting of multiple layers. Textures are encoded in a {@code Map} of texture names and their corresponding {@code isModded} flag, which determines which namespace to use, for each layer
 	 * @param item The {@code RegistryObject} of the item for which the item model is created
-	 * @param layerTextures A {@code Map} of texture names and their corresponding {@code isModded} flag, that determines which namespace to use for the texture, for each layer
+	 * @param layerTextures The textures as described above
 	 * @return The {@code ItemModelBuilder} with the specified textures
 	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
 	 * @see ItemLike
