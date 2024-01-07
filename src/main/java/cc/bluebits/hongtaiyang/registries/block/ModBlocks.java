@@ -4,7 +4,7 @@ import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.DwellberryBlock;
-import cc.bluebits.hongtaiyang.block.base.ModFlammableModularPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModFlammableRotatedPillarBlock;
 import cc.bluebits.hongtaiyang.block.base.ModSaplingBlock;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeGrower;
@@ -129,11 +129,11 @@ public class ModBlocks {
 
 	public static final RegistryObject<Block> DARKDWELLER_BUNDLE = registerBlockWithItem(
 			"darkdweller_bundle",
-			() -> new ModFlammableModularPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).noLootTable())
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).noLootTable())
 	);
 	public static final RegistryObject<Block> STRIPPED_DARKDWELLER_BUNDLE = registerBlockWithItem(
 			"stripped_darkdweller_bundle",
-			() -> new ModFlammableModularPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).noLootTable())
+			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).noLootTable())
 	);
 
 	public static final RegistryObject<Block> DARKDWELLER_PLANKS = registerBlockWithItem(

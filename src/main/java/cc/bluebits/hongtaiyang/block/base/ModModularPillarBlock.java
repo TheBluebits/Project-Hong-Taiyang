@@ -90,7 +90,7 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 	protected final VoxelShape[] SHAPES = makeShapes(makeBaseShape(), makeLinkShapes());
 
 
-	protected VoxelShape[] makeShapes(VoxelShape baseShape, VoxelShape[][] branchShapes) {
+	protected VoxelShape[] makeShapes(VoxelShape baseShape, VoxelShape[][] linkShapes) {
 		int nShapesPerAxis = (int) (Math.pow(nLinkTypes, nLinks));
 		int nShapes = nShapesPerAxis * 3;
 
@@ -105,7 +105,7 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 
 				for (int d = 0; d < baseNDigits.length; d++) {
 					int type = baseNDigits[d];
-					shape = Shapes.or(shape, branchShapes[type][d]);
+					shape = Shapes.or(shape, linkShapes[type][d]);
 				}
 
 				shapes[idx] = shape;
