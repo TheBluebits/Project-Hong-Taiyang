@@ -459,6 +459,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.WARDLING_LEGGINGS, "placeholder");
 		simpleItem(ModItems.WARDLING_BOOTS, "placeholder");
 		simpleItem(ModItems.WRITINGS);
+		customModelItem(ModItems.HANDSPONGE, List.of(
+				new Tuple<>("handle", "stripped_dark_oak_log"),
+				new Tuple<>("sponge", "sponge"))
+		);
 		
 		
 		
@@ -487,6 +491,5 @@ public class ModItemModelProvider extends ItemModelProvider {
 		blockItem(ModBlocks.STRIPPED_DARKDWELLER_BUNDLE);
 		blockItem(ModBlocks.UMBRAL_BLOCK);
 		blockItem(ModBlocks.UMBRAL_ORE);
-		customModelItem(ModItems.HANDSPONGE, Map.of("handle", "stripped_dark_oak_log", "sponge", "sponge"));
 	}
 }

@@ -1,9 +1,15 @@
 {
   "variants": {
-    "":[
-      {"model": "hongtaiyang:block/rune0"},
-      {"model": "hongtaiyang:block/rune1"},
-      {"model": "hongtaiyang:block/rune2"}
-      ]
-    }
+    "": [
+      {
+        "model": "hongtaiyang:block/rune_rune2"
+      },
+      {
+        "model": "hongtaiyang:block/rune_rune0"
+      },
+      {
+        "model": "hongtaiyang:block/rune_rune1"
+      }
+    ]
   }
+}

@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-07T16:44:51.6575759	Block States: hongtaiyang
+// 1.20.1	2024-01-08T00:36:19.0717461	Block States: hongtaiyang
 b645eb947e5245f021642181ac56f47bf2793b81 assets/hongtaiyang/blockstates/darkdweller_bundle.json
 2ccdaf1b930fe957096623c1e9df086f8a5138cb assets/hongtaiyang/blockstates/darkdweller_button.json
 a34a4f22264204fa2ab476a0491aeb9b8df378cf assets/hongtaiyang/blockstates/darkdweller_door.json
@@ -15,6 +15,7 @@ dbe95a42cd62865b92ef7cbab549808558fb7d82 assets/hongtaiyang/blockstates/darkdwel
 3efa43bdcd4f8211431d9f0fd3a8727c4bc6b500 assets/hongtaiyang/blockstates/deepslate_umbral_ore.json
 d37825e5b9b209a80da40e6f95ff5d3f74d67d0c assets/hongtaiyang/blockstates/dwellberry.json
 1af416ab4e9ea45d87a443db6e23cb22f4c0d261 assets/hongtaiyang/blockstates/rooted_sculk.json
+8da7e11c549eb6ce28b358c83c04aa8239b8de85 assets/hongtaiyang/blockstates/rune.json
 12f3bf77b64d3305b3c81f31ea7dbb11ab9bc431 assets/hongtaiyang/blockstates/stripped_darkdweller_bundle.json
 5a08d9741dafae8b6218fa1494d9812e45b367a9 assets/hongtaiyang/blockstates/umbral_block.json
 bb41507332e8492a6869ae0a085cddec7588e5f7 assets/hongtaiyang/blockstates/umbral_ore.json
@@ -59,6 +60,9 @@ dda149e7b0f1dbc6e8409d681b869ae4d4a264fb assets/hongtaiyang/models/block/darkdwe
 00dc66220f06970db233d0478e1134a444fa19a1 assets/hongtaiyang/models/block/dwellberry_stage1.json
 d8b3deddc7d51703514f3f451604a02afe5a9241 assets/hongtaiyang/models/block/dwellberry_stage2.json
 1c8027278c90e7899c05a7d9daec15615a852757 assets/hongtaiyang/models/block/rooted_sculk.json
+f738b1b23a7e0ccbc0229233c676d054ac0e786b assets/hongtaiyang/models/block/rune_rune0.json
+2e9d8c0bcfbd81844d388effa57bea962f2ee03d assets/hongtaiyang/models/block/rune_rune1.json
+e3ef1969f968ae57773f5295b6dbedef7089262a assets/hongtaiyang/models/block/rune_rune2.json
 a0e7f1c4b04db99a1267508f5c36b4ab696564fd assets/hongtaiyang/models/block/stripped_darkdweller_bundle.json
 cb5f1d142e61bedef9522a0cc3bb683cb88c7b02 assets/hongtaiyang/models/block/stripped_darkdweller_bundle_horizontal.json
 fb53515fc8a6b08023f0cd319e2e6d05e1b8bb7b assets/hongtaiyang/models/block/umbral_block.json

@@ -96,6 +96,57 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		crossBlock(block, texture);
 	}
 
+	
+	
+	/**
+	 * Creates a BlockState for a plate block
+	 * @param block The instance of the block which BlockState is created
+	 * @param texture The texture of the block
+	 */
+	private void plateBlock(Block block, ResourceLocation texture) {
+		ModelFile model = models().carpet(getName(block), texture).renderType("cutout");
+		simpleBlock(block, model);
+	}
+	
+	/**
+	 * Creates a BlockState for a plate block. The texture is pulled from the block's registry name
+	 * @param block The instance of the block which BlockState is created
+	 */
+	private void plateBlock(Block block) {
+		ResourceLocation texture = blockTexture(block);
+		plateBlock(block, texture);
+	}
+
+
+	// TODO: Implement this one better
+	/**
+	 * Creates a BlockState for a plate block with a dynamic amount of variating textures. Textures are encoded in a {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contain the texture key, texture name and {@code isModded} flag, which determines what namespace to use, for each texture
+	 * @param block The instance of the block which BlockState is created
+	 * @param textures The textures as described above
+	 */
+	private void variedPlateBlock(Block block, Map<Tuple<String, String>, Boolean> textures) {
+		List<ModelFile> models = new ArrayList<>();
+		ConfiguredModel.Builder modelBuilder = ConfiguredModel.builder();
+		
+		boolean isFirstIteration = true;
+		for(Map.Entry<Tuple<String, String>, Boolean> texture : textures.entrySet()) {
+			String textureKey = texture.getKey().getA();
+			String textureName = texture.getKey().getB();
+			boolean isTextureModded = texture.getValue();
+			
+			ModelFile modelFile = models().carpet(getName(block, textureName), new ResourceLocation(getNamespace(isTextureModded), "block/" + textureName)).renderType("cutout");
+			
+			if(!isFirstIteration) modelBuilder = modelBuilder.nextModel();
+			modelBuilder.modelFile(modelFile);
+			
+			isFirstIteration = false;
+		}
+		
+		VariantBlockStateBuilder stateBuilder = getVariantBuilder(block);
+		stateBuilder.partialState().setModels(modelBuilder.build());
+	}
+	
+	
 
 	/**
 	 * Creates a BlockModel based on another BlockModel. The textures are encoded in a {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contain the texture key, texture name and {@code isModded} flag, which determines what namespace to use, for each texture
@@ -464,6 +515,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 						new Tuple<>("particle", "placeholder"), true)
 		));
 		simpleBlock(ModBlocks.ROOTED_SCULK.get());
+		variedPlateBlock(ModBlocks.RUNE.get(), Map.of(
+				new Tuple<>("wool", "rune0"), true,
+				new Tuple<>("wool", "rune1"), true,
+				new Tuple<>("wool", "rune2"), true
+		));
 		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
 		// Stripped Darkdweller Log
 		// Stripped Darkdweller Stick
