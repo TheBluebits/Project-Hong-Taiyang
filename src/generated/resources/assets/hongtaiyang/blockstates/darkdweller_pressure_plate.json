@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "hongtaiyang:block/darkdweller_pressure_plate"
+    },
+    "powered=true": {
+      "model": "hongtaiyang:block/darkdweller_pressure_plate_down"
+    }
+  }
+}

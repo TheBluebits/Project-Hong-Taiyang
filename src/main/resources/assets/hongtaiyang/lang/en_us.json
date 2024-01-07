@@ -22,12 +22,12 @@
   "item.hongtaiyang.wardling_chestplate": "Wardling Chestplate",
   "item.hongtaiyang.wardling_leggings": "Wardling Leggings",
   "item.hongtaiyang.wardling_boots": "Wardling Boots",
-
+  "item.hongtaiyang.dwellberry": "Dwellberry",
+  "item.hongtaiyang.dwellberry_seeds": "Dwellberry Seeds",
   "block.hongtaiyang.umbral_ore": "Umbral Ore",
   "block.hongtaiyang.deepslate_umbral_ore": "Deepslate Umbral Ore",
   "block.hongtaiyang.umbral_block": "Block of Umbral",
   "block.hongtaiyang.rooted_sculk": "Rooted Sculk",
-
   "block.hongtaiyang.darkdweller_root": "Darkdweller Root",
   "block.hongtaiyang.darkdweller_stick": "Darkdweller Stick",
   "block.hongtaiyang.darkdweller_log": "Darkdweller Log",
@@ -43,6 +43,5 @@
   "block.hongtaiyang.darkdweller_button": "Darkdweller Button",
   "block.hongtaiyang.darkdweller_pressure_plate": "Darkdweller Pressure Plate",
   "block.hongtaiyang.darkdweller_sign": "Darkdweller Sign",
-  
   "itemGroup.chapter1_tab": "Hong Taiyang - Unveiling the shadows"
 }

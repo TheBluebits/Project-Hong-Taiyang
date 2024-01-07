@@ -1,0 +1,7 @@
+{
+  "parent": "hongtaiyang:item/base/umbral_locator",
+  "textures": {
+    "back": "hongtaiyang:item/umbral_locator_back",
+    "front": "hongtaiyang:item/umbral_locator_front"
+  }
+}
