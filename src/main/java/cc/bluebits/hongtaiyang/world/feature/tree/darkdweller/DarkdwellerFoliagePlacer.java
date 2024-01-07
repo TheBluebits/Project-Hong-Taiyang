@@ -26,7 +26,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 					.and(Codec.floatRange(0, 1).fieldOf("probability").forGetter(fp -> fp.probability))
 					.apply(darkdwellerFoliagePlacerInstance, DarkdwellerFoliagePlacer::new));
 
-	protected float probability;
+	protected final float probability;
 	protected final int height;
 
 	/**

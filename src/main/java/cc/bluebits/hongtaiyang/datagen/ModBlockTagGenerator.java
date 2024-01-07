@@ -12,7 +12,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Class for generating block tags
+ */
 public class ModBlockTagGenerator extends BlockTagsProvider {
+	/**
+	 * Constructor for the block tag generator
+	 * @param output The pack output passed to the super constructor
+	 * @param lookupProvider The lookup provider passed to the super constructor
+	 * @param existingFileHelper The existing file helper passed to the super constructor
+	 */
 	public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
 		super(output, lookupProvider, HongTaiyang.MOD_ID, existingFileHelper);
 	}

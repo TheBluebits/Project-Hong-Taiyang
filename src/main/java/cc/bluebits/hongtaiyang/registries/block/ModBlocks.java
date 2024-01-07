@@ -4,7 +4,7 @@ import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.DwellberryBlock;
-import cc.bluebits.hongtaiyang.block.base.ModFlammableRotatedPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModFlammableModularPillarBlock;
 import cc.bluebits.hongtaiyang.block.base.ModSaplingBlock;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeGrower;
@@ -26,8 +26,14 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("unused")
+/**
+ * Class for registering blocks
+ */
+@SuppressWarnings({"unused", "MissingJavadoc"})
 public class ModBlocks {
+	/**
+	 * The deferred register for blocks
+	 */
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HongTaiyang.MOD_ID);
 
 	private static <T extends Block> RegistryObject<T> registerBlockWithItem(String name, Supplier<T> block) {
@@ -45,6 +51,10 @@ public class ModBlocks {
 		ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
 	}
 
+	/**
+	 * Method for registering the blocks
+	 * @param eventBus The event bus to register to
+	 */
 	public static void register(IEventBus eventBus) {
 		BLOCKS.register(eventBus);
 	}
@@ -119,11 +129,11 @@ public class ModBlocks {
 
 	public static final RegistryObject<Block> DARKDWELLER_BUNDLE = registerBlockWithItem(
 			"darkdweller_bundle",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).noLootTable())
+			() -> new ModFlammableModularPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).noLootTable())
 	);
 	public static final RegistryObject<Block> STRIPPED_DARKDWELLER_BUNDLE = registerBlockWithItem(
 			"stripped_darkdweller_bundle",
-			() -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).noLootTable())
+			() -> new ModFlammableModularPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG).noLootTable())
 	);
 
 	public static final RegistryObject<Block> DARKDWELLER_PLANKS = registerBlockWithItem(

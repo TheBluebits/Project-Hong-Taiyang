@@ -6,7 +6,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.Supplier;
 
+/**
+ * Class for the Dwellberry block (the fruit of the Darkdweller tree)
+ */
 public class DwellberryBlock extends ModThinPillarFruitBlock {
+	/**
+	 * Constructor for the Dwellberry block
+	 * @param pProperties The properties of the block, passed to the super constructor
+	 * @param survivesOn The block on which the Dwellberry can survive, passed to the super constructor
+	 */
 	public DwellberryBlock(Properties pProperties, Supplier<Block> survivesOn) {
 		super(pProperties, survivesOn);
 	}

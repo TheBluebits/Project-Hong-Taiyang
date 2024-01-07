@@ -20,12 +20,21 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 //import org.slf4j.Logger;
 
+/**
+ * The class containing the entirety of the mod
+ */
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(HongTaiyang.MOD_ID)
 public class HongTaiyang {
+	/**
+	 * The ID of the mod used in various places
+	 */
 	public static final String MOD_ID = "hongtaiyang";
 	//private static final Logger LOGGER = LogUtils.getLogger();
 
+	/**
+	 * Constructor for the mod
+	 */
 	public HongTaiyang() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -100,9 +109,16 @@ public class HongTaiyang {
 
 	}
 
+	/**
+	 * Event handler for the ClientSetup event
+	 */
 	// You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 	@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 	public static class ClientModEvents {
+		/**
+		 * Event handler for the ClientSetup event
+		 * @param event The ClientSetup event
+		 */
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 

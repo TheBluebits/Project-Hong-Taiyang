@@ -1,5 +1,6 @@
 package cc.bluebits.hongtaiyang.block;
 
+import cc.bluebits.hongtaiyang.block.base.ModFlammableModularPillarBlock;
 import cc.bluebits.hongtaiyang.block.base.ModModularPillarBlock;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.util.AxisUtil;
@@ -15,7 +16,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  * The log block used by the Darkdweller tree, which is a modular pillar block.
  * @see ModModularPillarBlock
  */
-public class DarkdwellerLogBlock extends ModModularPillarBlock {
+public class DarkdwellerLogBlock extends ModFlammableModularPillarBlock {
 	/**
 	 * Constructs a {@code DarkdwellerLogBlock}
 	 * @param pProperties The properties of the block, passed to the super constructor

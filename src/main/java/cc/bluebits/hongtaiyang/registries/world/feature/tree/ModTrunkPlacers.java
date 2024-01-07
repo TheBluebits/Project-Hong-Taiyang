@@ -8,9 +8,20 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * Class for registering trunk placers
+ */
+@SuppressWarnings("MissingJavadoc")
 public class ModTrunkPlacers {
+	/**
+	 * The deferred register for trunk placers
+	 */
 	public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, HongTaiyang.MOD_ID);
 
+	/**
+	 * Method for registering the trunk placers
+	 * @param eventBus The event bus
+	 */
 	public static void register(IEventBus eventBus) {
 		TRUNK_PLACERS.register(eventBus);
 	}

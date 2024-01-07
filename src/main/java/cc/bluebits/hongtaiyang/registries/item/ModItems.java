@@ -10,9 +10,20 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * Class for registering items
+ */
+@SuppressWarnings("MissingJavadoc")
 public class ModItems {
+	/**
+	 * The deferred register for items
+	 */
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HongTaiyang.MOD_ID);
 
+	/**
+	 * Method for registering the items
+	 * @param eventBus The event bus to register to
+	 */
 	public static void register(IEventBus eventBus) {
 		ITEMS.register(eventBus);
 	}

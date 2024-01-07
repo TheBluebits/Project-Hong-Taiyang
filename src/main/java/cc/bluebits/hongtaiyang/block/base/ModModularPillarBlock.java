@@ -23,17 +23,48 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+/**
+ * A modular pillar block with a dynamic shape depending on the links it has. Based on RotatedPillarBlock.
+ * @see RotatedPillarBlock
+ */
 @SuppressWarnings("deprecation")
 public class ModModularPillarBlock extends RotatedPillarBlock {
+	/**
+	 * The number of links a block can have
+	 */
 	public static final int nLinks = 6;
+	/**
+	 * The number of link types a block can have
+	 */
 	public static final int nLinkTypes = 3;
 
+	/**
+	 * The block property defining the type of link on the north face
+	 */
 	public static final IntegerProperty NORTH = IntegerProperty.create("north", 0, nLinkTypes - 1);
+	/**
+	 * The block property defining the type of link on the east face
+	 */
 	public static final IntegerProperty EAST = IntegerProperty.create("east", 0, nLinkTypes - 1);
+	/**
+	 * The block property defining the type of link on the south face
+	 */
 	public static final IntegerProperty SOUTH = IntegerProperty.create("south", 0, nLinkTypes - 1);
+	/**
+	 * The block property defining the type of link on the west face
+	 */
 	public static final IntegerProperty WEST = IntegerProperty.create("west", 0, nLinkTypes - 1);
+	/**
+	 * The block property defining the type of link on the up face
+	 */
 	public static final IntegerProperty UP = IntegerProperty.create("up", 0, nLinkTypes - 1);
+	/**
+	 * The block property defining the type of link on the down face
+	 */
 	public static final IntegerProperty DOWN = IntegerProperty.create("down", 0, nLinkTypes - 1);
+	/**
+	 * A map of directions to their respective link type properties
+	 */
 	public static final Map<Direction, IntegerProperty> PROPERTY_BY_DIRECTION = ImmutableMap.copyOf(Util.make(Maps.newEnumMap(Direction.class), (map) -> {
 		map.put(Direction.NORTH, NORTH);
 		map.put(Direction.EAST, EAST);
@@ -42,6 +73,9 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 		map.put(Direction.UP, UP);
 		map.put(Direction.DOWN, DOWN);
 	}));
+	/**
+	 * The block property defining the amount of primary links the block has
+	 */
 	public static final IntegerProperty NUM_PRIMARY_LINKS = IntegerProperty.create("num_primary_links", 0, nLinks);
 
 	protected VoxelShape makeBaseShape() {
@@ -82,6 +116,10 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 	}
 
 
+	/**
+	 * Constructs a {@code ModModularPillarBlock}
+	 * @param pProperties The block properties
+	 */
 	public ModModularPillarBlock(Properties pProperties) {
 		super(pProperties);
 
@@ -119,6 +157,17 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 	}
 
 
+	/**
+	 * Gets the shape index for the given properties
+	 * @param axis The main axis
+	 * @param north The link type on the north face
+	 * @param east The link type on the east face
+	 * @param south The link type on the south face
+	 * @param west The link type on the west face
+	 * @param up The link type on the up face
+	 * @param down The link type on the down face
+	 * @return The index of the corresponding shape
+	 */
 	public static int getShapeIndex(Direction.Axis axis, int north, int east, int south, int west, int up, int down) {
 		int nShapesPerAxis = (int) (Math.pow(nLinkTypes, nLinks));
 
@@ -150,6 +199,11 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 	}
 
 
+	/**
+	 * Fixes the main axis if there are less than 2 primary links
+	 * @param links An array of all link types in this specific order: DOWN, UP, NORTH, SOUTH, WEST, EAST
+	 * @return The fixed main axis, or null if no fix was applied
+	 */
 	private Direction.Axis fixMainAxis(int[] links) {
 		int firstIndex = -1;
 
@@ -166,6 +220,13 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 		return Direction.Axis.VALUES[axisIndex];
 	}
 
+	/**
+	 * Applies the given links to the given state
+	 * @param state The state to apply the links to
+	 * @param links An array of all link types in this specific order: DOWN, UP, NORTH, SOUTH, WEST, EAST
+	 * @param mainAxis The main axis
+	 * @return The state with the links applied
+	 */
 	private BlockState applyBlockState(BlockState state, int[] links, Direction.Axis mainAxis) {
 		int numPrimaryLinks = getNumPrimaryLinks(links);
 		if (numPrimaryLinks < 2) {
@@ -185,6 +246,15 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 	}
 
 
+	/**
+	 * Gets the link type for the given face and block state
+	 * @param rootPos The root position
+	 * @param linkPos The link position
+	 * @param linkState The link state
+	 * @param mainAxis The main axis
+	 * @param dir The direction the link is in relative to the root position
+	 * @return The link type
+	 */
 	protected int getLinkType(BlockPos rootPos, BlockPos linkPos, BlockState linkState, Direction.Axis mainAxis, Direction dir) {
 		return 0;
 	}
@@ -229,8 +299,8 @@ public class ModModularPillarBlock extends RotatedPillarBlock {
 
 		return applyBlockState(this.defaultBlockState(), links, mainAxis);
 	}
-
-
+	
+	@Override
 	public boolean isPathfindable(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull PathComputationType pType) {
 		return false;
 	}

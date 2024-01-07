@@ -6,6 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class for data generation
+ */
 public class DataGenUtil {
 	/**
 	 * Converts a texture list, consisting of a key string and a name string, into a flagged map, setting the {@code isModded} flag for all textures

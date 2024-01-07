@@ -1,6 +1,6 @@
 package cc.bluebits.hongtaiyang.block;
 
-import cc.bluebits.hongtaiyang.block.base.ModModularPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModFlammableModularPillarBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
@@ -11,7 +11,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 /**
  * The stick block used by the Darkdweller tree, which is a modular pillar block.
  */
-public class DarkdwellerStickBlock extends ModModularPillarBlock {
+public class DarkdwellerStickBlock extends ModFlammableModularPillarBlock {
 	/**
 	 * Constructs a {@code DarkdwellerStickBlock}
 	 * @param pProperties The properties of the block, passed to the super constructor

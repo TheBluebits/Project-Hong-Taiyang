@@ -21,6 +21,10 @@ import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
+/**
+ * Class for registering placed features
+ */
+@SuppressWarnings("MissingJavadoc")
 public class ModPlacedFeatures {
 	@SuppressWarnings("SameParameterValue")
 	private static ResourceKey<PlacedFeature> registerKey(String name) {
@@ -36,6 +40,10 @@ public class ModPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> DARKDWELLER_PLACED_KEY = registerKey("darkdweller_placed");
 
 
+	/**
+	 * Method for bootstrapping the placed features
+	 * @param context The bootstrap context
+	 */
 	public static void bootstrap(BootstapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 

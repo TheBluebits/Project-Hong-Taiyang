@@ -11,8 +11,16 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Class for generating data for the mod
+ */
 @Mod.EventBusSubscriber(modid = HongTaiyang.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
+	/**
+	 * Event handler for the GatherData event
+	 * @param event The GatherData event
+	 * @see GatherDataEvent   
+	 */
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
