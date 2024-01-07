@@ -1,6 +1,6 @@
 package cc.bluebits.hongtaiyang.block;
 
-import cc.bluebits.hongtaiyang.block.base.ModFlammableThinPillarBlock;
+import cc.bluebits.hongtaiyang.block.base.ModFlammableModularPillarBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
@@ -8,7 +8,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DarkdwellerStickBlock extends ModFlammableThinPillarBlock {
+/**
+ * The stick block used by the Darkdweller tree, which is a modular pillar block.
+ */
+public class DarkdwellerStickBlock extends ModFlammableModularPillarBlock {
+	/**
+	 * Constructs a {@code DarkdwellerStickBlock}
+	 * @param pProperties The properties of the block, passed to the super constructor
+	 */
 	public DarkdwellerStickBlock(Properties pProperties) {
 		super(pProperties);
 	}
@@ -20,7 +27,7 @@ public class DarkdwellerStickBlock extends ModFlammableThinPillarBlock {
 	}
 
 	@Override
-	protected VoxelShape[][] makeBranchShapes() {
+	protected VoxelShape[][] makeLinkShapes() {
 		// First index is the variant, second is the orientation in order: DOWN, UP, NORTH, SOUTH, WEST, EAST
 		return new VoxelShape[][]{
 				{
@@ -51,11 +58,11 @@ public class DarkdwellerStickBlock extends ModFlammableThinPillarBlock {
 	}
 
 	@Override
-	protected int getBranchType(BlockPos rootPos, BlockPos branchPos, BlockState branchState, Direction.Axis mainAxis, Direction dir) {
-		boolean axisCheckOverride = rootPos.get(mainAxis) != branchPos.get(mainAxis);
-		if (branchState.hasProperty(AXIS) && branchState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
+	protected int getLinkType(BlockPos rootPos, BlockPos linkPos, BlockState linkState, Direction.Axis mainAxis, Direction dir) {
+		boolean axisCheckOverride = rootPos.get(mainAxis) != linkPos.get(mainAxis);
+		if (linkState.hasProperty(AXIS) && linkState.getValue(AXIS) == mainAxis && !axisCheckOverride) return 0;
 
-		if (branchState.getBlock() instanceof DarkdwellerStickBlock || branchState.getBlock() instanceof DarkdwellerLogBlock)
+		if (linkState.getBlock() instanceof DarkdwellerStickBlock || linkState.getBlock() instanceof DarkdwellerLogBlock)
 			return 1;
 
 		return 0;

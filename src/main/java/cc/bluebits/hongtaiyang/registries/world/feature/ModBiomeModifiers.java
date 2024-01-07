@@ -12,6 +12,9 @@ import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * Class for registering biome modifiers
+ */
 public class ModBiomeModifiers {
 	@SuppressWarnings("SameParameterValue")
 	private static ResourceKey<BiomeModifier> registerKey(String name) {
@@ -19,9 +22,16 @@ public class ModBiomeModifiers {
 	}
 
 
+	/**
+	 * The biome modifier for adding the Darkdweller tree to the Deep Dark biome
+	 */
 	public static final ResourceKey<BiomeModifier> ADD_TREE_DARKDWELLER = registerKey("add_tree_darkdweller");
 
 
+	/**
+	 * Method for bootstrapping the biome modifiers
+	 * @param context The bootstrap context
+	 */
 	public static void bootstrap(BootstapContext<BiomeModifier> context) {
 		var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
 		var biomes = context.lookup(Registries.BIOME);

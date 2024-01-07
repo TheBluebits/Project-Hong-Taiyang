@@ -44,6 +44,11 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 	private static final int DEFAULT_BLOCK_UPDATE_FLAGS = 3;
 	private final int blockUpdateFlags;
 
+	/**
+	 * Constructs a {@code ModUpdatingTreeFeature}
+	 * @param pCodec The codec for the tree configuration
+	 * @param blockUpdateFlags The block update flags to use when placing blocks
+	 */
 	public ModUpdatingTreeFeature(Codec<TreeConfiguration> pCodec, int blockUpdateFlags) {
 		super(pCodec);
 		this.blockUpdateFlags = blockUpdateFlags;
@@ -53,6 +58,12 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 		return pLevel.isStateAtPosition(pPos, (state) -> state.is(Blocks.VINE));
 	}
 
+	/**
+	 * Checks if the given position is air or leaves
+	 * @param pLevel The level instance
+	 * @param pPos The position to be checked
+	 * @return {@code true} if the position is air or leaves, {@code false} otherwise
+	 */
 	@SuppressWarnings("unused")
 	public static boolean isAirOrLeaves(LevelSimulatedReader pLevel, BlockPos pPos) {
 		return pLevel.isStateAtPosition(pPos, (state) -> state.isAir() || state.is(BlockTags.LEAVES));
@@ -62,6 +73,12 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 		pLevel.setBlock(pPos, pState, DEFAULT_BLOCK_UPDATE_FLAGS);
 	}
 
+	/**
+	 * Checks if the given position is air or replaceable by trees
+	 * @param pLevel The level instance
+	 * @param pPos The position to be checked
+	 * @return {@code true} if the position is air or replaceable by trees, {@code false} otherwise
+	 */
 	@SuppressWarnings("unused")
 	public static boolean validTreePos(LevelSimulatedReader pLevel, BlockPos pPos) {
 		return pLevel.isStateAtPosition(pPos, (state) -> state.isAir() || state.is(BlockTags.REPLACEABLE_BY_TREES));

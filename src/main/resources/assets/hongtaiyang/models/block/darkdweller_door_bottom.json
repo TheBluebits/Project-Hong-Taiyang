@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom",
-  "textures": {
-    "top": "hongtaiyang:block/darkdweller_door_top",
-    "bottom": "hongtaiyang:block/darkdweller_door_bottom"
-  }
-}

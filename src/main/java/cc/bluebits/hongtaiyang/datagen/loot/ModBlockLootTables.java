@@ -21,7 +21,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 
+/**
+ * Class for generating block loot tables
+ */
 public class ModBlockLootTables extends BlockLootSubProvider {
+	/**
+	 * Constructor for the block loot table generator
+	 */
 	public ModBlockLootTables() {
 		super(Set.of(), FeatureFlags.REGISTRY.allFlags());
 	}

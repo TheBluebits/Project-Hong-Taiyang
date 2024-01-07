@@ -12,8 +12,10 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * A {@code TreeGrower} for the Darkdweller tree, which generates the tree.
+ */
 public class DarkdwellerTreeGrower extends AbstractTreeGrower {
-
 	@Nullable
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource randomSource, boolean b) {

@@ -1,0 +1,132 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_core",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "axis": "x"
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_core"
+      },
+      "when": {
+        "axis": "y"
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_core",
+        "x": 90
+      },
+      "when": {
+        "axis": "z"
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_link_primary",
+        "x": 90
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "1"
+          },
+          {
+            "axis": "y",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_link_primary",
+        "x": 270
+      },
+      "when": {
+        "OR": [
+          {
+            "up": "1"
+          },
+          {
+            "axis": "y",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_link_primary"
+      },
+      "when": {
+        "OR": [
+          {
+            "north": "1"
+          },
+          {
+            "axis": "z",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_link_primary",
+        "y": 180
+      },
+      "when": {
+        "OR": [
+          {
+            "south": "1"
+          },
+          {
+            "axis": "z",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_link_primary",
+        "y": 270
+      },
+      "when": {
+        "OR": [
+          {
+            "west": "1"
+          },
+          {
+            "axis": "x",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_stick_link_primary",
+        "y": 90
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "1"
+          },
+          {
+            "axis": "x",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    }
+  ]
+}

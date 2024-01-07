@@ -22,7 +22,13 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
+/**
+ * A trunk placer that places logs in a crooked and branching way for the Darkdweller tree.
+ */
 public class DarkdwellerTrunkPlacer extends TrunkPlacer {
+	/**
+	 * Codec for the trunk placer
+	 */
 	public static final Codec<DarkdwellerTrunkPlacer> CODEC = RecordCodecBuilder.create(
 			darkdwellerTrunkPlacerInstance -> trunkPlacerParts(darkdwellerTrunkPlacerInstance)
 					.and(Codec.intRange(0, 16).fieldOf("minCrookedHeight").forGetter(tp -> tp.minCrookedHeight))
@@ -32,12 +38,23 @@ public class DarkdwellerTrunkPlacer extends TrunkPlacer {
 					.and(Codec.floatRange(0, 1).fieldOf("maxBranchingProbability").forGetter(tp -> tp.maxBranchingProbability))
 					.apply(darkdwellerTrunkPlacerInstance, DarkdwellerTrunkPlacer::new));
 
-	protected int minCrookedHeight;
-	protected int minBranchingHeight;
-	protected int maxBranchHeight;
-	protected float crookedProbability;
-	protected float maxBranchingProbability;
+	protected final int minCrookedHeight;
+	protected final int minBranchingHeight;
+	protected final int maxBranchHeight;
+	protected final float crookedProbability;
+	protected final float maxBranchingProbability;
 
+	/**
+	 * Constructor for the trunk placer
+	 * @param pBaseHeight The base height of the tree
+	 * @param pHeightRandA The first random height value
+	 * @param pHeightRandB The second random height value
+	 * @param crookedHeight The minimum height at which crooking should start
+	 * @param branchingHeight The minimum height at which branching should start
+	 * @param maxBranchHeight The maximum height of a branch
+	 * @param crookedProbability The probability of a crook happening
+	 * @param maxBranchingProbability The maximum probability of a branch happening
+	 */
 	public DarkdwellerTrunkPlacer(int pBaseHeight, int pHeightRandA, int pHeightRandB, int crookedHeight, int branchingHeight, int maxBranchHeight, float crookedProbability, float maxBranchingProbability) {
 		super(pBaseHeight, pHeightRandA, pHeightRandB);
 		this.minCrookedHeight = crookedHeight;

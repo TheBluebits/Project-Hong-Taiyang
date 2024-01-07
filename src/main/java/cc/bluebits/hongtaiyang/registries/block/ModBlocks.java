@@ -27,9 +27,15 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("unused")
+/**
+ * Class for registering blocks
+ */
+@SuppressWarnings({"unused", "MissingJavadoc"})
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HongTaiyang.MOD_ID);
+	/**
+	 * The deferred register for blocks
+	 */
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HongTaiyang.MOD_ID);
 
     private static <T extends Block> RegistryObject<T> registerBlockWithItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -46,9 +52,13 @@ public class ModBlocks {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-    }
+	/**
+	 * Method for registering the blocks
+	 * @param eventBus The event bus to register to
+	 */
+	public static void register(IEventBus eventBus) {
+		BLOCKS.register(eventBus);
+	}
 
 
     // --------------------------------
@@ -147,58 +157,53 @@ public class ModBlocks {
             }
     );
 
-    public static final RegistryObject<Block> DARKDWELLER_SLAB = registerBlockWithItem(
-            "darkdweller_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).noLootTable())
-    );
-    public static final RegistryObject<Block> DARKDWELLER_STAIRS = registerBlockWithItem(
-            "darkdweller_stairs",
-            () -> new StairBlock(() -> ModBlocks.DARKDWELLER_PLANKS.get().defaultBlockState(),
-                    BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).noLootTable())
-    );
-    public static final RegistryObject<Block> DARKDWELLER_FENCE = registerBlockWithItem(
-            "darkdweller_fence",
-            () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noLootTable())
-    );
-    public static final RegistryObject<Block> DARKDWELLER_FENCE_GATE = registerBlockWithItem(
-            "darkdweller_fence_gate",
-            () -> new FenceGateBlock(
-                    BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE).noLootTable(),
-                    SoundEvents.BAMBOO_WOOD_FENCE_GATE_CLOSE,
-                    SoundEvents.BAMBOO_WOOD_FENCE_GATE_OPEN)
-    );
-    public static final RegistryObject<Block> DARKDWELLER_DOOR = registerBlockWithItem(
-            "darkdweller_door",
-            () -> new DoorBlock(
-                    BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion().noLootTable(),
-                    BlockSetType.BAMBOO)
-    );
-    public static final RegistryObject<Block> DARKDWELLER_TRAPDOOR = registerBlockWithItem(
-            "darkdweller_trapdoor",
-            () -> new TrapDoorBlock(
-                    BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion().noLootTable(),
-                    BlockSetType.BAMBOO)
-    );
-    public static final RegistryObject<Block> DARKDWELLER_BUTTON = registerBlockWithItem(
-            "darkdweller_button",
-            () -> new ButtonBlock(
-                    BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission().noLootTable(),
-                    BlockSetType.BAMBOO,
-                    15,
-                    true)
-    );
-    public static final RegistryObject<Block> DARKDWELLER_PRESSURE_PLATE = registerBlockWithItem(
-            "darkdweller_pressure_plate",
-            () -> new PressurePlateBlock(
-                    PressurePlateBlock.Sensitivity.EVERYTHING,
-                    BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).noLootTable(),
-                    BlockSetType.BAMBOO)
-    );
-    public static final RegistryObject<Block> DARKDWELLER_SIGN = registerBlockWithItem(
-            "darkdweller_sign",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN).noLootTable())
-    );
-
+	public static final RegistryObject<Block> DARKDWELLER_SLAB = registerBlockWithItem(
+			"darkdweller_slab",
+			() -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB).noLootTable())
+	);
+	public static final RegistryObject<Block> DARKDWELLER_STAIRS = registerBlockWithItem(
+			"darkdweller_stairs",
+			() -> new StairBlock(() -> ModBlocks.DARKDWELLER_PLANKS.get().defaultBlockState(),
+					BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS).noLootTable())
+	);
+	public static final RegistryObject<Block> DARKDWELLER_FENCE = registerBlockWithItem(
+			"darkdweller_fence",
+			() -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noLootTable())
+	);
+	public static final RegistryObject<Block> DARKDWELLER_FENCE_GATE = registerBlockWithItem(
+			"darkdweller_fence_gate",
+			() -> new FenceGateBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE).noLootTable(),
+					SoundEvents.BAMBOO_WOOD_FENCE_GATE_CLOSE,
+					SoundEvents.BAMBOO_WOOD_FENCE_GATE_OPEN)
+	);
+	public static final RegistryObject<Block> DARKDWELLER_DOOR = registerBlockWithItem(
+			"darkdweller_door",
+			() -> new DoorBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion().noLootTable(),
+					BlockSetType.BAMBOO)
+	);
+	public static final RegistryObject<Block> DARKDWELLER_TRAPDOOR = registerBlockWithItem(
+			"darkdweller_trapdoor",
+			() -> new TrapDoorBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion().noLootTable(),
+					BlockSetType.BAMBOO)
+	);
+	public static final RegistryObject<Block> DARKDWELLER_BUTTON = registerBlockWithItem(
+			"darkdweller_button",
+			() -> new ButtonBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission().noLootTable(),
+					BlockSetType.BAMBOO,
+					15,
+					true)
+	);
+	public static final RegistryObject<Block> DARKDWELLER_PRESSURE_PLATE = registerBlockWithItem(
+			"darkdweller_pressure_plate",
+			() -> new PressurePlateBlock(
+					PressurePlateBlock.Sensitivity.EVERYTHING,
+					BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).noLootTable(),
+					BlockSetType.BAMBOO)
+	);
     public static final RegistryObject<Block> RUNE = registerBlockWithoutItem("rune",
             () -> new CarpetBlock(BlockBehaviour.Properties
                     .copy(Blocks.WHITE_CARPET)
@@ -207,10 +212,5 @@ public class ModBlocks {
                     .noCollission()
                     .strength(-1.0f, 4.0f)
                     .sound(ModSounds.RUNE_SOUNDS))
-
-
-
     );
-
-
 }

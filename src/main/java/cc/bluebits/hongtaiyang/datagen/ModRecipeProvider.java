@@ -8,7 +8,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
+/**
+ * Class for generating recipes
+ */
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+	/**
+	 * Constructs a {@code ModRecipeProvider}
+	 * @param pOutput The pack output, passed to the super constructor
+	 */
 	public ModRecipeProvider(PackOutput pOutput) {
 		super(pOutput);
 	}
