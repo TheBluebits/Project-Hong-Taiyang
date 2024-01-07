@@ -11,13 +11,23 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Class for generating item tags
+ */
 public class ModItemTagGenerator extends ItemTagsProvider {
-    public ModItemTagGenerator(PackOutput p_275343_, CompletableFuture<HolderLookup.Provider> p_275729_, CompletableFuture<TagLookup<Block>> p_275322_, @Nullable ExistingFileHelper existingFileHelper) {
-        super(p_275343_, p_275729_, p_275322_, HongTaiyang.MOD_ID, existingFileHelper);
-    }
+	/**
+	 * Constructs a {@code ModItemTagGenerator}
+	 * @param packOutput The pack output, passed to the super constructor
+	 * @param providerCompletableFuture The holder lookup provider, passed to the super constructor
+	 * @param lookupCompletableFuture The tag lookup, passed to the super constructor
+	 * @param existingFileHelper The existing file helper, passed to the super constructor
+	 */
+	public ModItemTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> providerCompletableFuture, CompletableFuture<TagLookup<Block>> lookupCompletableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+		super(packOutput, providerCompletableFuture, lookupCompletableFuture, HongTaiyang.MOD_ID, existingFileHelper);
+	}
 
-    @Override
-    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
+	@Override
+	protected void addTags(HolderLookup.@NotNull Provider pProvider) {
 
-    }
+	}
 }

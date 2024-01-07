@@ -8,13 +8,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
+/**
+ * Class for generating recipes
+ */
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    public ModRecipeProvider(PackOutput pOutput) {
-        super(pOutput);
-    }
+	/**
+	 * Constructs a {@code ModRecipeProvider}
+	 * @param pOutput The pack output, passed to the super constructor
+	 */
+	public ModRecipeProvider(PackOutput pOutput) {
+		super(pOutput);
+	}
 
-    @Override
-    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
+	@Override
+	protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
 
-    }
+	}
 }

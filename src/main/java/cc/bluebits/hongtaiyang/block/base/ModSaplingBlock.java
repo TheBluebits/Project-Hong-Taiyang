@@ -11,10 +11,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+/**
+ * A custom SaplingBlock that can be used to specify a soil block and plant type
+ */
 public class ModSaplingBlock extends SaplingBlock {
 	private final Supplier<Block> soilBlock;
 	private final String plantType;
-	
+
+	/**
+	 * Constructs a {@code ModSaplingBlock}
+	 * @param pTreeGrower The tree grower, passed to the super constructor
+	 * @param pProperties The block properties, passed to the super constructor
+	 * @param soilBlock The soil block
+	 * @param plantType The plant type
+	 */
 	public ModSaplingBlock(AbstractTreeGrower pTreeGrower, Properties pProperties, Supplier<Block> soilBlock, String plantType) {
 		super(pTreeGrower, pProperties);
 		this.soilBlock = soilBlock;

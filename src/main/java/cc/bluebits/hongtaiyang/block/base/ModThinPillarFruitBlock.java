@@ -26,11 +26,20 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
+/**
+ * A fruit block that grows on a thin pillar
+ * @see ModModularPillarBlock
+ */
 @SuppressWarnings("deprecation")
 public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implements BonemealableBlock {
+	/**
+	 * The maximum age of the fruit
+	 */
 	public static final int MAX_AGE = 2;
+	/**
+	 * The block property for the age of the fruit
+	 */
 	public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
-
 
 
 	protected final Supplier<Block> SURVIVES_ON;
@@ -38,40 +47,51 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 
 	/**
 	 * Generates all possible shapes.
+	 *
 	 * @return An array containing all possible shapes organized by age first, then facing
 	 */
-	protected VoxelShape[] makeShapes() { return new VoxelShape[] {}; }
+	protected VoxelShape[] makeShapes() {
+		return new VoxelShape[]{};
+	}
 
-	
 
+	/**
+	 * Constructs a {@code ModThinPillarFruitBlock}
+	 * @param pProperties The block properties, passed to the super constructor
+	 * @param survivesOn The block that this fruit can survive on
+	 */
 	public ModThinPillarFruitBlock(Properties pProperties, Supplier<Block> survivesOn) {
 		super(pProperties);
 		this.SURVIVES_ON = survivesOn;
-		
+
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(AGE, 0));
 	}
-	
-	
 
+
+	/**
+	 * Gets the index of the shape based on the age and facing of the fruit
+	 * @param age The age of the fruit 
+	 * @param facing The direction the fruit is facing
+	 * @return the index of the shape in the SHAPES array
+	 */
 	public static int getShapeIndex(int age, Direction facing) {
 		int nShapesPerAge = (int) Direction.Plane.HORIZONTAL.stream().count();
 		int ageOffset = nShapesPerAge * age;
-		
+
 		int dirIndex = 0;
-		for(Direction dir : Direction.Plane.HORIZONTAL) {
-			if(dir == facing) break;
+		for (Direction dir : Direction.Plane.HORIZONTAL) {
+			if (dir == facing) break;
 			dirIndex++;
 		}
-		
+
 		return ageOffset + dirIndex;
 	}
 
 	public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
 		return SHAPES[getShapeIndex(pState.getValue(AGE), pState.getValue(FACING))];
 	}
-
 
 
 	/**
@@ -96,8 +116,7 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 		BlockState blockstate = pLevel.getBlockState(pPos.relative(pState.getValue(FACING)));
 		return blockstate.is(SURVIVES_ON.get());
 	}
-	
-	
+
 
 	@Nullable
 	public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -105,11 +124,11 @@ public class ModThinPillarFruitBlock extends HorizontalDirectionalBlock implemen
 		LevelReader levelReader = pContext.getLevel();
 		BlockPos pos = pContext.getClickedPos();
 
-		for(Direction direction : pContext.getNearestLookingDirections()) {
+		for (Direction direction : pContext.getNearestLookingDirections()) {
 			if (direction.getAxis().isHorizontal()) {
 				blockState = blockState.setValue(FACING, direction);
 				if (blockState.canSurvive(levelReader, pos)) {
-					
+
 					return blockState;
 				}
 			}

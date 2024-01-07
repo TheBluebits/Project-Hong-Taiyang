@@ -37,12 +37,18 @@ import java.util.function.BiConsumer;
  * This is mostly a copy of {@link net.minecraft.world.level.levelgen.feature.TreeFeature} but
  * replaced hard coded block update flags (Set to 19) with a variable that is set in the constructor
  * and a constant that is available statically set to {@value DEFAULT_BLOCK_UPDATE_FLAGS}
- * @see net.minecraft.world.level.levelgen.feature.Feature 
+ *
+ * @see net.minecraft.world.level.levelgen.feature.Feature
  */
 public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 	private static final int DEFAULT_BLOCK_UPDATE_FLAGS = 3;
 	private final int blockUpdateFlags;
 
+	/**
+	 * Constructs a {@code ModUpdatingTreeFeature}
+	 * @param pCodec The codec for the tree configuration
+	 * @param blockUpdateFlags The block update flags to use when placing blocks
+	 */
 	public ModUpdatingTreeFeature(Codec<TreeConfiguration> pCodec, int blockUpdateFlags) {
 		super(pCodec);
 		this.blockUpdateFlags = blockUpdateFlags;
@@ -52,6 +58,12 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 		return pLevel.isStateAtPosition(pPos, (state) -> state.is(Blocks.VINE));
 	}
 
+	/**
+	 * Checks if the given position is air or leaves
+	 * @param pLevel The level instance
+	 * @param pPos The position to be checked
+	 * @return {@code true} if the position is air or leaves, {@code false} otherwise
+	 */
 	@SuppressWarnings("unused")
 	public static boolean isAirOrLeaves(LevelSimulatedReader pLevel, BlockPos pPos) {
 		return pLevel.isStateAtPosition(pPos, (state) -> state.isAir() || state.is(BlockTags.LEAVES));
@@ -61,6 +73,12 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 		pLevel.setBlock(pPos, pState, DEFAULT_BLOCK_UPDATE_FLAGS);
 	}
 
+	/**
+	 * Checks if the given position is air or replaceable by trees
+	 * @param pLevel The level instance
+	 * @param pPos The position to be checked
+	 * @return {@code true} if the position is air or replaceable by trees, {@code false} otherwise
+	 */
 	@SuppressWarnings("unused")
 	public static boolean validTreePos(LevelSimulatedReader pLevel, BlockPos pPos) {
 		return pLevel.isStateAtPosition(pPos, (state) -> state.isAir() || state.is(BlockTags.REPLACEABLE_BY_TREES));
@@ -96,11 +114,11 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 	private int getMaxFreeTreeHeight(LevelSimulatedReader pLevel, int pTrunkHeight, BlockPos pTopPosition, TreeConfiguration pConfig) {
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-		for(int i = 0; i <= pTrunkHeight + 1; ++i) {
+		for (int i = 0; i <= pTrunkHeight + 1; ++i) {
 			int j = pConfig.minimumSize.getSizeAtHeight(pTrunkHeight, i);
 
-			for(int k = -j; k <= j; ++k) {
-				for(int l = -j; l <= j; ++l) {
+			for (int k = -j; k <= j; ++k) {
+				for (int l = -j; l <= j; ++l) {
 					blockpos$mutableblockpos.setWithOffset(pTopPosition, k, i, l);
 					if (!pConfig.trunkPlacer.isFree(pLevel, blockpos$mutableblockpos) || !pConfig.ignoreVines && isVine(pLevel, blockpos$mutableblockpos)) {
 						return i - 2;
@@ -115,17 +133,17 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 	protected void setBlock(LevelWriter pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState) {
 		pLevel.setBlock(pPos, pState, blockUpdateFlags);
 	}
-	
-	protected void setBlockAndUpdateWorldGen(WorldGenLevel worldGenLevel, BlockPos pos,  BlockState state) {
+
+	protected void setBlockAndUpdateWorldGen(WorldGenLevel worldGenLevel, BlockPos pos, BlockState state) {
 		worldGenLevel.setBlock(pos, state, blockUpdateFlags);
-		
-		for(Direction dir : Direction.values()) {
+
+		for (Direction dir : Direction.values()) {
 			BlockPos neighborPos = pos.relative(dir);
 			BlockState neighborState = worldGenLevel.getBlockState(neighborPos);
-			worldGenLevel.neighborShapeChanged(dir, neighborState, pos, neighborPos, blockUpdateFlags, 512);			// Update self
-			
+			worldGenLevel.neighborShapeChanged(dir, neighborState, pos, neighborPos, blockUpdateFlags, 512);            // Update self
+
 			BlockState newState = worldGenLevel.getBlockState(pos);
-			worldGenLevel.neighborShapeChanged(dir.getOpposite(), newState, neighborPos, pos, blockUpdateFlags, 512);	// Update neighbor
+			worldGenLevel.neighborShapeChanged(dir.getOpposite(), newState, neighborPos, pos, blockUpdateFlags, 512);    // Update neighbor
 		}
 	}
 
@@ -133,6 +151,7 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 	 * Places the given feature at the given location.
 	 * During world generation, features are provided with a 3x3 region of chunks, centered on the chunk being generated,
 	 * that they can safely generate into.
+	 *
 	 * @param pContext A context object with a reference to the level and the position the feature is being placed at
 	 */
 	public final boolean place(FeaturePlaceContext<TreeConfiguration> pContext) {
@@ -187,11 +206,11 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 		DiscreteVoxelShape discretevoxelshape = new BitSetDiscreteVoxelShape(pBox.getXSpan(), pBox.getYSpan(), pBox.getZSpan());
 		List<Set<BlockPos>> list = Lists.newArrayList();
 
-		for(int j = 0; j < 7; ++j) {
+		for (int j = 0; j < 7; ++j) {
 			list.add(Sets.newHashSet());
 		}
 
-		for(BlockPos blockpos : Lists.newArrayList(Sets.union(pTrunkPositions, pFoliagePositions))) {
+		for (BlockPos blockpos : Lists.newArrayList(Sets.union(pTrunkPositions, pFoliagePositions))) {
 			if (pBox.isInside(blockpos)) {
 				discretevoxelshape.fill(blockpos.getX() - pBox.minX(), blockpos.getY() - pBox.minY(), blockpos.getZ() - pBox.minZ());
 			}
@@ -201,8 +220,8 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 		int k1 = 0;
 		list.get(0).addAll(pRootPositions);
 
-		while(true) {
-			while(k1 >= 7 || !list.get(k1).isEmpty()) {
+		while (true) {
+			while (k1 >= 7 || !list.get(k1).isEmpty()) {
 				if (k1 >= 7) {
 					return discretevoxelshape;
 				}
@@ -218,7 +237,7 @@ public class ModUpdatingTreeFeature extends Feature<TreeConfiguration> {
 
 					discretevoxelshape.fill(blockPos1.getX() - pBox.minX(), blockPos1.getY() - pBox.minY(), blockPos1.getZ() - pBox.minZ());
 
-					for(Direction direction : Direction.values()) {
+					for (Direction direction : Direction.values()) {
 						blockpos$mutableblockpos.setWithOffset(blockPos1, direction);
 						if (pBox.isInside(blockpos$mutableblockpos)) {
 							int k = blockpos$mutableblockpos.getX() - pBox.minX();

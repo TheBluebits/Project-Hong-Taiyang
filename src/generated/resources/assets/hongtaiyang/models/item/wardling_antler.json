@@ -1,0 +1,6 @@
+{
+  "parent": "hongtaiyang:item/base/wardling_antler",
+  "textures": {
+    "layer0": "hongtaiyang:item/wardling_antler"
+  }
+}

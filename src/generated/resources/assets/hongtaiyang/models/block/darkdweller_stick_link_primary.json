@@ -1,0 +1,7 @@
+{
+  "parent": "hongtaiyang:block/base/stick_pillar_link_primary",
+  "textures": {
+    "end": "hongtaiyang:block/darkdweller_stick_end",
+    "side": "hongtaiyang:block/darkdweller_stick_link_primary"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hongtaiyang:item/logbook",
+    "layer1": "hongtaiyang:item/galaxy"
+  }
+}
