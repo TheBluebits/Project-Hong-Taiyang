@@ -1,6 +1,16 @@
 package cc.bluebits.hongtaiyang.util;
 
+/**
+ * Utility class for converting between decimal and base N numbers.
+ */
 public class BaseConverter {
+	/**
+	 * Convert a decimal number to a base N number
+	 * @param value The decimal number to convert
+	 * @param base The base to convert to
+	 * @param minDigits The minimum number of digits to return. If the number of digits in the converted number is less than this value, the number will be padded with leading zeros
+	 * @return An array of integers representing the digits of the converted number
+	 */
 	public static int[] convertDecimalToBaseNDigits(int value, int base, int minDigits) {
 		if (value == 0) return new int[minDigits];
 
@@ -17,6 +27,12 @@ public class BaseConverter {
 		return digits;
 	}
 
+	/**
+	 * Convert a base N number to a decimal number
+	 * @param digits An array of integers representing the digits of the base N number
+	 * @param base The base of the number
+	 * @return The decimal value of the base N number
+	 */
 	public static int convertBaseNDigitsToDecimal(int[] digits, int base) {
 		int value = 0;
 		if (digits.length == 0) return value;

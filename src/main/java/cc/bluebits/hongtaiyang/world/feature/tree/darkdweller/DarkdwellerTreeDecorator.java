@@ -15,7 +15,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * A {@code TreeDecorator} for the Darkdweller tree, which places branches and berries on the tree.
+ */
 public class DarkdwellerTreeDecorator extends TreeDecorator {
+	/**
+	 * A {@code Codec} for {@code DarkdwellerTreeDecorator}.
+	 */
 	public static final Codec<DarkdwellerTreeDecorator> CODEC = RecordCodecBuilder.create(
 			darkdwellerTreeDecoratorInstance -> darkdwellerTreeDecoratorInstance.group(
 					Codec.INT.fieldOf("branchStartHeight").forGetter(DarkdwellerTreeDecorator::getBranchStartHeight),
@@ -46,6 +52,13 @@ public class DarkdwellerTreeDecorator extends TreeDecorator {
 		return berryProbability;
 	}
 
+	/**
+	 * Constructs a {@code DarkdwellerTreeDecorator}
+	 * @param branchStartHeight The height at which branches start generating
+	 * @param berryStartHeight The height at which berries start generating
+	 * @param branchProbability The probability of generating a branch
+	 * @param berryProbability The probability of generating a berry
+	 */
 	public DarkdwellerTreeDecorator(int branchStartHeight, int berryStartHeight, float branchProbability, float berryProbability) {
 		super();
 		this.branchStartHeight = branchStartHeight;

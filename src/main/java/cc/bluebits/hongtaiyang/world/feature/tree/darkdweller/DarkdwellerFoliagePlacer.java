@@ -13,7 +13,13 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * A {@code FoliagePlacer} for the Darkdweller tree, which places roots in a half sphere around the trunk inside the floor.
+ */
 public class DarkdwellerFoliagePlacer extends FoliagePlacer {
+	/**
+	 * A {@code Codec} for {@code DarkdwellerFoliagePlacer}.
+	 */
 	public static final Codec<DarkdwellerFoliagePlacer> CODEC = RecordCodecBuilder.create(
 			darkdwellerFoliagePlacerInstance -> foliagePlacerParts(darkdwellerFoliagePlacerInstance)
 					.and(Codec.intRange(0, 16).fieldOf("height").forGetter(fp -> fp.height))
@@ -23,6 +29,13 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 	protected float probability;
 	protected final int height;
 
+	/**
+	 * Constructs a {@code DarkdwellerFoliagePlacer}
+	 * @param pRadius The radius provider
+	 * @param pOffset The offset provider
+	 * @param height The height of the foliage
+	 * @param placementChance The chance of placing a foliage block
+	 */
 	public DarkdwellerFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int height, float placementChance) {
 		super(pRadius, pOffset);
 		this.height = height;
@@ -33,7 +46,7 @@ public class DarkdwellerFoliagePlacer extends FoliagePlacer {
 	protected @NotNull FoliagePlacerType<?> type() {
 		return ModFoliagePlacers.DARKDWELLER_FOLIAGE_PLACER.get();
 	}
-
+	
 	@Override
 	protected void createFoliage(@NotNull LevelSimulatedReader pLevel, FoliagePlacer.@NotNull FoliageSetter pBlockSetter, @NotNull RandomSource pRandom, @NotNull TreeConfiguration pConfig, int pMaxFreeTreeHeight, FoliagePlacer.@NotNull FoliageAttachment pAttachment, int pFoliageHeight, int pFoliageRadius, int pOffset) {
 		for (int y = pOffset; y >= pOffset - pFoliageRadius; --y) {

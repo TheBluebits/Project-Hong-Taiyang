@@ -11,7 +11,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/**
+ * The log block used by the Darkdweller tree, which is a modular pillar block.
+ * @see ModModularPillarBlock
+ */
 public class DarkdwellerLogBlock extends ModModularPillarBlock {
+	/**
+	 * Constructs a {@code DarkdwellerLogBlock}
+	 * @param pProperties The properties of the block, passed to the super constructor
+	 */
 	public DarkdwellerLogBlock(Properties pProperties) {
 		super(pProperties);
 	}

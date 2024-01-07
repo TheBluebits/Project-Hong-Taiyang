@@ -8,7 +8,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/**
+ * The stick block used by the Darkdweller tree, which is a modular pillar block.
+ */
 public class DarkdwellerStickBlock extends ModModularPillarBlock {
+	/**
+	 * Constructs a {@code DarkdwellerStickBlock}
+	 * @param pProperties The properties of the block, passed to the super constructor
+	 */
 	public DarkdwellerStickBlock(Properties pProperties) {
 		super(pProperties);
 	}

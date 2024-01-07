@@ -22,8 +22,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * A class that generates item models for all items in the mod
+ */
 @SuppressWarnings({"UnusedReturnValue", "SameParameterValue", "unused"})
 public class ModItemModelProvider extends ItemModelProvider {
+	/**
+	 * Constructor for the class
+	 * @param output Passed to the super constructor
+	 * @param existingFileHelper Passed to the super constructor
+	 * @see ItemModelProvider   
+	 */
 	public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
 		super(output, HongTaiyang.MOD_ID, existingFileHelper);
 	}
@@ -79,46 +88,138 @@ public class ModItemModelProvider extends ItemModelProvider {
 	private String getNamespace(boolean isModded) {
 		return isModded ? HongTaiyang.MOD_ID : "minecraft";
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates a {@code ItemModelBuilder} with the specified parent and texture
+	 * @param item The {@code RegistryObject} of the item for which the model is created
+	 * @param parent The parent model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param textureName The name of the texture file
+	 * @param isTextureModded Flag to determine which namespace to use for the texture
+	 * @param textureKey The key of the texture specified in the parent model
+	 * @param forceItem If set to {@code true} the namespace for the parent and texture will always be {@code "item/"}
+	 * @return The {@code ItemModelBuilder} with the specified parent and texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedItem(RegistryObject<T> item, String parent, boolean isParentModded, String textureName, boolean isTextureModded, String textureKey, boolean forceItem) {
 		return withExistingParent(getName(item), new ResourceLocation(getNamespace(isParentModded), getPathDirectory(item, forceItem) + parent))
 				.texture(textureKey, new ResourceLocation(getNamespace(isTextureModded), getPathDirectory(item, forceItem) + textureName));
 	}
 
+	/**
+	 * Creates a {@code ItemModelBuilder} with the specified parent and texture
+	 * @param item The {@code RegistryObject} of the item for which the model is created
+	 * @param parent The parent model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param textureName The name of the texture file
+	 * @param isTextureModded Flag to determine which namespace to use for the texture
+	 * @param textureKey The key of the texture specified in the parent model
+	 * @return The {@code ItemModelBuilder} with the specified parent and texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedItem(RegistryObject<T> item, String parent, boolean isParentModded, String textureName, boolean isTextureModded, String textureKey) {
 		return parentedItem(item, parent, isParentModded, textureName, isTextureModded, textureKey, false);
 	}
 
+	/**
+	 * Creates a {@code ItemModelBuilder} with the specified parent and texture. The texture key will default to {@code "layer0"}
+	 * @param item The {@code RegistryObject} of the item for which the model is created
+	 * @param parent The parent model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param textureName The name of the texture file
+	 * @param isTextureModded Flag to determine which namespace to use for the texture
+	 * @return The {@code ItemModelBuilder} with the specified parent and texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedItem(RegistryObject<T> item, String parent, boolean isParentModded, String textureName, boolean isTextureModded) {
 		return parentedItem(item, parent, isParentModded, textureName, true, "layer0");
 	}
 
+	/**
+	 * Creates a {@code ItemModelBuilder} with the specified parent and texture. The texture key will default to {@code "layer0"} and the texture namespace will default to the modded namespace
+	 * @param item The {@code RegistryObject} of the item for which the model is created
+	 * @param parent The parent model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param textureName The name of the texture file
+	 * @return The {@code ItemModelBuilder} with the specified parent and texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedItem(RegistryObject<T> item, String parent, boolean isParentModded, String textureName) {
 		return parentedItem(item, parent, isParentModded, textureName, true);
 	}
-	
+
+	/**
+	 * Creates a {@code ItemModelBuilder} with the specified parent and texture. The texture key will default to {@code "layer0"}, the texture namespace will default to the modded namespace and the texture name will default to the name of the item
+	 * @param item The {@code RegistryObject} of the item for which the model is created
+	 * @param parent The parent model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @return The {@code ItemModelBuilder} with the specified parent and texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedItem(RegistryObject<T> item, String parent, boolean isParentModded) {
 		return parentedItem(item, parent, isParentModded, getName(item));
 	}
 
-	
-	
+
+	/**
+	 * Creates an {@code ItemModelBuilder} for blocks with the specified parent
+	 * @param block The {@code RegistryObject} of the block for which the item model is created
+	 * @param parent The parent block model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @return The {@code ItemModelBuilder} with the specified block model parent
+	 * @param <T> Extends {@code Block} and specifies the type used for {@code block}
+	 */
 	private <T extends Block> ItemModelBuilder blockItem(RegistryObject<T> block, String parent, boolean isParentModded) {
 		return withExistingParent(getName(block), new ResourceLocation(getNamespace(isParentModded), getPathDirectory(block) + parent));
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for blocks with the specified parent. The parent namespace will default to the modded namespace
+	 * @param block The {@code RegistryObject} of the block for which the item model is created
+	 * @param parent The parent block model
+	 * @return The {@code ItemModelBuilder} with the specified block model parent
+	 * @param <T> Extends {@code Block} and specifies the type used for {@code block}
+	 */
 	private <T extends Block> ItemModelBuilder blockItem(RegistryObject<T> block, String parent) {
 		return blockItem(block, parent, true);
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for blocks with the specified parent. The parent will default to {@code "block/" + block name}
+	 * @param block The {@code RegistryObject} of the block for which the item model is created
+	 * @return The {@code ItemModelBuilder} with the specified block model parent
+	 * @param <T> Extends {@code Block} and specifies the type used for {@code block}
+	 */
 	private <T extends Block> ItemModelBuilder blockItem(RegistryObject<T> block) {
 		return blockItem(block, getName(block));
 	}
 
-	
-	
+
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with the specified parent and a texture consisting of multiple layers
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param parent The parent item model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param layerTextures A {@code Map} of texture names and their corresponding {@code isModded} flag, that determines which namespace to use for the texture, for each layer
+	 * @return The {@code ItemModelBuilder} with the specified parent and textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedLayeredItem(RegistryObject<T> item, String parent, boolean isParentModded, Map<String, Boolean> layerTextures) {
 		ItemModelBuilder builder = withExistingParent(getName(item), new ResourceLocation(getNamespace(isParentModded), getPathDirectory(item) + parent));
 
@@ -133,6 +234,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 		return builder;
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with the specified parent and a texture consisting of multiple layers. The texture namespace will default to the modded namespace
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param parent The parent item model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param layerTextures A {@code List} of texture names for each layer
+	 * @return The {@code ItemModelBuilder} with the specified parent and textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder parentedLayeredItem(RegistryObject<T> item, String parent, boolean isParentModded, List<String> layerTextures) {
 		Map<String, Boolean> layerTexturesMap = new LinkedHashMap<>();
 		
@@ -143,12 +256,24 @@ public class ModItemModelProvider extends ItemModelProvider {
 		return parentedLayeredItem(item, parent, isParentModded, layerTexturesMap);
 	}
 
-	
-	
-	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, Map<Tuple<String, String>, Boolean> textures, String parent, boolean isParentModded) {
+
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with a custom model
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param textures A {@code Map} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture and their corresponding {@code isModded} flag, that determines which namespace to use for the texture
+	 * @param model The name of the custom model file
+	 * @param isModelModded Flag to determine which namespace to use for the custom model
+	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see Tuple
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
+	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, Map<Tuple<String, String>, Boolean> textures, String model, boolean isModelModded) {
 		String pathDirectory = getPathDirectory(item);
 		ItemModelBuilder builder = withExistingParent(getName(item),
-				new ResourceLocation(getNamespace(isParentModded), pathDirectory + parent));
+				new ResourceLocation(getNamespace(isModelModded), pathDirectory + model));
 
 		for (Map.Entry<Tuple<String, String>, Boolean> texture : textures.entrySet()) {
 			String textureKey = texture.getKey().getA();
@@ -161,49 +286,143 @@ public class ModItemModelProvider extends ItemModelProvider {
 		return builder;
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. The model namespace will default to the modded namespace. The model name will default to {@code "base/" + item name}
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param textures A {@code Map} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture and their corresponding {@code isModded} flag, that determines which namespace to use for the texture
+	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see Tuple
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, Map<Tuple<String, String>, Boolean> textures) {
 		return customModelItem(item, textures, "base/" + getName(item), true);
 	}
 
-	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, List<Tuple<String, String>> textures, String parent, boolean isParentModded) {
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. The texture namespace will default to the modded namespace
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param textures A {@code List} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture
+	 * @param model The name of the custom model file
+	 * @param isModelModded Flag to determine which namespace to use for the custom model
+	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see Tuple
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
+	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, List<Tuple<String, String>> textures, String model, boolean isModelModded) {
 		Map<Tuple<String, String>, Boolean> texturesMap = DataGenUtil.convertTextureListToFlaggedTextureMap(textures);
-		return customModelItem(item, texturesMap, parent, isParentModded);
+		return customModelItem(item, texturesMap, model, isModelModded);
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with a custom model. The texture namespace will default to the modded namespace. The model name will default to {@code "base/" + item name}
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param textures A {@code List} of {@code Tuple<String, String>} that contains the texture key and the texture name for each texture
+	 * @return The {@code ItemModelBuilder} with the specified custom model and textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see Tuple
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder customModelItem(RegistryObject<T> item, List<Tuple<String, String>> textures) {
 		return customModelItem(item, textures, "base/" + getName(item), true);
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a single texture
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param textureName The name of the texture file
+	 * @param isTextureModded Flag to determine which namespace to use for the texture
+	 * @return The {@code ItemModelBuilder} with the specified texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder simpleItem(RegistryObject<T> item, String textureName, boolean isTextureModded) {
 		return parentedItem(item, "generated", false, textureName, isTextureModded, "layer0", true);
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a single texture. The texture namespace will default to the modded namespace
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param textureName The name of the texture file
+	 * @return The {@code ItemModelBuilder} with the specified texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder simpleItem(RegistryObject<T> item, String textureName) {
 		return simpleItem(item, textureName, true);
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a single texture. The texture name will default to the name of the item
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @return The {@code ItemModelBuilder} with the specified texture
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder simpleItem(RegistryObject<T> item) {
 		return simpleItem(item, getName(item), true);
 	}
 
-	
-	
+
+	/**
+	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a texture consisting of multiple layers
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param layerTextures A {@code Map} of texture names and their corresponding {@code isModded} flag, that determines which namespace to use for the texture, for each layer
+	 * @return The {@code ItemModelBuilder} with the specified textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder simpleLayeredItem(RegistryObject<T> item, Map<String, Boolean> layerTextures) {
 		return parentedLayeredItem(item, "generated", false, layerTextures);
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for simple items with the parent set to {@code "item/generated"} and a texture consisting of multiple layers. The texture namespace will default to the modded namespace
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param layerTextures A {@code List} of texture names for each layer
+	 * @return The {@code ItemModelBuilder} with the specified textures
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder simpleLayeredItem(RegistryObject<T> item, List<String> layerTextures) {
 		return parentedLayeredItem(item, "generated", false, layerTextures);
 	}
 
+	/**
+	 * Creates an {@code ItemModelBuilder} for simple items with a custom model. The model will default to {@code "base/" + item name} int the modded namespace
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @return The {@code ItemModelBuilder} with the specified custom model
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 */
 	private <T extends ItemLike> ItemModelBuilder simpleCustomModelItem(RegistryObject<T> item) {
 		return parentedItem(item, "base/" + getName(item), true);
 	}
-	
-	
 
+
+	/**
+	 * Registers all item models
+	 */
 	@Override
 	protected void registerModels() {
 		// --------------------------------

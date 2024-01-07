@@ -16,8 +16,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
+/**
+ * A class that generates blockstates and blockmodels for all blocks in the mod
+ */
 @SuppressWarnings("ALL")
 public class ModBlockStateProvider extends BlockStateProvider {
+	/**
+	 * Constructor for the class
+	 * @param output Passed to the super constructor
+	 * @param exFileHelper Passed to the super constructor
+	 * @see BlockStateProvider   
+	 */
 	public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
 		super(output, HongTaiyang.MOD_ID, exFileHelper);
 	}
@@ -55,28 +64,49 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	private String getNamespace(boolean isModded) {
 		return isModded ? HongTaiyang.MOD_ID : "minecraft";
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates a BlockState for a simple block
+	 * @param block The instance of the block which BlockState is created
+	 * @param texture The texture of the block
+	 */
 	private void simpleBlock(Block block, ResourceLocation texture) {
 		ModelFile model = models().cubeAll(getName(block), texture);
 		simpleBlock(block, model);
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates a BlockState for a cross block
+	 * @param block The instance of the block which BlockState is created
+	 * @param texture The texture of the block
+	 */
 	private void crossBlock(Block block, ResourceLocation texture) {
 		ModelFile model = models().cross(getName(block), texture).renderType("cutout");
 		simpleBlock(block, model);
 	}
-	
+
+	/**
+	 * Creates a BlockState for a cross block. The texture is pulled from the block's registry name
+	 * @param block The instance of the block which BlockState is created
+	 */
 	private void crossBlock(Block block) {
 		ResourceLocation texture = blockTexture(block);
 		crossBlock(block, texture);
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates a BlockModel based on another BlockModel
+	 * @param block The instance of the block which BlockModel is created
+	 * @param nameSuffix The suffix that will be added behind the name after a {@code "_"} character
+	 * @param parent The name of the parent BlockModel
+	 * @param textures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture
+	 * @return The created BlockModel
+	 * @see ModelBuilder
+	 * @see Tuple
+	 */
 	private ModelBuilder parentedBlockModel(Block block, String nameSuffix, String parent, Map<Tuple<String, String>, Boolean> textures) {
 		ModelBuilder model = null;
 		
@@ -96,7 +126,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 
-
+	/**
+	 * Adds the links to the BlockState of a modular pillar block
+	 * @param builder The BlockStateBuilder of the block
+	 * @param primaryLink The BlockModel of the primary link
+	 * @param secondaryLink The BlockModel of the secondary link
+	 */
 	private void modularPillarMultipart(MultiPartBlockStateBuilder builder, ModelFile primaryLink, ModelFile secondaryLink) {
 		for(Direction dir : Direction.values()) {
 			int xRot = 0;
@@ -152,7 +187,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			}
 		}
 	}
-	
+
+	/**
+	 * Creates a BlockState for a modular pillar block
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreModel The name of the BlockModel of the core
+	 * @param coreTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the core
+	 * @param primaryLinkModel The name of the BlockModel of the primary link
+	 * @param primaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the primary link
+	 * @param secondaryLinkModel The name of the BlockModel of the secondary link
+	 * @param secondaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the secondary link
+	 * @param inventoryModel The name of the BlockModel for the inventory
+	 * @param inventoryTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture for the inventory
+	 * @see MultiPartBlockStateBuilder
+	 */
 	private void modularPillarBlock(ModModularPillarBlock block,
 									String coreModel, Map<Tuple<String, String>, Boolean> coreTextures,
 									String primaryLinkModel, Map<Tuple<String, String>, Boolean> primaryLinkTextures,
@@ -175,7 +223,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				.end();
 		modularPillarMultipart(builder, primaryLink, secondaryLink);
 	}
-	
+
+	/**
+	 * Creates a BlockState for a modular pillar block. The texture namespaces default to the mod's namespace
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreModel The name of the BlockModel of the core
+	 * @param coreTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the core
+	 * @param primaryLinkModel The name of the BlockModel of the primary link
+	 * @param primaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the primary link
+	 * @param secondaryLinkModel The name of the BlockModel of the secondary link
+	 * @param secondaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the secondary link
+	 * @param inventoryModel The name of the BlockModel for the inventory
+	 * @param inventoryTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the inventory
+	 * @see MultiPartBlockStateBuilder
+	 */
 	private void modularPillarBlock(ModModularPillarBlock block, 
 									String coreModel, List<Tuple<String, String>> coreTextures,
 									String primaryLinkModel, List<Tuple<String, String>> primaryLinkTextures,
@@ -189,6 +250,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		modularPillarBlock(block, coreModel, coreTexturesMap, primaryLinkModel, primaryLinkTexturesMap, secondaryLinkModel, secondaryLinkTexturesMap, inventoryModel, inventoryTexturesMap);
 	}
 
+	/**
+	 * Creates a BlockState for a modular pillar block. The texture namespaces default to the mod's namespace and the secondary link is omitted
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreModel The name of the BlockModel of the core
+	 * @param coreTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the core
+	 * @param primaryLinkModel The name of the BlockModel of the primary link
+	 * @param primaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the primary link
+	 * @param inventoryModel The name of the BlockModel for the inventory
+	 * @param inventoryTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the inventory
+	 * @see MultiPartBlockStateBuilder
+	 */
 	private void modularPillarBlock(ModModularPillarBlock block, 
 									String coreModel, List<Tuple<String, String>> coreTextures,
 									String primaryLinkModel, List<Tuple<String, String>> primaryLinkTextures,
@@ -196,6 +268,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel, primaryLinkTextures, null, null, inventoryModel, inventoryTextures);
 	}
 
+	/**
+	 * Creates a BlockState for a modular pillar block. The texture namespaces default to the mod's namespace and the secondary link is omitted
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreModel The name of the BlockModel of the core
+	 * @param coreTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the core
+	 * @param primaryLinkModel The name of the BlockModel of the primary link
+	 * @param primaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the primary link
+	 * @param inventoryModel The name of the BlockModel for the inventory
+	 * @param inventoryTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture for the inventory
+	 * @see MultiPartBlockStateBuilder   
+	 */
 	private void modularPillarBlock(ModModularPillarBlock block,
 									String coreModel, Map<Tuple<String, String>, Boolean> coreTextures,
 									String primaryLinkModel, Map<Tuple<String, String>, Boolean> primaryLinkTextures,
@@ -203,20 +286,46 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel, primaryLinkTextures, null, null, inventoryModel, inventoryTextures);
 	}
 
+	/**
+	 * Creates a BlockState for a modular pillar block. The texture namespaces default to the mod's namespace and the secondary link and inventory models are omitted
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreModel The name of the BlockModel of the core
+	 * @param coreTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the core
+	 * @param primaryLinkModel The name of the BlockModel of the primary link
+	 * @param primaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the primary link
+	 * @see MultiPartBlockStateBuilder
+	 */
 	private void modularPillarBlock(ModModularPillarBlock block,
 									String coreModel, List<Tuple<String, String>> coreTextures,
 									String primaryLinkModel, List<Tuple<String, String>> primaryLinkTextures) {
 		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel,primaryLinkTextures, null, null);
 	}
 
+	/**
+	 * Creates a BlockState for a modular pillar block. The texture namespaces default to the mod's namespace and the secondary link and inventory models are omitted
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreModel The name of the BlockModel of the core
+	 * @param coreTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the core
+	 * @param primaryLinkModel The name of the BlockModel of the primary link
+	 * @param primaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the texture of the primary link
+	 * @see MultiPartBlockStateBuilder
+	 */
 	private void modularPillarBlock(ModModularPillarBlock block,
 									String coreModel, Map<Tuple<String, String>, Boolean> coreTextures,
 									String primaryLinkModel, Map<Tuple<String, String>, Boolean> primaryLinkTextures) {
 		modularPillarBlock(block, coreModel, coreTextures, primaryLinkModel,primaryLinkTextures, null, null);
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates BlockModels and a BlockState for a thin pillar block, which is based on a modular pillar block and pulls the models from {@code "base/"} in the mod's namespace
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the textures of the core
+	 * @param primaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the textures of the primary link
+	 * @param secondaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the textures of the secondary link
+	 * @param inventoryTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for textures for the inventory
+	 * @see ModBlockStateProvider#modularPillarBlock(ModModularPillarBlock, String, Map, String, Map, String, Map, String, Map)
+	 */
 	private void thinPillarBlock(ModModularPillarBlock block,
 								 Map<Tuple<String, String>, Boolean> coreTextures,
 								 Map<Tuple<String, String>, Boolean> primaryLinkTextures,
@@ -228,7 +337,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				"base/thin_pillar_link_secondary", secondaryLinkTextures,
 				"base/thin_pillar_inventory", inventoryTextures); 
 	}
-	
+
+	/**
+	 * Creates BlockModels and a BlockState for a thin pillar block, which is based on a modular pillar block and pulls the models from {@code "base/"} in the mod's namespace. The texture namespaces default to the mod's namespace
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the core
+	 * @param primaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the primary link
+	 * @param secondaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the secondary link
+	 * @param inventoryTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the inventory
+	 * @see ModBlockStateProvider#modularPillarBlock(ModModularPillarBlock, String, List, String, List, String, List, String, List)
+	 */
 	private void thinPillarBlock(ModModularPillarBlock block,
 								 List<Tuple<String, String>> coreTextures,
 								 List<Tuple<String, String>> primaryLinkTextures,
@@ -242,17 +360,34 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 
-
+	/**
+	 * Creates BlockModels and a BlockState for a stick pillar block, which is based on a modular pillar block and pulls the models from {@code "base/"} in the mod's namespace. Also omits the secondary link and inventory models
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the textures of the core
+	 * @param primaryLinkTextures A {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contains the texture keys, texture names and {@code isModded} flags, that determines which namespace to use for the textures of the primary link
+	 * @see ModBlockStateProvider#modularPillarBlock(ModModularPillarBlock, String, Map, String, Map, String, Map, String, Map)
+	 */
 	private void stickPillarBlock(ModModularPillarBlock block, Map<Tuple<String, String>, Boolean> coreTextures, Map<Tuple<String, String>, Boolean> primaryLinkTextures) {
 		modularPillarBlock(block, "base/stick_pillar_core", coreTextures, "base/stick_pillar_link_primary", primaryLinkTextures);
 	}
 
+	/**
+	 * Creates BlockModels and a BlockState for a stick pillar block, which is based on a modular pillar block and pulls the models from {@code "base/"} in the mod's namespace. Also omits the secondary link and inventory models. The texture namespaces default to the mod's namespace
+	 * @param block The instance of the block which BlockState is created
+	 * @param coreTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the core
+	 * @param primaryLinkTextures A {@code List} of {@code Tuple<String, String>} that contains the texture keys and texture names for the primary link
+	 * @see ModBlockStateProvider#modularPillarBlock(ModModularPillarBlock, String, List, String, List, String, List, String, List)
+	 */
 	private void stickPillarBlock(ModModularPillarBlock block, List<Tuple<String, String>> coreTextures, List<Tuple<String, String>> primaryLinkTextures) {
 		modularPillarBlock(block, "base/stick_pillar_core", coreTextures, "base/stick_pillar_link_primary", primaryLinkTextures);
 	}
 
-	
-	
+
+	/**
+	 * Creates BlockModels and a BlockState for a thin pillar fruit block, which pulls the models from {@code "base/"} in the mod's namespace
+	 * @param block The instance of the block which BlockState is created
+	 * @param textures A {@code List} of {@code Map<Tuple<String, String>, Boolean>} that contain the texture keys, texture names and {@code isModded} flags, that determine which namespace to use for the textures. The amount of maps in the list must be equal to the maximum age of the fruit plus one
+	 */
 	private void thinPillarFruitBlock(ModThinPillarFruitBlock block, List<Map<Tuple<String, String>, Boolean>> textures) {
 		if(textures.size() != block.MAX_AGE + 1) return;
 		List<ModelFile> models = new ArrayList<>();
@@ -269,9 +404,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 						.rotationY((int) state.getValue(ModThinPillarFruitBlock.FACING).toYRot())
 						.build());
 	}
-	
-	
-	
+
+
+	/**
+	 * Creates BlockModels and a BlockState for all blocks
+	 */
 	@Override
 	protected void registerStatesAndModels() {
 		// ========[ Resources ]========
