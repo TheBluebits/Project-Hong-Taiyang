@@ -1,0 +1,275 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_core",
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "axis": "x"
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_core"
+      },
+      "when": {
+        "axis": "y"
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_core",
+        "x": 90
+      },
+      "when": {
+        "axis": "z"
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_primary",
+        "x": 90
+      },
+      "when": {
+        "OR": [
+          {
+            "down": "1"
+          },
+          {
+            "axis": "y",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_secondary",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "down": "2"
+          },
+          {
+            "OR": [
+              {
+                "num_primary_links": "2|3|4|5|6"
+              },
+              {
+                "axis": "x|z",
+                "num_primary_links": "0|1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_primary",
+        "x": 270
+      },
+      "when": {
+        "OR": [
+          {
+            "up": "1"
+          },
+          {
+            "axis": "y",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_secondary",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "up": "2"
+          },
+          {
+            "OR": [
+              {
+                "num_primary_links": "2|3|4|5|6"
+              },
+              {
+                "axis": "x|z",
+                "num_primary_links": "0|1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_primary"
+      },
+      "when": {
+        "OR": [
+          {
+            "north": "1"
+          },
+          {
+            "axis": "z",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_secondary"
+      },
+      "when": {
+        "AND": [
+          {
+            "north": "2"
+          },
+          {
+            "OR": [
+              {
+                "num_primary_links": "2|3|4|5|6"
+              },
+              {
+                "axis": "x|y",
+                "num_primary_links": "0|1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_primary",
+        "y": 180
+      },
+      "when": {
+        "OR": [
+          {
+            "south": "1"
+          },
+          {
+            "axis": "z",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_secondary",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "south": "2"
+          },
+          {
+            "OR": [
+              {
+                "num_primary_links": "2|3|4|5|6"
+              },
+              {
+                "axis": "x|y",
+                "num_primary_links": "0|1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_primary",
+        "y": 270
+      },
+      "when": {
+        "OR": [
+          {
+            "west": "1"
+          },
+          {
+            "axis": "x",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_secondary",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "west": "2"
+          },
+          {
+            "OR": [
+              {
+                "num_primary_links": "2|3|4|5|6"
+              },
+              {
+                "axis": "y|z",
+                "num_primary_links": "0|1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_primary",
+        "y": 90
+      },
+      "when": {
+        "OR": [
+          {
+            "east": "1"
+          },
+          {
+            "axis": "x",
+            "num_primary_links": "0|1"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "hongtaiyang:block/darkdweller_log_link_secondary",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "east": "2"
+          },
+          {
+            "OR": [
+              {
+                "num_primary_links": "2|3|4|5|6"
+              },
+              {
+                "axis": "y|z",
+                "num_primary_links": "0|1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

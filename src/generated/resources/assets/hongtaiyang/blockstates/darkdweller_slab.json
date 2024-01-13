@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "hongtaiyang:block/darkdweller_slab"
+    },
+    "type=double": {
+      "model": "hongtaiyang:block/darkdweller_planks"
+    },
+    "type=top": {
+      "model": "hongtaiyang:block/darkdweller_slab_top"
+    }
+  }
+}
