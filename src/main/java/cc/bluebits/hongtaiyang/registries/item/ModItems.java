@@ -2,9 +2,13 @@ package cc.bluebits.hongtaiyang.registries.item;
 
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
+import cc.bluebits.hongtaiyang.entity.ModBoatEntity;
+import cc.bluebits.hongtaiyang.item.ModBoatItem;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.SignItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -59,7 +63,9 @@ public class ModItems {
 	public static final RegistryObject<Item> TUNING_FORK = ITEMS.register("tuning_fork",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> DARKDWELLER_BOAT = ITEMS.register("darkdweller_boat",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new ModBoatItem(false, ModBoatEntity.Type.DARKDWELLER, new Item.Properties()));
+	public static final RegistryObject<Item> DARKDWELLER_CHEST_BOAT = ITEMS.register("darkdweller_chest_boat",
+			() -> new ModBoatItem(true, ModBoatEntity.Type.DARKDWELLER, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_SWORD = ITEMS.register("umbral_sword",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> UMBRAL_PICKAXE = ITEMS.register("umbral_pickaxe",
@@ -85,4 +91,16 @@ public class ModItems {
 			));
 	public static final RegistryObject<Item> DWELLBERRY_SEEDS = ITEMS.register("dwellberry_seeds",
 			() -> new ItemNameBlockItem(ModBlocks.DWELLBERRY.get(), new Item.Properties().stacksTo(64)));
+	
+	public static final RegistryObject<Item> DARKDWELLER_SIGN = ITEMS.register("darkdweller_sign",
+			() -> new SignItem(
+					new Item.Properties().stacksTo(16),
+					ModBlocks.DARKDWELLER_SIGN.get(),
+					ModBlocks.DARKDWELLER_WALL_SIGN.get()));
+	
+	public static final RegistryObject<Item> DARKDWELLER_HANGING_SIGN = ITEMS.register("darkdweller_hanging_sign",
+			() -> new HangingSignItem(
+					ModBlocks.DARKDWELLER_HANGING_SIGN.get(),
+					ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get(),
+					new Item.Properties().stacksTo(16)));
 }

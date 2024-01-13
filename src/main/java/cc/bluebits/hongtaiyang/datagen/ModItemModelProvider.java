@@ -433,6 +433,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 		
 		simpleLayeredItem(ModItems.CRACKED_SOUL_CORE, List.of("soul_core_base", "soul_core_animation_fast", "soul_core_top_cracked"));
 		simpleItem(ModItems.DARKDWELLER_BOAT, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_CHEST_BOAT, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_SIGN, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_HANGING_SIGN, "placeholder");
 		simpleItem(ModItems.DWELLBERRY, "placeholder");
 		simpleItem(ModItems.DWELLBERRY_SEEDS, "placeholder");
 		simpleItem(ModItems.LOGBOOK);
@@ -476,7 +479,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 		blockItem(ModBlocks.DARKDWELLER_LOG, "darkdweller_log_inventory");
 		blockItem(ModBlocks.DARKDWELLER_PLANKS);
 		blockItem(ModBlocks.DARKDWELLER_PRESSURE_PLATE);
-		// Darkdweller Sign
 		simpleItem(ModBlocks.DARKDWELLER_ROOT, "placeholder");
 		blockItem(ModBlocks.DARKDWELLER_SLAB);
 		blockItem(ModBlocks.DARKDWELLER_STAIRS);

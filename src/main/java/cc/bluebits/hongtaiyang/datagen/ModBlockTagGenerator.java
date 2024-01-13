@@ -1,8 +1,8 @@
 package cc.bluebits.hongtaiyang.datagen;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.registries.ModTags;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;

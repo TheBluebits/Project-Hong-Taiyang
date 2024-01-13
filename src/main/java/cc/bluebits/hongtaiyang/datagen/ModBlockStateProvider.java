@@ -14,7 +14,10 @@ import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A class that generates blockstates and blockmodels for all blocks in the mod
@@ -32,6 +35,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 
+	/**
+	 * Pulls the key of a block from the registry
+	 * @param block The instance of the block which key is pulled
+	 * @return The key of the specified block
+	 */
+	private ResourceLocation getKey(Block block) {
+		return ForgeRegistries.BLOCKS.getKey(block);
+	}
 	
 	/**
 	 * Pulls the name of a block from the registry and adds a suffix to it, if specified
@@ -40,7 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 * @return The name of the specified block with the specified suffix
 	 */
 	private String getName(Block block, String suffix) {
-		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
+		String name = getKey(block).getPath();
 		if(suffix != null && !suffix.isBlank()) name += "_" + suffix;
 		
 		return name;
@@ -407,6 +418,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 
 	/**
+	 * Creates a BlockState for a hanging sign block
+	 * @param signBlock The instance of the block which is used fot the hanging variant
+	 * @param wallSignBlock The instance of the block which is used fot the wall variant
+	 * @param sign The BlockModel of the sign
+	 */
+	public void hangingSignBlock(CeilingHangingSignBlock signBlock, WallHangingSignBlock wallSignBlock, ModelFile sign) {
+		simpleBlock(signBlock, sign);
+		simpleBlock(wallSignBlock, sign);
+	}
+
+	/**
+	 * Creates a BlockState for a hanging sign block. The model is generated and usese the supplied texture
+	 * @param signBlock The instance of the block which is used fot the hanging variant
+	 * @param wallSignBlock The instance of the block which is used fot the wall variant
+	 * @param texture The texture of the sign model
+	 */
+	public void hangingSignBlock(CeilingHangingSignBlock signBlock, WallHangingSignBlock wallSignBlock, ResourceLocation texture) {
+		ModelFile sign = models().sign(getName(signBlock), texture);
+		hangingSignBlock(signBlock, wallSignBlock, sign);
+	}
+	
+	
+	
+	// ================================
+	//  Registering part
+	// ================================
+	/**
 	 * Creates BlockModels and a BlockState for all blocks
 	 */
 	@Override
@@ -441,7 +479,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ModBlocks.DARKDWELLER_PLANKS.get(), placeholderLocation);
 		pressurePlateBlock(((PressurePlateBlock) ModBlocks.DARKDWELLER_PRESSURE_PLATE.get()), placeholderLocation);
 		crossBlock(ModBlocks.DARKDWELLER_ROOT.get(), placeholderLocation);
-		// Darkdweller Sign
+		signBlock((StandingSignBlock) ModBlocks.DARKDWELLER_SIGN.get(), (WallSignBlock) ModBlocks.DARKDWELLER_WALL_SIGN.get(), placeholderLocation);
+		hangingSignBlock((CeilingHangingSignBlock) ModBlocks.DARKDWELLER_HANGING_SIGN.get(), (WallHangingSignBlock) ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get(), placeholderLocation);
 		slabBlock(((SlabBlock) ModBlocks.DARKDWELLER_SLAB.get()), darkdwellerPlanksLocation, placeholderLocation); // First location is a block model, second one is a texture
 		stairsBlock(((StairBlock) ModBlocks.DARKDWELLER_STAIRS.get()), placeholderLocation);
 		stickPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_STICK.get(), List.of(
