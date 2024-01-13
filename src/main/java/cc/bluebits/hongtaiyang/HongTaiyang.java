@@ -2,8 +2,10 @@ package cc.bluebits.hongtaiyang;
 
 //import com.mojang.logging.LogUtils;
 
+import cc.bluebits.hongtaiyang.entity.client.ModBoatRenderer;
 import cc.bluebits.hongtaiyang.registries.block.ModBlockEntities;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.entity.ModEntities;
 import cc.bluebits.hongtaiyang.registries.item.ModCreativeModeTabs;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.registries.util.ModWoodTypes;
@@ -12,6 +14,7 @@ import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTreeDecorators;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTrunkPlacers;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -46,6 +49,7 @@ public class HongTaiyang {
 		ModItems.register(modEventBus);
 		ModBlocks.register(modEventBus);
 		ModBlockEntities.register(modEventBus);
+		ModEntities.register(modEventBus);
 
 		ModFoliagePlacers.register(modEventBus);
 		ModTrunkPlacers.register(modEventBus);
@@ -79,6 +83,9 @@ public class HongTaiyang {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 			Sheets.addWoodType(ModWoodTypes.DARKDWELLER);
+			
+			EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
+			EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 		}
 	}
 }

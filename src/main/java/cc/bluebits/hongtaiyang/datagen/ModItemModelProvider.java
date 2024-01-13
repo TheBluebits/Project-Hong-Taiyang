@@ -433,6 +433,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		
 		simpleLayeredItem(ModItems.CRACKED_SOUL_CORE, List.of("soul_core_base", "soul_core_animation_fast", "soul_core_top_cracked"));
 		simpleItem(ModItems.DARKDWELLER_BOAT, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_CHEST_BOAT, "placeholder");
 		simpleItem(ModItems.DARKDWELLER_SIGN, "placeholder");
 		simpleItem(ModItems.DARKDWELLER_HANGING_SIGN, "placeholder");
 		simpleItem(ModItems.DWELLBERRY, "placeholder");

@@ -48,6 +48,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.MAGIC_CHALK.get());
 						pOutput.accept(ModItems.TUNING_FORK.get());
 						pOutput.accept(ModItems.DARKDWELLER_BOAT.get());
+						pOutput.accept(ModItems.DARKDWELLER_CHEST_BOAT.get());
 						pOutput.accept(ModItems.UMBRAL_SWORD.get());
 						pOutput.accept(ModItems.UMBRAL_PICKAXE.get());
 						pOutput.accept(ModItems.UMBRAL_AXE.get());

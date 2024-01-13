@@ -13,6 +13,7 @@
   "item.hongtaiyang.magic_chalk": "Magic Chalk",
   "item.hongtaiyang.tuning_fork": "Tuning Fork",
   "item.hongtaiyang.darkdweller_boat": "Darkdweller Boat",
+  "item.hongtaiyang.darkdweller_chest_boat": "Darkdweller Chest Boat",
   "item.hongtaiyang.umbral_sword": "Umbral Sword",
   "item.hongtaiyang.umbral_pickaxe": "Umbral Pickaxe",
   "item.hongtaiyang.umbral_axe": "Umbral Axe",
@@ -44,5 +45,8 @@
   "block.hongtaiyang.darkdweller_pressure_plate": "Darkdweller Pressure Plate",
   "block.hongtaiyang.darkdweller_sign": "Darkdweller Sign",
   "block.hongtaiyang.darkdweller_hanging_sign": "Darkdweller Hanging Sign",
-  "itemGroup.chapter1_tab": "Hong Taiyang - Unveiling the shadows"
+  
+  "itemGroup.chapter1_tab": "Hong Taiyang - Unveiling the shadows",
+  
+  "entity.hongtaiyang.mod_chest_boat": "Boat with Chest"
 }
