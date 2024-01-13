@@ -118,7 +118,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 
-	// TODO: Implement this one better
+	// This is temporary until the actual rune blocks are implemented
 	/**
 	 * Creates a BlockState for a plate block with a dynamic amount of variating textures. Textures are encoded in a {@code Map} of {@code Tuple<String, String>} and {@code Boolean} that contain the texture key, texture name and {@code isModded} flag, which determines what namespace to use, for each texture
 	 * @param block The instance of the block which BlockState is created
