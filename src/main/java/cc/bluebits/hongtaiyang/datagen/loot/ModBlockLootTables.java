@@ -37,20 +37,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
 	}
 
-	@Override
-	protected void generate() {
-		LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
-				.hasBlockStateProperties(ModBlocks.DWELLBERRY.get())
-				.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DwellberryBlock.AGE, DwellberryBlock.MAX_AGE));
-
-		this.add(ModBlocks.DWELLBERRY.get(), createFruitDrops(
-				ModBlocks.DWELLBERRY.get(),
-				ModItems.DWELLBERRY.get(),
-				ModItems.DWELLBERRY_SEEDS.get(),
-				lootitemcondition$builder)
-		);
-	}
-
 	/**
 	 * If {@code dropGrownCropCondition} fails (i.e. crop is not ready), drops 1 {@code seedsItem}.
 	 * If {@code dropGrownCropCondition} succeeds (i.e. crop is ready), drops 1-2 {@code grownCropItem} with fortune applied, and 1 {@code
@@ -63,5 +49,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 								.when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem))))
 				.withPool(LootPool.lootPool().when(pDropGrownCropCondition)
 						.add(LootItem.lootTableItem(pSeedsItem))));
+	}
+
+	@Override
+	protected void generate() {
+		LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(ModBlocks.DWELLBERRY.get())
+				.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DwellberryBlock.AGE, DwellberryBlock.MAX_AGE));
+
+		add(ModBlocks.DWELLBERRY.get(), createFruitDrops(
+				ModBlocks.DWELLBERRY.get(),
+				ModItems.DWELLBERRY.get(),
+				ModItems.DWELLBERRY_SEEDS.get(),
+				lootitemcondition$builder)
+		);
+		
+		add(ModBlocks.DARKDWELLER_SIGN.get(), block -> createSingleItemTable(ModItems.DARKDWELLER_SIGN.get()));
+		add(ModBlocks.DARKDWELLER_WALL_SIGN.get(), block -> createSingleItemTable(ModItems.DARKDWELLER_SIGN.get()));
+		add(ModBlocks.DARKDWELLER_HANGING_SIGN.get(), block -> createSingleItemTable(ModItems.DARKDWELLER_HANGING_SIGN.get()));
+		add(ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get(), block -> createSingleItemTable(ModItems.DARKDWELLER_HANGING_SIGN.get()));
 	}
 }

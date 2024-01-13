@@ -1,4 +1,4 @@
-// 1.20.1	2024-01-07T16:47:19.5348275	Item Models: hongtaiyang
+// 1.20.1	2024-01-13T17:59:59.6953208	Item Models: hongtaiyang
 7cc8c7a7056189f3fc6289c412acc047a1c8677c assets/hongtaiyang/models/item/cracked_soul_core.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_boat.json
 b05b2032e078944e4daa4e809fecaf062c79d9ed assets/hongtaiyang/models/item/darkdweller_bundle.json
@@ -6,10 +6,12 @@ a37856f6b00f9d276f848c0e970c2dd95c350ad8 assets/hongtaiyang/models/item/darkdwel
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_door.json
 23b4f85294f564530fb190761f878b906abd3ee1 assets/hongtaiyang/models/item/darkdweller_fence.json
 5cf5157c2fafdcede4b4a7c0ba6cfeb117b8a578 assets/hongtaiyang/models/item/darkdweller_fence_gate.json
+e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_hanging_sign.json
 1cb51e7ea1f7cf57308e65223207c5154e2ac081 assets/hongtaiyang/models/item/darkdweller_log.json
 e4b42ea9a5e43fdd650aa5432048ec6af47953ca assets/hongtaiyang/models/item/darkdweller_planks.json
 d2bb3f087d4fd0a6569412f3e6d1906119e29638 assets/hongtaiyang/models/item/darkdweller_pressure_plate.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_root.json
+e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_sign.json
 4aa77136d4f4f696efcba8c9d8585e4d702468a0 assets/hongtaiyang/models/item/darkdweller_slab.json
 b637a610069d5f280e3a74881abe88e80320e3c8 assets/hongtaiyang/models/item/darkdweller_stairs.json
 e96ced37f95905d223fa167748f6052900f28bf4 assets/hongtaiyang/models/item/darkdweller_stick.json

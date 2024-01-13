@@ -3,8 +3,10 @@ package cc.bluebits.hongtaiyang.registries.item;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.SignItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -85,4 +87,16 @@ public class ModItems {
 			));
 	public static final RegistryObject<Item> DWELLBERRY_SEEDS = ITEMS.register("dwellberry_seeds",
 			() -> new ItemNameBlockItem(ModBlocks.DWELLBERRY.get(), new Item.Properties().stacksTo(64)));
+	
+	public static final RegistryObject<Item> DARKDWELLER_SIGN = ITEMS.register("darkdweller_sign",
+			() -> new SignItem(
+					new Item.Properties().stacksTo(16),
+					ModBlocks.DARKDWELLER_SIGN.get(),
+					ModBlocks.DARKDWELLER_WALL_SIGN.get()));
+	
+	public static final RegistryObject<Item> DARKDWELLER_HANGING_SIGN = ITEMS.register("darkdweller_hanging_sign",
+			() -> new HangingSignItem(
+					ModBlocks.DARKDWELLER_HANGING_SIGN.get(),
+					ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get(),
+					new Item.Properties().stacksTo(16)));
 }

@@ -1,2 +1,6 @@
-// 1.20.1	2023-12-29T17:22:45.2505487	Loot Tables
+// 1.20.1	2024-01-13T17:59:59.6973221	Loot Tables
+421b62b5f72e31c01c27570cc48803342b3e45d9 data/hongtaiyang/loot_tables/blocks/darkdweller_hanging_sign.json
+11c971830b95ed2ad254ff1345e427d57e05443e data/hongtaiyang/loot_tables/blocks/darkdweller_sign.json
+481be57dd0bf60784be1c3b57d4ff55525a980f6 data/hongtaiyang/loot_tables/blocks/darkdweller_wall_hanging_sign.json
+9f3efc95f70cade9e9fd8384deb4b1a2c6eb2ae8 data/hongtaiyang/loot_tables/blocks/darkdweller_wall_sign.json
 b382511bbefff444547c1cf83f50021040b6c2aa data/hongtaiyang/loot_tables/blocks/dwellberry.json

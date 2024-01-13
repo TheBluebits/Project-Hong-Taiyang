@@ -4,9 +4,9 @@ import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.block.DarkdwellerLogBlock;
 import cc.bluebits.hongtaiyang.block.DarkdwellerStickBlock;
 import cc.bluebits.hongtaiyang.block.DwellberryBlock;
-import cc.bluebits.hongtaiyang.block.base.ModFlammableRotatedPillarBlock;
-import cc.bluebits.hongtaiyang.block.base.ModSaplingBlock;
+import cc.bluebits.hongtaiyang.block.base.*;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
+import cc.bluebits.hongtaiyang.registries.util.ModWoodTypes;
 import cc.bluebits.hongtaiyang.world.feature.tree.darkdweller.DarkdwellerTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -202,5 +202,39 @@ public class ModBlocks {
 					PressurePlateBlock.Sensitivity.EVERYTHING,
 					BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE).noLootTable(),
 					BlockSetType.BAMBOO)
+	);
+	
+	
+	
+	public static final RegistryObject<Block> DARKDWELLER_SIGN = BLOCKS.register(
+			"darkdweller_sign",
+			() -> new ModStandingSignBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_SIGN),
+					ModWoodTypes.DARKDWELLER
+			)
+	);
+
+	public static final RegistryObject<Block> DARKDWELLER_WALL_SIGN = BLOCKS.register(
+			"darkdweller_wall_sign",
+			() -> new ModWallSignBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN),
+					ModWoodTypes.DARKDWELLER
+			)
+	);
+
+	public static final RegistryObject<Block> DARKDWELLER_HANGING_SIGN = BLOCKS.register(
+			"darkdweller_hanging_sign",
+			() -> new ModHangingSignBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN),
+					ModWoodTypes.DARKDWELLER
+			)
+	);
+
+	public static final RegistryObject<Block> DARKDWELLER_WALL_HANGING_SIGN = BLOCKS.register(
+			"darkdweller_wall_hanging_sign",
+			() -> new ModWallHangingSignBlock(
+					BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN),
+					ModWoodTypes.DARKDWELLER
+			)
 	);
 }

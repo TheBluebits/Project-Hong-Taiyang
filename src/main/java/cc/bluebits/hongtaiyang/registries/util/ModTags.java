@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.registries;
+package cc.bluebits.hongtaiyang.registries.util;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import net.minecraft.resources.ResourceLocation;
