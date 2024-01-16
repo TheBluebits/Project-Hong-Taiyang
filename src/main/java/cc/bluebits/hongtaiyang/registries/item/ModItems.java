@@ -46,7 +46,6 @@ public class ModItems {
 			() -> new Item(new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> WARDLING_ANTLER = ITEMS.register("wardling_antler",
 			() -> new Item(new Item.Properties().stacksTo(16)));
-
 	public static final RegistryObject<Item> UMBRAL_GEM = ITEMS.register("umbral_gem",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> UMBRAL_ESSENCE = ITEMS.register("umbral_essence",
@@ -59,10 +58,15 @@ public class ModItems {
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> TUNING_FORK = ITEMS.register("tuning_fork",
 			() -> new Item(new Item.Properties().stacksTo(1)));
+	
+	
 	public static final RegistryObject<Item> DARKDWELLER_BOAT = ITEMS.register("darkdweller_boat",
 			() -> new ModBoatItem(false, ModBoatEntity.Type.DARKDWELLER, new Item.Properties()));
 	public static final RegistryObject<Item> DARKDWELLER_CHEST_BOAT = ITEMS.register("darkdweller_chest_boat",
 			() -> new ModBoatItem(true, ModBoatEntity.Type.DARKDWELLER, new Item.Properties()));
+	
+	
+	
 	public static final RegistryObject<Item> UMBRAL_SWORD = ITEMS.register("umbral_sword",
 			() -> new SwordItem(ModToolTiers.UMBRAL, 3, -2.4f, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_PICKAXE = ITEMS.register("umbral_pickaxe",
@@ -73,14 +77,20 @@ public class ModItems {
 			() -> new ShovelItem(ModToolTiers.UMBRAL, 1.5f, -3, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_HOE = ITEMS.register("umbral_hoe",
 			() -> new HoeItem(ModToolTiers.UMBRAL, -2, -3, new Item.Properties()));
-	public static final RegistryObject<Item> WARDLING_HELMET = ITEMS.register("wardling_helmet",
-			() -> new Item(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> WARDLING_CHESTPLATE = ITEMS.register("wardling_chestplate",
-			() -> new Item(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> WARDLING_LEGGINGS = ITEMS.register("wardling_leggings",
-			() -> new Item(new Item.Properties().stacksTo(1)));
-	public static final RegistryObject<Item> WARDLING_BOOTS = ITEMS.register("wardling_boots",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+	
+	
+	
+	public static final RegistryObject<Item> UMBRAL_HELMET = ITEMS.register("umbral_helmet",
+			() -> new ArmorItem(ModArmorMaterials.UMBRAL, ArmorItem.Type.HELMET, new Item.Properties()) );
+	public static final RegistryObject<Item> UMBRAL_CHESTPLATE = ITEMS.register("umbral_chestplate",
+			() -> new ArmorItem(ModArmorMaterials.UMBRAL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+	public static final RegistryObject<Item> UMBRAL_LEGGINGS = ITEMS.register("umbral_leggings",
+			() -> new ArmorItem(ModArmorMaterials.UMBRAL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+	public static final RegistryObject<Item> UMBRAL_BOOTS = ITEMS.register("umbral_boots",
+			() -> new ArmorItem(ModArmorMaterials.UMBRAL, ArmorItem.Type.BOOTS, new Item.Properties()));
+	
+	
+	
 	public static final RegistryObject<Item> DWELLBERRY = ITEMS.register("dwellberry",
 			() -> new Item(new Item.Properties()
 					.stacksTo(64)
@@ -88,6 +98,8 @@ public class ModItems {
 			));
 	public static final RegistryObject<Item> DWELLBERRY_SEEDS = ITEMS.register("dwellberry_seeds",
 			() -> new ItemNameBlockItem(ModBlocks.DWELLBERRY.get(), new Item.Properties().stacksTo(64)));
+	
+	
 	
 	public static final RegistryObject<Item> DARKDWELLER_SIGN = ITEMS.register("darkdweller_sign",
 			() -> new SignItem(
