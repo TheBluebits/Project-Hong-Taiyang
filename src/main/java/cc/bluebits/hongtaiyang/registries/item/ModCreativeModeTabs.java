@@ -54,10 +54,10 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.UMBRAL_AXE.get());
 						pOutput.accept(ModItems.UMBRAL_SHOVEL.get());
 						pOutput.accept(ModItems.UMBRAL_HOE.get());
-						pOutput.accept(ModItems.WARDLING_HELMET.get());
-						pOutput.accept(ModItems.WARDLING_CHESTPLATE.get());
-						pOutput.accept(ModItems.WARDLING_LEGGINGS.get());
-						pOutput.accept(ModItems.WARDLING_BOOTS.get());
+						pOutput.accept(ModItems.UMBRAL_HELMET.get());
+						pOutput.accept(ModItems.UMBRAL_CHESTPLATE.get());
+						pOutput.accept(ModItems.UMBRAL_LEGGINGS.get());
+						pOutput.accept(ModItems.UMBRAL_BOOTS.get());
 						pOutput.accept(ModItems.DWELLBERRY.get());
 						pOutput.accept(ModItems.DWELLBERRY_SEEDS.get());
 						pOutput.accept(ModItems.DARKDWELLER_SIGN.get());

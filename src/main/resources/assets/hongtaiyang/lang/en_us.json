@@ -12,22 +12,28 @@
   "item.hongtaiyang.umbral_locator": "Umbral Locator",
   "item.hongtaiyang.magic_chalk": "Magic Chalk",
   "item.hongtaiyang.tuning_fork": "Tuning Fork",
+  
   "item.hongtaiyang.darkdweller_boat": "Darkdweller Boat",
   "item.hongtaiyang.darkdweller_chest_boat": "Darkdweller Chest Boat",
+  
   "item.hongtaiyang.umbral_sword": "Umbral Sword",
   "item.hongtaiyang.umbral_pickaxe": "Umbral Pickaxe",
   "item.hongtaiyang.umbral_axe": "Umbral Axe",
   "item.hongtaiyang.umbral_shovel": "Umbral Shovel",
   "item.hongtaiyang.umbral_hoe": "Umbral Hoe",
-  "item.hongtaiyang.wardling_helmet": "Wardling Helmet",
-  "item.hongtaiyang.wardling_chestplate": "Wardling Chestplate",
-  "item.hongtaiyang.wardling_leggings": "Wardling Leggings",
-  "item.hongtaiyang.wardling_boots": "Wardling Boots",
+  
+  "item.hongtaiyang.umbral_helmet": "Umbral Helmet",
+  "item.hongtaiyang.umbral_chestplate": "Umbral Chestplate",
+  "item.hongtaiyang.umbral_leggings": "Umbral Leggings",
+  "item.hongtaiyang.umbral_boots": "Umbral Boots",
+  
   "item.hongtaiyang.dwellberry": "Dwellberry",
   "item.hongtaiyang.dwellberry_seeds": "Dwellberry Seeds",
+  
   "block.hongtaiyang.umbral_ore": "Umbral Ore",
   "block.hongtaiyang.deepslate_umbral_ore": "Deepslate Umbral Ore",
   "block.hongtaiyang.umbral_block": "Block of Umbral",
+  
   "block.hongtaiyang.rooted_sculk": "Rooted Sculk",
   "block.hongtaiyang.darkdweller_root": "Darkdweller Root",
   "block.hongtaiyang.darkdweller_stick": "Darkdweller Stick",
