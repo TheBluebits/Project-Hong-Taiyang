@@ -5,10 +5,7 @@ import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.entity.ModBoatEntity;
 import cc.bluebits.hongtaiyang.item.ModBoatItem;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -67,15 +64,15 @@ public class ModItems {
 	public static final RegistryObject<Item> DARKDWELLER_CHEST_BOAT = ITEMS.register("darkdweller_chest_boat",
 			() -> new ModBoatItem(true, ModBoatEntity.Type.DARKDWELLER, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_SWORD = ITEMS.register("umbral_sword",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new SwordItem(ModToolTiers.UMBRAL, 3, -2.4f, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_PICKAXE = ITEMS.register("umbral_pickaxe",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new PickaxeItem(ModToolTiers.UMBRAL, 1, -2.8f, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_AXE = ITEMS.register("umbral_axe",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new AxeItem(ModToolTiers.UMBRAL, 6, -3, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_SHOVEL = ITEMS.register("umbral_shovel",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new ShovelItem(ModToolTiers.UMBRAL, 1.5f, -3, new Item.Properties()));
 	public static final RegistryObject<Item> UMBRAL_HOE = ITEMS.register("umbral_hoe",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new HoeItem(ModToolTiers.UMBRAL, -2, -3, new Item.Properties()));
 	public static final RegistryObject<Item> WARDLING_HELMET = ITEMS.register("wardling_helmet",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> WARDLING_CHESTPLATE = ITEMS.register("wardling_chestplate",

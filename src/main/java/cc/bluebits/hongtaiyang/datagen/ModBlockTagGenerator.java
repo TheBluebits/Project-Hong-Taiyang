@@ -36,6 +36,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 				.add(ModBlocks.DEEPSLATE_UMBRAL_ORE.get())
 				.add(ModBlocks.UMBRAL_ORE.get());
 		
+		tag(ModTags.Blocks.NEEDS_UMBRAL_TOOL)
+				.add(ModBlocks.DEEPSLATE_UMBRAL_ORE.get())
+				.add(ModBlocks.UMBRAL_ORE.get());
+		
 
 		
 		// ================================
@@ -100,5 +104,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		
 		tag(BlockTags.WOODEN_TRAPDOORS)
 				.add(ModBlocks.DARKDWELLER_TRAPDOOR.get());
+		
+		tag(BlockTags.STANDING_SIGNS)
+				.add(ModBlocks.DARKDWELLER_SIGN.get());
+		
+		tag(BlockTags.WALL_SIGNS)
+				.add(ModBlocks.DARKDWELLER_WALL_SIGN.get());
+		
+		tag(BlockTags.CEILING_HANGING_SIGNS)
+				.add(ModBlocks.DARKDWELLER_HANGING_SIGN.get());
+		
+		tag(BlockTags.WALL_HANGING_SIGNS)
+				.add(ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get());
 	}
 }
