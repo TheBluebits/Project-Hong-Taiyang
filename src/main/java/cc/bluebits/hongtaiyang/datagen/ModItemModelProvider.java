@@ -64,6 +64,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 				new Tuple<>("back", "umbral_locator_back"),
 				new Tuple<>("front", "umbral_locator_front"))
 		);
+		customModelItem(ModItems.DWELLBERRY, List.of(
+				new Tuple<>("berry", "dwellberry_item"),
+				new Tuple<>("berry", "dwellberry_item")));
+
 		parentedLayeredItem(ModItems.UMBRAL_HOE, "handheld", false, List.of("umbral_hoe_base", "umbral_hoe_pulse"));
 		parentedLayeredItem(ModItems.UMBRAL_PICKAXE, "handheld", false, List.of("umbral_pickaxe_base", "umbral_pickaxe_pulse"));
 		parentedLayeredItem(ModItems.UMBRAL_SHOVEL, "handheld", false, List.of("umbral_shovel_base", "umbral_shovel_pulse"));

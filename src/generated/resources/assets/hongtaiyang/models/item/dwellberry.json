@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "hongtaiyang:item/base/dwellberry",
   "textures": {
+    "berry": "hongtaiyang:item/dwellberry_item",
     "layer0": "hongtaiyang:item/placeholder"
   }
 }
