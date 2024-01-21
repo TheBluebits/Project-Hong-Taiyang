@@ -73,14 +73,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ModBlocks.DEEPSLATE_UMBRAL_ORE.get(), mcLoc("block/deepslate"));
 		thinPillarFruitBlock((ModThinPillarFruitBlock) ModBlocks.DWELLBERRY.get(), List.of(
 				Map.of(
-						new Tuple<>("fruit", "placeholder"), true,
-						new Tuple<>("particle", "placeholder"), true),
+						new Tuple<>("fruit", "dwellberry_stage0"), true,
+						new Tuple<>("particle", "dwellberry_stage0"), true),
 				Map.of(
-						new Tuple<>("fruit", "placeholder"), true,
-						new Tuple<>("particle", "placeholder"), true),
+						new Tuple<>("fruit", "dwellberry_stage1"), true,
+						new Tuple<>("particle", "dwellberry_stage1"), true),
 				Map.of(
-						new Tuple<>("fruit", "placeholder"), true,
-						new Tuple<>("particle", "placeholder"), true)
+						new Tuple<>("fruit", "dwellberry_stage2"), true,
+						new Tuple<>("particle", "dwellberry_stage2"), true)
 		));
 		simpleBlock(ModBlocks.ROOTED_SCULK.get());
 		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);

@@ -60,7 +60,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 		add(ModBlocks.DWELLBERRY.get(), createFruitDrops(
 				ModBlocks.DWELLBERRY.get(),
 				ModItems.DWELLBERRY.get(),
-				ModItems.DWELLBERRY_SEEDS.get(),
+				ModItems.DWELLBERRY_SEED.get(),
 				lootitemcondition$builder)
 		);
 		
