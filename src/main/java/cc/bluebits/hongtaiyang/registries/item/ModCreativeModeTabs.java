@@ -59,7 +59,7 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.UMBRAL_LEGGINGS.get());
 						pOutput.accept(ModItems.UMBRAL_BOOTS.get());
 						pOutput.accept(ModItems.DWELLBERRY.get());
-						pOutput.accept(ModItems.DWELLBERRY_SEED.get());
+						pOutput.accept(ModItems.DWELLBERRY_SEEDS.get());
 						pOutput.accept(ModItems.DARKDWELLER_SIGN.get());
 						pOutput.accept(ModItems.DARKDWELLER_HANGING_SIGN.get());
 

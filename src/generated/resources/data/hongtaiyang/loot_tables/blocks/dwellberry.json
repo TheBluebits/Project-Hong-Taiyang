@@ -38,7 +38,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "hongtaiyang:dwellberry_seed"
+              "name": "hongtaiyang:dwellberry_seeds"
             }
           ]
         }
@@ -59,7 +59,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "hongtaiyang:dwellberry_seed"
+          "name": "hongtaiyang:dwellberry_seeds"
         }
       ],
       "rolls": 1.0

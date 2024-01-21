@@ -50,7 +50,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.DARKDWELLER_SIGN, "placeholder");
 		simpleItem(ModItems.DARKDWELLER_HANGING_SIGN, "placeholder");
 		simpleItem(ModItems.DWELLBERRY);
-		simpleItem(ModItems.DWELLBERRY_SEED);
+		simpleItem(ModItems.DWELLBERRY_SEEDS);
 		simpleItem(ModItems.LOGBOOK);
 		simpleCustomModelItem(ModItems.MAGIC_CHALK);
 		simpleItem(ModItems.SONAR_COMPASS, "placeholder");

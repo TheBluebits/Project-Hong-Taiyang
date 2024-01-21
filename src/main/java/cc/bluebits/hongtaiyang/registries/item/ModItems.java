@@ -96,7 +96,7 @@ public class ModItems {
 					.stacksTo(64)
 					.food(ModFoods.DWELLBERRY)
 			));
-	public static final RegistryObject<Item> DWELLBERRY_SEED = ITEMS.register("dwellberry_seed",
+	public static final RegistryObject<Item> DWELLBERRY_SEEDS = ITEMS.register("dwellberry_seeds",
 			() -> new ItemNameBlockItem(ModBlocks.DWELLBERRY.get(), new Item.Properties().stacksTo(64)));
 	
 	
