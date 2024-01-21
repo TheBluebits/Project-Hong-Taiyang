@@ -516,9 +516,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		));
 		simpleBlock(ModBlocks.ROOTED_SCULK.get());
 		variedPlateBlock(ModBlocks.RUNE.get(), Map.of(
-				new Tuple<>("wool", "rune0"), true,
 				new Tuple<>("wool", "rune1"), true,
-				new Tuple<>("wool", "rune2"), true
+				new Tuple<>("wool", "rune2"), true,
+				new Tuple<>("wool", "rune3"), true,
+				new Tuple<>("wool", "rune4"), true,
+				new Tuple<>("wool", "rune5"), true,
+				new Tuple<>("wool", "rune6"), true,
+				new Tuple<>("wool", "rune7"), true,
+				new Tuple<>("wool", "rune8"), true,
+				new Tuple<>("wool", "rune9"), true,
+				new Tuple<>("wool", "rune10"), true
 		));
 		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
 		// Stripped Darkdweller Log
