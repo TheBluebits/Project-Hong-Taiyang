@@ -3,6 +3,5 @@
   "textures": {
     "fruit": "hongtaiyang:block/dwellberry_stage0",
     "particle": "hongtaiyang:block/dwellberry_stage0"
-  },
-  "render_type": "cutout"
+  }
 }

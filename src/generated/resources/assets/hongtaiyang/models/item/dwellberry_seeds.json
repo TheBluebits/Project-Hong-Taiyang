@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hongtaiyang:item/placeholder"
+    "layer0": "hongtaiyang:item/dwellberry_seeds"
   }
 }

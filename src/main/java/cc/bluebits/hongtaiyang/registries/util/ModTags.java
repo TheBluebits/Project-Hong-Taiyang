@@ -1,4 +1,4 @@
-package cc.bluebits.hongtaiyang.registries;
+package cc.bluebits.hongtaiyang.registries.util;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import net.minecraft.resources.ResourceLocation;
@@ -17,11 +17,12 @@ public class ModTags {
 	 */
 	@SuppressWarnings({"unused", "MissingJavadoc"})
 	public static class Blocks {
-		public static final TagKey<Block> UMBRAL_ORES = tag("umbral_ores");
-		@SuppressWarnings("SameParameterValue")
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(new ResourceLocation(HongTaiyang.MOD_ID, name));
 		}
+		
+		public static final TagKey<Block> UMBRAL_ORES = tag("umbral_ores");
+		public static final TagKey<Block> NEEDS_UMBRAL_TOOL = tag("needs_umbral_tool");
 	}
 
 	/**
@@ -32,5 +33,6 @@ public class ModTags {
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(new ResourceLocation(HongTaiyang.MOD_ID, name));
 		}
+		
 	}
 }

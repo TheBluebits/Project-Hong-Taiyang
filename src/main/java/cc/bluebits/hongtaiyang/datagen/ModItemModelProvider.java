@@ -6,13 +6,19 @@ import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
 import cc.bluebits.hongtaiyang.util.DataGenUtil;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.util.Tuple;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -27,6 +33,104 @@ import java.util.Objects;
  */
 @SuppressWarnings({"UnusedReturnValue", "SameParameterValue", "unused"})
 public class ModItemModelProvider extends ItemModelProvider {
+	/**
+	 * Registers all item models
+	 */
+	@Override
+	protected void registerModels() {
+		// --------------------------------
+		//  Pure Items
+		// --------------------------------
+
+		// ========[ Chapter 1 ]========
+
+		simpleLayeredItem(ModItems.CRACKED_SOUL_CORE, List.of("soul_core_base", "soul_core_animation_fast", "soul_core_top_cracked"));
+		simpleItem(ModItems.DARKDWELLER_BOAT, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_CHEST_BOAT, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_SIGN, "placeholder");
+		simpleItem(ModItems.DARKDWELLER_HANGING_SIGN, "placeholder");
+		simpleItem(ModItems.DWELLBERRY);
+		simpleItem(ModItems.DWELLBERRY_SEEDS);
+		simpleItem(ModItems.LOGBOOK);
+		simpleCustomModelItem(ModItems.MAGIC_CHALK);
+		simpleItem(ModItems.SONAR_COMPASS, "placeholder");
+		simpleLayeredItem(ModItems.SOUL_CORE, List.of("soul_core_base", "soul_core_animation", "soul_core_top"));
+		simpleLayeredItem(ModItems.TOME_OF_UNIVERSE, List.of("logbook", "galaxy"));
+		simpleItem(ModItems.TUNING_FORK, "placeholder");
+		parentedLayeredItem(ModItems.UMBRAL_AXE, "handheld", false, List.of("umbral_axe_base", "umbral_axe_pulse"));
+		simpleItem(ModItems.UMBRAL_ESSENCE);
+		simpleItem(ModItems.UMBRAL_GEM);
+		customModelItem(ModItems.UMBRAL_LOCATOR, List.of(
+				new Tuple<>("back", "umbral_locator_back"),
+				new Tuple<>("front", "umbral_locator_front"))
+		);
+		parentedLayeredItem(ModItems.UMBRAL_HOE, "handheld", false, List.of("umbral_hoe_base", "umbral_hoe_pulse"));
+		parentedLayeredItem(ModItems.UMBRAL_PICKAXE, "handheld", false, List.of("umbral_pickaxe_base", "umbral_pickaxe_pulse"));
+		parentedLayeredItem(ModItems.UMBRAL_SHOVEL, "handheld", false, List.of("umbral_shovel_base", "umbral_shovel_pulse"));
+		//handheldLayeredItem(ModItems.UMBRAL_SWORD, "handheld", false, List.of("umbral_sword_base", "umbral_sword_pulse"));
+		simpleItem(ModItems.UMBRAL_SWORD, "placeholder");
+		simpleCustomModelItem(ModItems.WARDLING_ANTLER);
+		trimmedArmorItem(ModItems.UMBRAL_HELMET);
+		trimmedArmorItem(ModItems.UMBRAL_CHESTPLATE);
+		trimmedArmorItem(ModItems.UMBRAL_LEGGINGS);
+		trimmedArmorItem(ModItems.UMBRAL_BOOTS);
+		simpleItem(ModItems.WRITINGS);
+		customModelItem(ModItems.HANDSPONGE, List.of(
+				new Tuple<>("handle", "stripped_dark_oak_log"),
+				new Tuple<>("sponge", "sponge"))
+		);
+
+
+
+		// --------------------------------
+		//  Block Items
+		// --------------------------------
+
+		// ========[ Chapter 1 ]========
+
+		blockItem(ModBlocks.DARKDWELLER_BUNDLE);
+		parentedItem(ModBlocks.DARKDWELLER_BUTTON, "button_inventory", false, "placeholder", true, "texture");
+		simpleItem(ModBlocks.DARKDWELLER_DOOR, "placeholder");
+		parentedItem(ModBlocks.DARKDWELLER_FENCE, "fence_inventory", false, "placeholder", true, "texture");
+		blockItem(ModBlocks.DARKDWELLER_FENCE_GATE);
+		blockItem(ModBlocks.DARKDWELLER_LOG, "darkdweller_log_inventory");
+		blockItem(ModBlocks.DARKDWELLER_PLANKS);
+		blockItem(ModBlocks.DARKDWELLER_PRESSURE_PLATE);
+		simpleItem(ModBlocks.DARKDWELLER_ROOT, "placeholder");
+		blockItem(ModBlocks.DARKDWELLER_SLAB);
+		blockItem(ModBlocks.DARKDWELLER_STAIRS);
+		simpleItem(ModBlocks.DARKDWELLER_STICK, "placeholder");
+		blockItem(ModBlocks.DARKDWELLER_TRAPDOOR, getName(ModBlocks.DARKDWELLER_TRAPDOOR) + "_bottom");
+		blockItem(ModBlocks.DEEPSLATE_UMBRAL_ORE);
+		blockItem(ModBlocks.ROOTED_SCULK);
+		blockItem(ModBlocks.STRIPPED_DARKDWELLER_BUNDLE);
+		blockItem(ModBlocks.UMBRAL_BLOCK);
+		blockItem(ModBlocks.UMBRAL_ORE);
+	}
+
+
+
+
+
+
+	// ================================
+	//  Function definitions
+	// ================================
+
+	private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+	static {
+		trimMaterials.put(TrimMaterials.QUARTZ, 0.1f);
+		trimMaterials.put(TrimMaterials.IRON, 0.2f);
+		trimMaterials.put(TrimMaterials.NETHERITE, 0.3f);
+		trimMaterials.put(TrimMaterials.REDSTONE, 0.4f);
+		trimMaterials.put(TrimMaterials.COPPER, 0.5f);
+		trimMaterials.put(TrimMaterials.GOLD, 0.6f);
+		trimMaterials.put(TrimMaterials.EMERALD, 0.7f);
+		trimMaterials.put(TrimMaterials.DIAMOND, 0.8f);
+		trimMaterials.put(TrimMaterials.LAPIS, 0.9f);
+		trimMaterials.put(TrimMaterials.AMETHYST, 1.0f);
+	}
+	
 	/**
 	 * Constructor for the class
 	 * @param output Passed to the super constructor
@@ -419,77 +523,42 @@ public class ModItemModelProvider extends ItemModelProvider {
 		return parentedItem(item, "base/" + getName(item), true);
 	}
 
-
 	/**
-	 * Registers all item models
+	 * Creates an {@code ItemModelBuilder} for armor items that can also be trimmed.
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
 	 */
-	@Override
-	protected void registerModels() {
-		// --------------------------------
-		//  Pure Items
-		// --------------------------------
-		
-		// ========[ Chapter 1 ]========
-		
-		simpleLayeredItem(ModItems.CRACKED_SOUL_CORE, List.of("soul_core_base", "soul_core_animation_fast", "soul_core_top_cracked"));
-		simpleItem(ModItems.DARKDWELLER_BOAT, "placeholder");
-		simpleItem(ModItems.DWELLBERRY, "placeholder");
-		simpleItem(ModItems.DWELLBERRY_SEEDS, "placeholder");
-		simpleItem(ModItems.LOGBOOK);
-		simpleCustomModelItem(ModItems.MAGIC_CHALK);
-		simpleItem(ModItems.SONAR_COMPASS, "placeholder");
-		simpleLayeredItem(ModItems.SOUL_CORE, List.of("soul_core_base", "soul_core_animation", "soul_core_top"));
-		simpleLayeredItem(ModItems.TOME_OF_UNIVERSE, List.of("logbook", "galaxy"));
-		simpleItem(ModItems.TUNING_FORK, "placeholder");
-        parentedLayeredItem(ModItems.UMBRAL_AXE, "handheld", false, List.of("umbral_axe_base", "umbral_axe_pulse"));
-		simpleItem(ModItems.UMBRAL_ESSENCE);
-		simpleItem(ModItems.UMBRAL_GEM);
-		customModelItem(ModItems.UMBRAL_LOCATOR, List.of(
-				new Tuple<>("back", "umbral_locator_back"),
-				new Tuple<>("front", "umbral_locator_front"))
-		);
-		parentedLayeredItem(ModItems.UMBRAL_HOE, "handheld", false, List.of("umbral_hoe_base", "umbral_hoe_pulse"));
-		parentedLayeredItem(ModItems.UMBRAL_PICKAXE, "handheld", false, List.of("umbral_pickaxe_base", "umbral_pickaxe_pulse"));
-		parentedLayeredItem(ModItems.UMBRAL_SHOVEL, "handheld", false, List.of("umbral_shovel_base", "umbral_shovel_pulse"));
-		//handheldLayeredItem(ModItems.UMBRAL_SWORD, "handheld", false, List.of("umbral_sword_base", "umbral_sword_pulse"));
-		simpleItem(ModItems.UMBRAL_SWORD, "placeholder");
-		simpleCustomModelItem(ModItems.WARDLING_ANTLER);
-		simpleItem(ModItems.WARDLING_HELMET, "placeholder");
-		simpleItem(ModItems.WARDLING_CHESTPLATE, "placeholder");
-		simpleItem(ModItems.WARDLING_LEGGINGS, "placeholder");
-		simpleItem(ModItems.WARDLING_BOOTS, "placeholder");
-		simpleItem(ModItems.WRITINGS);
-		customModelItem(ModItems.HANDSPONGE, List.of(
-				new Tuple<>("handle", "stripped_dark_oak_log"),
-				new Tuple<>("sponge", "sponge"))
-		);
-		
-		
-		
-		// --------------------------------
-		//  Block Items
-		// --------------------------------
-
-		// ========[ Chapter 1 ]========
-		
-		blockItem(ModBlocks.DARKDWELLER_BUNDLE);
-		parentedItem(ModBlocks.DARKDWELLER_BUTTON, "button_inventory", false, "placeholder", true, "texture");
-		simpleItem(ModBlocks.DARKDWELLER_DOOR, "placeholder");
-		parentedItem(ModBlocks.DARKDWELLER_FENCE, "fence_inventory", false, "placeholder", true, "texture");
-		blockItem(ModBlocks.DARKDWELLER_FENCE_GATE);
-		blockItem(ModBlocks.DARKDWELLER_LOG, "darkdweller_log_inventory");
-		blockItem(ModBlocks.DARKDWELLER_PLANKS);
-		blockItem(ModBlocks.DARKDWELLER_PRESSURE_PLATE);
-		// Darkdweller Sign
-		simpleItem(ModBlocks.DARKDWELLER_ROOT, "placeholder");
-		blockItem(ModBlocks.DARKDWELLER_SLAB);
-		blockItem(ModBlocks.DARKDWELLER_STAIRS);
-		simpleItem(ModBlocks.DARKDWELLER_STICK, "placeholder");
-		blockItem(ModBlocks.DARKDWELLER_TRAPDOOR, getName(ModBlocks.DARKDWELLER_TRAPDOOR) + "_bottom");
-		blockItem(ModBlocks.DEEPSLATE_UMBRAL_ORE);
-		blockItem(ModBlocks.ROOTED_SCULK);
-		blockItem(ModBlocks.STRIPPED_DARKDWELLER_BUNDLE);
-		blockItem(ModBlocks.UMBRAL_BLOCK);
-		blockItem(ModBlocks.UMBRAL_ORE);
+	private void trimmedArmorItem(RegistryObject<Item> item) {
+		if (item.get() instanceof ArmorItem armorItem) {
+			trimMaterials.forEach((trimMaterial, trimValue) -> {
+				String armorType = switch (armorItem.getEquipmentSlot()) {
+					case HEAD -> "helmet";
+					case CHEST -> "chestplate";
+					case LEGS -> "leggings";
+					case FEET -> "boots";
+					default -> "";
+				};
+	
+				String armorItemPath = "item/" + armorItem;
+				String trimPath = "trims/items/" + armorType + "_trim_" + trimMaterial.location().getPath();
+				String currentTrimName = armorItemPath + "_" + trimMaterial.location().getPath() + "_trim";
+	
+				ResourceLocation armorItemLocation = new ResourceLocation(HongTaiyang.MOD_ID, armorItemPath);
+				ResourceLocation trimLocation = new ResourceLocation(trimPath); // Minecraft namespace
+				ResourceLocation trimNameLocation = new ResourceLocation(HongTaiyang.MOD_ID, currentTrimName);
+	
+				existingFileHelper.trackGenerated(trimLocation, PackType.CLIENT_RESOURCES, ".png", "textures");
+	
+				getBuilder(currentTrimName)
+						.parent(new ModelFile.UncheckedModelFile("item/generated"))
+						.texture("layer0", armorItemLocation)
+						.texture("layer1", trimLocation);
+	
+				withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
+						.override()
+						.model(new ModelFile.UncheckedModelFile(trimNameLocation))
+						.predicate(mcLoc("trim_type"), trimValue).end()
+						.texture("layer0", new ResourceLocation(HongTaiyang.MOD_ID, "item/" + item.getId().getPath()));
+			});
+		}
 	}
 }

@@ -2,3 +2,6 @@
 
 # Project-Hong-Taiyang
 I clearly didn't think this through...
+
+## Special Thanks
+- [Kaupenjoe](https://www.youtube.com/@ModdingByKaupenjoe) for his tutorials

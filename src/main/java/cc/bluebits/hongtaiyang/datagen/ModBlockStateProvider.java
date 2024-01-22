@@ -14,13 +14,103 @@ import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A class that generates blockstates and blockmodels for all blocks in the mod
  */
 @SuppressWarnings("ALL")
 public class ModBlockStateProvider extends BlockStateProvider {
+	/**
+	 * Creates BlockModels and a BlockState for all blocks
+	 */
+	@Override
+	protected void registerStatesAndModels() {
+		// ========[ Resources ]========
+
+		ResourceLocation darkdwellerPlanksLocation = blockTexture(ModBlocks.DARKDWELLER_PLANKS.get());
+		ResourceLocation placeholderLocation = modLoc("block/placeholder");
+
+
+
+		// ========[ Chapter 1 ]========
+
+		axisBlock((RotatedPillarBlock) ModBlocks.DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
+		buttonBlock(((ButtonBlock) ModBlocks.DARKDWELLER_BUTTON.get()), placeholderLocation);
+		doorBlockWithRenderType(((DoorBlock) ModBlocks.DARKDWELLER_DOOR.get()), placeholderLocation, placeholderLocation, "cutout");
+		fenceBlock((FenceBlock) ModBlocks.DARKDWELLER_FENCE.get(), placeholderLocation);
+		fenceGateBlock((FenceGateBlock) ModBlocks.DARKDWELLER_FENCE_GATE.get(), placeholderLocation);
+		thinPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_LOG.get(), List.of(
+				new Tuple<>("side", "darkdweller_log_core"),
+				new Tuple<>("particle", "darkdweller_log_end")
+		), List.of(
+				new Tuple<>("side", "darkdweller_log_link_primary"),
+				new Tuple<>("end", "darkdweller_log_end")
+		), List.of(
+				new Tuple<>("side", "darkdweller_log_link_secondary"),
+				new Tuple<>("end", "darkdweller_stick_end")
+		), List.of(
+				new Tuple<>("side", "darkdweller_log_inventory"),
+				new Tuple<>("end", "darkdweller_log_end")
+		));
+		simpleBlock(ModBlocks.DARKDWELLER_PLANKS.get(), placeholderLocation);
+		pressurePlateBlock(((PressurePlateBlock) ModBlocks.DARKDWELLER_PRESSURE_PLATE.get()), placeholderLocation);
+		crossBlock(ModBlocks.DARKDWELLER_ROOT.get(), placeholderLocation);
+		signBlock((StandingSignBlock) ModBlocks.DARKDWELLER_SIGN.get(), (WallSignBlock) ModBlocks.DARKDWELLER_WALL_SIGN.get(), placeholderLocation);
+		hangingSignBlock((CeilingHangingSignBlock) ModBlocks.DARKDWELLER_HANGING_SIGN.get(), (WallHangingSignBlock) ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get(), placeholderLocation);
+		slabBlock(((SlabBlock) ModBlocks.DARKDWELLER_SLAB.get()), darkdwellerPlanksLocation, placeholderLocation); // First location is a block model, second one is a texture
+		stairsBlock(((StairBlock) ModBlocks.DARKDWELLER_STAIRS.get()), placeholderLocation);
+		stickPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_STICK.get(), List.of(
+				new Tuple<>("side", "darkdweller_stick_core")
+		), List.of(
+				new Tuple<>("side", "darkdweller_stick_link_primary"),
+				new Tuple<>("end", "darkdweller_stick_end")
+		));
+		trapdoorBlockWithRenderType((TrapDoorBlock) ModBlocks.DARKDWELLER_TRAPDOOR.get(), placeholderLocation, true, "cutout");
+		simpleBlock(ModBlocks.DEEPSLATE_UMBRAL_ORE.get(), mcLoc("block/deepslate"));
+		thinPillarFruitBlock((ModThinPillarFruitBlock) ModBlocks.DWELLBERRY.get(), List.of(
+				Map.of(
+						new Tuple<>("fruit", "dwellberry_stage0"), true,
+						new Tuple<>("particle", "dwellberry_stage0"), true),
+				Map.of(
+						new Tuple<>("fruit", "dwellberry_stage1"), true,
+						new Tuple<>("particle", "dwellberry_stage1"), true),
+				Map.of(
+						new Tuple<>("fruit", "dwellberry_stage2"), true,
+						new Tuple<>("particle", "dwellberry_stage2"), true)
+		));
+		simpleBlock(ModBlocks.ROOTED_SCULK.get());
+		variedPlateBlock(ModBlocks.RUNE.get(), Map.of(
+				new Tuple<>("wool", "rune1"), true,
+				new Tuple<>("wool", "rune2"), true,
+				new Tuple<>("wool", "rune3"), true,
+				new Tuple<>("wool", "rune4"), true,
+				new Tuple<>("wool", "rune5"), true,
+				new Tuple<>("wool", "rune6"), true,
+				new Tuple<>("wool", "rune7"), true,
+				new Tuple<>("wool", "rune8"), true,
+				new Tuple<>("wool", "rune9"), true,
+				new Tuple<>("wool", "rune10"), true
+		));
+		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
+		// Stripped Darkdweller Log
+		// Stripped Darkdweller Stick
+		simpleBlock(ModBlocks.UMBRAL_BLOCK.get(), placeholderLocation);
+		simpleBlock(ModBlocks.UMBRAL_ORE.get(), mcLoc("block/stone"));
+	}
+
+
+	
+	
+	
+
+	// ================================
+	//  Function definitions
+	// ================================
+	
 	/**
 	 * Constructor for the class
 	 * @param output Passed to the super constructor
@@ -32,6 +122,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	}
 
 
+	/**
+	 * Pulls the key of a block from the registry
+	 * @param block The instance of the block which key is pulled
+	 * @return The key of the specified block
+	 */
+	private ResourceLocation getKey(Block block) {
+		return ForgeRegistries.BLOCKS.getKey(block);
+	}
 	
 	/**
 	 * Pulls the name of a block from the registry and adds a suffix to it, if specified
@@ -40,7 +138,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 * @return The name of the specified block with the specified suffix
 	 */
 	private String getName(Block block, String suffix) {
-		String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
+		String name = getKey(block).getPath();
 		if(suffix != null && !suffix.isBlank()) name += "_" + suffix;
 		
 		return name;
@@ -458,79 +556,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 
 	/**
-	 * Creates BlockModels and a BlockState for all blocks
+	 * Creates a BlockState for a hanging sign block
+	 * @param signBlock The instance of the block which is used fot the hanging variant
+	 * @param wallSignBlock The instance of the block which is used fot the wall variant
+	 * @param sign The BlockModel of the sign
 	 */
-	@Override
-	protected void registerStatesAndModels() {
-		// ========[ Resources ]========
-		
-		ResourceLocation darkdwellerPlanksLocation = blockTexture(ModBlocks.DARKDWELLER_PLANKS.get());
-		ResourceLocation placeholderLocation = modLoc("block/placeholder");
+	public void hangingSignBlock(CeilingHangingSignBlock signBlock, WallHangingSignBlock wallSignBlock, ModelFile sign) {
+		simpleBlock(signBlock, sign);
+		simpleBlock(wallSignBlock, sign);
+	}
 
-		
-		
-		// ========[ Chapter 1 ]========
-
-		axisBlock((RotatedPillarBlock) ModBlocks.DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
-		buttonBlock(((ButtonBlock) ModBlocks.DARKDWELLER_BUTTON.get()), placeholderLocation);
-		doorBlockWithRenderType(((DoorBlock) ModBlocks.DARKDWELLER_DOOR.get()), placeholderLocation, placeholderLocation, "cutout");
-		fenceBlock((FenceBlock) ModBlocks.DARKDWELLER_FENCE.get(), placeholderLocation);
-		fenceGateBlock((FenceGateBlock) ModBlocks.DARKDWELLER_FENCE_GATE.get(), placeholderLocation);
-		thinPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_LOG.get(), List.of(
-				new Tuple<>("side", "darkdweller_log_core"),
-				new Tuple<>("particle", "darkdweller_log_end")
-		), List.of(
-				new Tuple<>("side", "darkdweller_log_link_primary"),
-				new Tuple<>("end", "darkdweller_log_end")
-		), List.of(
-				new Tuple<>("side", "darkdweller_log_link_secondary"),
-				new Tuple<>("end", "darkdweller_stick_end")	
-		), List.of(
-				new Tuple<>("side", "darkdweller_log_inventory"),
-				new Tuple<>("end", "darkdweller_log_end")
-		));
-		simpleBlock(ModBlocks.DARKDWELLER_PLANKS.get(), placeholderLocation);
-		pressurePlateBlock(((PressurePlateBlock) ModBlocks.DARKDWELLER_PRESSURE_PLATE.get()), placeholderLocation);
-		crossBlock(ModBlocks.DARKDWELLER_ROOT.get(), placeholderLocation);
-		// Darkdweller Sign
-		slabBlock(((SlabBlock) ModBlocks.DARKDWELLER_SLAB.get()), darkdwellerPlanksLocation, placeholderLocation); // First location is a block model, second one is a texture
-		stairsBlock(((StairBlock) ModBlocks.DARKDWELLER_STAIRS.get()), placeholderLocation);
-		stickPillarBlock((ModModularPillarBlock) ModBlocks.DARKDWELLER_STICK.get(), List.of(
-				new Tuple<>("side", "darkdweller_stick_core")
-		), List.of(
-				new Tuple<>("side", "darkdweller_stick_link_primary"),
-				new Tuple<>("end", "darkdweller_stick_end")
-		));
-		trapdoorBlockWithRenderType((TrapDoorBlock) ModBlocks.DARKDWELLER_TRAPDOOR.get(), placeholderLocation, true, "cutout");
-		simpleBlock(ModBlocks.DEEPSLATE_UMBRAL_ORE.get(), mcLoc("block/deepslate"));
-		thinPillarFruitBlock((ModThinPillarFruitBlock) ModBlocks.DWELLBERRY.get(), List.of(
-				Map.of(
-						new Tuple<>("fruit", "placeholder"), true,
-						new Tuple<>("particle", "placeholder"), true),
-				Map.of(
-						new Tuple<>("fruit", "placeholder"), true,
-						new Tuple<>("particle", "placeholder"), true),
-				Map.of(
-						new Tuple<>("fruit", "placeholder"), true,
-						new Tuple<>("particle", "placeholder"), true)
-		));
-		simpleBlock(ModBlocks.ROOTED_SCULK.get());
-		variedPlateBlock(ModBlocks.RUNE.get(), Map.of(
-				new Tuple<>("wool", "rune1"), true,
-				new Tuple<>("wool", "rune2"), true,
-				new Tuple<>("wool", "rune3"), true,
-				new Tuple<>("wool", "rune4"), true,
-				new Tuple<>("wool", "rune5"), true,
-				new Tuple<>("wool", "rune6"), true,
-				new Tuple<>("wool", "rune7"), true,
-				new Tuple<>("wool", "rune8"), true,
-				new Tuple<>("wool", "rune9"), true,
-				new Tuple<>("wool", "rune10"), true
-		));
-		axisBlock((RotatedPillarBlock) ModBlocks.STRIPPED_DARKDWELLER_BUNDLE.get(), placeholderLocation, placeholderLocation);
-		// Stripped Darkdweller Log
-		// Stripped Darkdweller Stick
-		simpleBlock(ModBlocks.UMBRAL_BLOCK.get(), placeholderLocation);
-		simpleBlock(ModBlocks.UMBRAL_ORE.get(), mcLoc("block/stone"));
+	/**
+	 * Creates a BlockState for a hanging sign block. The model is generated and usese the supplied texture
+	 * @param signBlock The instance of the block which is used fot the hanging variant
+	 * @param wallSignBlock The instance of the block which is used fot the wall variant
+	 * @param texture The texture of the sign model
+	 */
+	public void hangingSignBlock(CeilingHangingSignBlock signBlock, WallHangingSignBlock wallSignBlock, ResourceLocation texture) {
+		ModelFile sign = models().sign(getName(signBlock), texture);
+		hangingSignBlock(signBlock, wallSignBlock, sign);
 	}
 }

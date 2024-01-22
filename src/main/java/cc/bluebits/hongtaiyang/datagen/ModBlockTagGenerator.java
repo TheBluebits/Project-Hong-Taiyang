@@ -1,8 +1,8 @@
 package cc.bluebits.hongtaiyang.datagen;
 
 import cc.bluebits.hongtaiyang.HongTaiyang;
-import cc.bluebits.hongtaiyang.registries.ModTags;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
+import cc.bluebits.hongtaiyang.registries.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -33,6 +33,10 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		//  Modded Tags
 		// ================================
 		tag(ModTags.Blocks.UMBRAL_ORES)
+				.add(ModBlocks.DEEPSLATE_UMBRAL_ORE.get())
+				.add(ModBlocks.UMBRAL_ORE.get());
+		
+		tag(ModTags.Blocks.NEEDS_UMBRAL_TOOL)
 				.add(ModBlocks.DEEPSLATE_UMBRAL_ORE.get())
 				.add(ModBlocks.UMBRAL_ORE.get());
 		
@@ -100,5 +104,17 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 		
 		tag(BlockTags.WOODEN_TRAPDOORS)
 				.add(ModBlocks.DARKDWELLER_TRAPDOOR.get());
+		
+		tag(BlockTags.STANDING_SIGNS)
+				.add(ModBlocks.DARKDWELLER_SIGN.get());
+		
+		tag(BlockTags.WALL_SIGNS)
+				.add(ModBlocks.DARKDWELLER_WALL_SIGN.get());
+		
+		tag(BlockTags.CEILING_HANGING_SIGNS)
+				.add(ModBlocks.DARKDWELLER_HANGING_SIGN.get());
+		
+		tag(BlockTags.WALL_HANGING_SIGNS)
+				.add(ModBlocks.DARKDWELLER_WALL_HANGING_SIGN.get());
 	}
 }
