@@ -63,6 +63,11 @@ public class ModCreativeModeTabs {
 						pOutput.accept(ModItems.DARKDWELLER_SIGN.get());
 						pOutput.accept(ModItems.DARKDWELLER_HANGING_SIGN.get());
 
+						// Special Items
+						ItemStack handspongeStack = new ItemStack(ModItems.HANDSPONGE.get());
+						handspongeStack.setDamageValue(ModItems.HANDSPONGE.get().getMaxDamage(handspongeStack));
+						pOutput.accept(handspongeStack);
+
 						//Blocks
 						pOutput.accept(ModBlocks.UMBRAL_ORE.get());
 						pOutput.accept(ModBlocks.DEEPSLATE_UMBRAL_ORE.get());

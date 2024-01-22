@@ -18,7 +18,6 @@ import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModTrunkPlacers;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -68,10 +67,7 @@ public class HongTaiyang {
 	}
 
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		// Special Items
-		ItemStack handspongeStack = new ItemStack(ModItems.HANDSPONGE.get());
-		handspongeStack.setDamageValue(ModItems.HANDSPONGE.get().getMaxDamage(handspongeStack));
-		event.accept(handspongeStack);
+		
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
