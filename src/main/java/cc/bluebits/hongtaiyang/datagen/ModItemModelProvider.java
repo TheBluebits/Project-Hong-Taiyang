@@ -56,7 +56,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.SONAR_COMPASS, "placeholder");
 		simpleLayeredItem(ModItems.SOUL_CORE, List.of("soul_core_base", "soul_core_animation", "soul_core_top"));
 		simpleLayeredItem(ModItems.TOME_OF_UNIVERSE, List.of("logbook", "galaxy"));
-		simpleItem(ModItems.TUNING_FORK, "placeholder");
+		simpleItem(ModItems.TUNING_FORK);
 		parentedLayeredItem(ModItems.UMBRAL_AXE, "handheld", false, List.of("umbral_axe_base", "umbral_axe_pulse"));
 		simpleItem(ModItems.UMBRAL_ESSENCE);
 		simpleItem(ModItems.UMBRAL_GEM);
