@@ -4,6 +4,7 @@ package cc.bluebits.hongtaiyang.registries.item;
 import cc.bluebits.hongtaiyang.HongTaiyang;
 import cc.bluebits.hongtaiyang.entity.ModBoatEntity;
 import cc.bluebits.hongtaiyang.item.ModBoatItem;
+import cc.bluebits.hongtaiyang.item.ModLogBookItem;
 import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,7 +36,7 @@ public class ModItems {
 	// --------------------------------
 
 	public static final RegistryObject<Item> LOGBOOK = ITEMS.register("logbook",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new ModLogBookItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> WRITINGS = ITEMS.register("writings",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> TOME_OF_UNIVERSE = ITEMS.register("tome_of_universe",
