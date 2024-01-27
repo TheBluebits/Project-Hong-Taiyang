@@ -1,0 +1,18 @@
+{
+  "parent": "item/generated",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "hongtaiyang:item/base/magic_chalk_3d"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "hongtaiyang:item/base/magic_chalk_2d"
+    },
+    "fixed": {
+      "parent": "hongtaiyang:item/base/magic_chalk_2d"
+    },
+    "ground": {
+      "parent": "hongtaiyang:item/base/magic_chalk_2d"
+    }
+  }
+}

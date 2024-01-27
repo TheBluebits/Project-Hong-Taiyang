@@ -1,8 +1,9 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "hongtaiyang:item/placeholder"
+    "layer0": "hongtaiyang:item/magic_chalk_2d"
   },
+  "gui_light": "front",
   "display": {
     "gui": {
       "rotation": [

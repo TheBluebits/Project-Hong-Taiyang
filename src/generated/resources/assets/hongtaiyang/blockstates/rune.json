@@ -2,16 +2,7 @@
   "variants": {
     "": [
       {
-        "model": "hongtaiyang:block/rune_rune8"
-      },
-      {
-        "model": "hongtaiyang:block/rune_rune5"
-      },
-      {
-        "model": "hongtaiyang:block/rune_rune1"
-      },
-      {
-        "model": "hongtaiyang:block/rune_rune9"
+        "model": "hongtaiyang:block/rune_rune3"
       },
       {
         "model": "hongtaiyang:block/rune_rune7"
@@ -20,16 +11,25 @@
         "model": "hongtaiyang:block/rune_rune6"
       },
       {
-        "model": "hongtaiyang:block/rune_rune3"
+        "model": "hongtaiyang:block/rune_rune4"
+      },
+      {
+        "model": "hongtaiyang:block/rune_rune1"
+      },
+      {
+        "model": "hongtaiyang:block/rune_rune9"
+      },
+      {
+        "model": "hongtaiyang:block/rune_rune5"
       },
       {
         "model": "hongtaiyang:block/rune_rune2"
       },
       {
-        "model": "hongtaiyang:block/rune_rune10"
+        "model": "hongtaiyang:block/rune_rune8"
       },
       {
-        "model": "hongtaiyang:block/rune_rune4"
+        "model": "hongtaiyang:block/rune_rune10"
       }
     ]
   }

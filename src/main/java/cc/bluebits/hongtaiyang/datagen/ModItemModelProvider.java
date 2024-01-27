@@ -52,7 +52,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.DWELLBERRY);
 		simpleItem(ModItems.DWELLBERRY_SEEDS);
 		simpleItem(ModItems.LOGBOOK);
-		simpleCustomModelItem(ModItems.MAGIC_CHALK);
+		//simpleCustomModelItem(ModItems.MAGIC_CHALK);
 		simpleItem(ModItems.SONAR_COMPASS, "placeholder");
 		simpleLayeredItem(ModItems.SOUL_CORE, List.of("soul_core_base", "soul_core_animation", "soul_core_top"));
 		simpleLayeredItem(ModItems.TOME_OF_UNIVERSE, List.of("logbook", "galaxy"));
