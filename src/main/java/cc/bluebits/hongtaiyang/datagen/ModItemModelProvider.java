@@ -12,6 +12,7 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.ItemLike;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.loaders.SeparateTransformsModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -52,7 +54,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 		simpleItem(ModItems.DWELLBERRY);
 		simpleItem(ModItems.DWELLBERRY_SEEDS);
 		simpleItem(ModItems.LOGBOOK);
-		//simpleCustomModelItem(ModItems.MAGIC_CHALK);
+		multiModelItem(ModItems.MAGIC_CHALK, "handheld", false, "base/magic_chalk_3d", true, Map.of(
+				new Tuple<>("chalk", "magic_chalk_3d"), true),
+				List.of(
+						new SeparateTransformsPerspective(ItemDisplayContext.GUI, "base/magic_chalk_2d", true, Map.of(
+								new Tuple<>("layer0", "magic_chalk_2d"), true)
+						), 
+						new SeparateTransformsPerspective(ItemDisplayContext.GROUND, "base/magic_chalk_2d", true, Map.of(
+								new Tuple<>("layer0", "magic_chalk_2d"), true)
+						), 
+						new SeparateTransformsPerspective(ItemDisplayContext.FIXED, "base/magic_chalk_2d", true, Map.of(
+								new Tuple<>("layer0", "magic_chalk_2d"), true)
+						)
+				));
 		simpleItem(ModItems.SONAR_COMPASS, "placeholder");
 		simpleLayeredItem(ModItems.SOUL_CORE, List.of("soul_core_base", "soul_core_animation", "soul_core_top"));
 		simpleLayeredItem(ModItems.TOME_OF_UNIVERSE, List.of("logbook", "galaxy"));
@@ -561,4 +575,49 @@ public class ModItemModelProvider extends ItemModelProvider {
 			});
 		}
 	}
+
+
+	/**
+	 * Creates an {@code ItemModelBuilder} for items with multiple models for different perspectives
+	 * @param item The {@code RegistryObject} of the item for which the item model is created
+	 * @param parent The parent model
+	 * @param isParentModded Flag to determine which namespace to use for the parent
+	 * @param baseModel The name of the base model file
+	 * @param isBaseModelModded Flag to determine which namespace to use for the base model
+	 * @param baseTextures A {@code Map} of texture keys, texture names and {@code isModded} flags, which determine which namespace to use, for each texture in the base model
+	 * @param perspectives A {@code List} of {@code SeparateTransformsPerspective} that contain the perspective, model name, {@code isModded} flag and a {@code Map} of texture keys, texture names and {@code isModded} flags, which determine which namespace to use, for each texture for each perspective
+	 * @param <T> Extends {@code ItemLike} and specifies the type used for {@code item}
+	 * @return The {@code ItemModelBuilder} with the specified parent, base model, textures and perspectives
+	 * @see SeparateTransformsPerspective
+	 * @see Tuple
+	 * @see ItemLike
+	 * @see RegistryObject
+	 * @see ItemModelBuilder
+	 * @see SeparateTransformsModelBuilder
+	 */
+	private <T extends ItemLike> ItemModelBuilder multiModelItem(RegistryObject<Item> item, String parent, boolean isParentModded, String baseModel, boolean isBaseModelModded, Map<Tuple<String, String>, Boolean> baseTextures, List<SeparateTransformsPerspective> perspectives) {
+		ItemModelBuilder builder = withExistingParent(getName(item), new ResourceLocation(getNamespace(isParentModded), getPathDirectory(item) + parent));
+		
+		ItemModelBuilder baseBuilder = customModelItem(item, baseTextures, baseModel, isBaseModelModded);
+		SeparateTransformsModelBuilder<ItemModelBuilder> modelBuilder = builder.customLoader(SeparateTransformsModelBuilder::begin)
+				.base(baseBuilder);
+		
+		for(SeparateTransformsPerspective perspective : perspectives) {
+			modelBuilder = modelBuilder.perspective(perspective.perspective, customModelItem(item, perspective.textures, perspective.model, perspective.isModelModded));
+		}
+		
+		builder = modelBuilder.end();
+		return builder;
+	}
+
+
+	/**
+	 * A helper record for {@code multiModelItem} that holds the following information for each perspective:
+	 * @param perspective The item display context aka the perspective
+	 * @param model The name of the model file
+	 * @param isModelModded Flag to determine which namespace to use for the model
+	 * @param textures A {@code Map} of texture keys, texture names and {@code isModded} flags, which determine which namespace to use, for each texture
+	 * @see ItemDisplayContext   
+	 */
+	private record SeparateTransformsPerspective(ItemDisplayContext perspective, String model, boolean isModelModded, Map<Tuple<String, String>, Boolean> textures) {}
 }

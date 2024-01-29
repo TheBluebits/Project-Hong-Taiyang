@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:item/handheld",
+  "base": {
+    "parent": "hongtaiyang:item/base/magic_chalk_3d",
+    "textures": {
+      "chalk": "hongtaiyang:item/magic_chalk_3d"
+    }
+  },
+  "loader": "forge:separate_transforms",
+  "perspectives": {
+    "fixed": {
+      "parent": "hongtaiyang:item/base/magic_chalk_2d",
+      "textures": {
+        "layer0": "hongtaiyang:item/magic_chalk_2d"
+      }
+    },
+    "ground": {
+      "parent": "hongtaiyang:item/base/magic_chalk_2d",
+      "textures": {
+        "layer0": "hongtaiyang:item/magic_chalk_2d"
+      }
+    },
+    "gui": {
+      "parent": "hongtaiyang:item/base/magic_chalk_2d",
+      "textures": {
+        "layer0": "hongtaiyang:item/magic_chalk_2d"
+      }
+    }
+  }
+}
