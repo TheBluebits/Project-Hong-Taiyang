@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
 
 	/**
 	 * Method for registering the creative mode tabs
+	 *
 	 * @param eventBus The event bus to register to
 	 */
 	public static void register(IEventBus eventBus) {
@@ -32,7 +33,7 @@ public class ModCreativeModeTabs {
 			"chapter1_tab",
 			() -> CreativeModeTab.builder()
 					.icon(() -> new ItemStack(ModItems.SOUL_CORE.get()))
-					.title(Component.translatable("itemGroup.chapter1_tab"))
+					.title(Component.translatable("itemGroup." + HongTaiyang.MOD_ID + ".chapter1_tab"))
 					.displayItems(((pParameters, pOutput) -> {
 						// Items
 						pOutput.accept(ModItems.LOGBOOK.get());

@@ -36,11 +36,11 @@ public class ModItems {
 	// --------------------------------
 
 	public static final RegistryObject<Item> LOGBOOK = ITEMS.register("logbook",
-			() -> new ModLogBookItem(new Item.Properties().stacksTo(1)));
+			() -> new ModLogBookItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 	public static final RegistryObject<Item> WRITINGS = ITEMS.register("writings",
 			() -> new Item(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> TOME_OF_UNIVERSE = ITEMS.register("tome_of_universe",
-			() -> new Item(new Item.Properties().stacksTo(1)));
+			() -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 	public static final RegistryObject<Item> SOUL_CORE = ITEMS.register("soul_core",
 			() -> new Item(new Item.Properties().stacksTo(64)));
 	public static final RegistryObject<Item> CRACKED_SOUL_CORE = ITEMS.register("cracked_soul_core",
