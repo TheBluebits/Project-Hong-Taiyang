@@ -1,8 +1,8 @@
 package cc.bluebits.hongtaiyang.item;
 
 import cc.bluebits.hongtaiyang.data.LogBookEntries;
+import cc.bluebits.hongtaiyang.gui.LogBookViewScreen;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.inventory.BookViewScreen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -15,11 +15,12 @@ import net.minecraft.world.item.WrittenBookItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-
 /**
  * A book item that can be opened by right-clicking that contains some log entries that guide the player towards the deep dark.
  */
 public class ModLogBookItem extends WrittenBookItem {
+
+
     /**
      * Creates a new log book item.
      * @param pProperties The properties of the item, passed to the super constructor.
@@ -35,12 +36,10 @@ public class ModLogBookItem extends WrittenBookItem {
      */
     public void openItemGui(Level pLevel, ItemStack pStack) {
         if(!pLevel.isClientSide) return;
-
         // Check if book has contents
         CompoundTag nbt = pStack.getTag();
         if(!makeSureTagIsValid(nbt)) {
             LogBookEntries.LogBookEntry entry = LogBookEntries.getRandomEntry(pLevel.getRandom());
-
             ListTag pagesTag = new ListTag();
             entry.pages().stream().map(StringTag::valueOf).forEach(pagesTag::add);
             if (!entry.pages().isEmpty()) {
@@ -50,8 +49,8 @@ public class ModLogBookItem extends WrittenBookItem {
             pStack.addTagElement("author", StringTag.valueOf(entry.author()));
             pStack.addTagElement("title", StringTag.valueOf("Old Logbook"));
         }
-        
-        Minecraft.getInstance().setScreen(new BookViewScreen(new BookViewScreen.WrittenBookAccess(pStack)));
+
+        Minecraft.getInstance().setScreen(new LogBookViewScreen(new LogBookViewScreen.WrittenBookAccess(pStack)));
     }
 
     /**
