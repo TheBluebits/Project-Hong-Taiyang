@@ -48,6 +48,7 @@
 	"block.hongtaiyang.darkdweller_hanging_sign": "Darkdweller Hanging Sign",
 	
 	"itemGroup.hongtaiyang.chapter1_tab": "Hong Taiyang - Unveiling the shadows",
+	"tooltip.hongtaiyang.logbook.tooltip": "A logbook that has been left behind by someone. It seems to be a record of the owner's journey.",
 	
 	"entity.hongtaiyang.mod_chest_boat": "Boat with Chest"
 }

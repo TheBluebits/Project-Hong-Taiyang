@@ -8,6 +8,7 @@ import cc.bluebits.hongtaiyang.registries.block.ModBlocks;
 import cc.bluebits.hongtaiyang.registries.entity.ModEntities;
 import cc.bluebits.hongtaiyang.registries.item.ModCreativeModeTabs;
 import cc.bluebits.hongtaiyang.registries.item.ModItems;
+import cc.bluebits.hongtaiyang.registries.loot.ModLootModifiers;
 import cc.bluebits.hongtaiyang.registries.util.ModWoodTypes;
 import cc.bluebits.hongtaiyang.registries.world.feature.ModFeatures;
 import cc.bluebits.hongtaiyang.registries.world.feature.tree.ModFoliagePlacers;
@@ -55,6 +56,7 @@ public class HongTaiyang {
 		ModTrunkPlacers.register(modEventBus);
 		ModTreeDecorators.register(modEventBus);
 		ModFeatures.register(modEventBus);
+		ModLootModifiers.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
 		MinecraftForge.EVENT_BUS.register(this);
